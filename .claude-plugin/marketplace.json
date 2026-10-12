@@ -1,0 +1,57 @@
+{
+  "name": "caffeinity-skills",
+  "owner": {
+    "name": "Abdul Rahman P Z"
+  },
+  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, and multi-agent tournament plugins.",
+  "plugins": [
+    {
+      "name": "wordsmith",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/wordsmith"
+      },
+      "description": "Teaches your agent to edit, not just generate: 44 commands across 5 disciplines that tighten, rewrite, critique and proofread while keeping the author's meaning, hedges and voice intact."
+    },
+    {
+      "name": "recruiter-lens",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/recruiter-lens"
+      },
+      "description": "Reviews resumes, CVs and LinkedIn profiles the way recruiters screen them: first-impression scans, ATS compatibility, rejection-pattern diagnosis and interview prep. Never invents a metric."
+    },
+    {
+      "name": "deep-tutor",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/deep-tutor"
+      },
+      "description": "A world-class teacher for any topic, from zero background toward expert depth, in eight modes from foundations and curricula to strict exams and ELI5."
+    },
+    {
+      "name": "do-better",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/do-better"
+      },
+      "description": "When an answer is bad, runs a single-elimination tournament of sub-agents with different strategy cards until one solution survives."
+    },
+    {
+      "name": "keyword-guard",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/keyword-guard"
+      },
+      "description": "Plans topic clusters and kills keyword cannibalization so exactly one page wins each query, with a mandatory cannibalization audit before content changes."
+    },
+    {
+      "name": "web-preflight",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/web-preflight"
+      },
+      "description": "Checks a site you own before you ship it, treating status codes as signals rather than findings; unrun checks are reported as INCONCLUSIVE, never a pass."
+    }
+  ]
+}
