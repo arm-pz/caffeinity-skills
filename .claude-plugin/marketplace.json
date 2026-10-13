@@ -52,6 +52,14 @@
         "repo": "arm-pz/web-preflight"
       },
       "description": "Checks a site you own before you ship it, treating status codes as signals rather than findings; unrun checks are reported as INCONCLUSIVE, never a pass."
+    },
+    {
+      "name": "job-lens",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/job-lens"
+      },
+      "description": "Produces tailored job-application material: decoded JD table, action-task-result-impact bullet rewrites, honest keyword placement map, five role-specific summaries, full LinkedIn rewrite, and a 20-question interview answer pack. Sibling of recruiter-lens: it produces while recruiter-lens judges. Never invents experience or numbers."
     }
   ]
 }
