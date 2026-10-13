@@ -68,6 +68,14 @@
         "repo": "arm-pz/findable"
       },
       "description": "Sets up discovery for a GitHub repo, agent skill, Claude Code plugin or MCP server so people and agents find it by what it does, not just its name: audits current visibility and same-name collisions, derives the queries strangers actually type, drafts the About text, topics, README opening, release notes and a project page, then plans directories and a dated re-check. Never games stars or leaves example slots with invented output."
+    },
+    {
+      "name": "application-pilot",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/application-pilot"
+      },
+      "description": "Runs the job search around the applications: search brief, role discovery with honest posting dates, rubric-based fit scoring, a reviewable CSV or Markdown tracker, follow-up drafts, interview briefings and a funnel review. Never submits, invents nothing, and has no CLI, telemetry, or browser automation. Coordinates with job-lens and recruiter-lens."
     }
   ]
 }
