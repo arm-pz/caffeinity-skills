@@ -60,6 +60,14 @@
         "repo": "arm-pz/job-lens"
       },
       "description": "Produces tailored job-application material: decoded JD table, action-task-result-impact bullet rewrites, honest keyword placement map, five role-specific summaries, full LinkedIn rewrite, and a 20-question interview answer pack. Sibling of recruiter-lens: it produces while recruiter-lens judges. Never invents experience or numbers."
+    },
+    {
+      "name": "findable",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/findable"
+      },
+      "description": "Sets up discovery for a GitHub repo, agent skill, Claude Code plugin or MCP server so people and agents find it by what it does, not just its name: audits current visibility and same-name collisions, derives the queries strangers actually type, drafts the About text, topics, README opening, release notes and a project page, then plans directories and a dated re-check. Never games stars or leaves example slots with invented output."
     }
   ]
 }
