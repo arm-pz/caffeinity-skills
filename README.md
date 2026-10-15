@@ -1,6 +1,6 @@
 # caffeinity-skills
 
-A Claude Code plugin marketplace for Abdul Rahman P Z's skills: wordsmith, recruiter-lens, job-lens, deep-tutor, do-better, keyword-guard, web-preflight, and findable.
+A Claude Code plugin marketplace for Abdul Rahman P Z's skills: wordsmith, recruiter-lens, applicant-kit, topic-primer, do-better, keyword-guard, web-preflight, and findable.
 
 ## Install
 
@@ -9,6 +9,6 @@ A Claude Code plugin marketplace for Abdul Rahman P Z's skills: wordsmith, recru
 /plugin install wordsmith@caffeinity-skills
 ```
 
-Replace `wordsmith` with any of: `recruiter-lens`, `job-lens`, `deep-tutor`, `do-better`, `keyword-guard`, `web-preflight`, `findable`.
+Replace `wordsmith` with any of: `recruiter-lens`, `applicant-kit`, `topic-primer`, `do-better`, `keyword-guard`, `web-preflight`, `findable`.
 
 Each plugin lives in its own repository (see `.claude-plugin/marketplace.json` for sources).

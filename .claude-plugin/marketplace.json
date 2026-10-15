@@ -22,10 +22,10 @@
       "description": "Reviews resumes, CVs and LinkedIn profiles the way recruiters screen them: first-impression scans, ATS compatibility, rejection-pattern diagnosis and interview prep. Never invents a metric."
     },
     {
-      "name": "deep-tutor",
+      "name": "topic-primer",
       "source": {
         "source": "github",
-        "repo": "arm-pz/deep-tutor"
+        "repo": "arm-pz/topic-primer"
       },
       "description": "A world-class teacher for any topic, from zero background toward expert depth, in eight modes from foundations and curricula to strict exams and ELI5."
     },
@@ -54,10 +54,10 @@
       "description": "Checks a site you own before you ship it, treating status codes as signals rather than findings; unrun checks are reported as INCONCLUSIVE, never a pass."
     },
     {
-      "name": "job-lens",
+      "name": "applicant-kit",
       "source": {
         "source": "github",
-        "repo": "arm-pz/job-lens"
+        "repo": "arm-pz/applicant-kit"
       },
       "description": "Produces tailored job-application material: decoded JD table, action-task-result-impact bullet rewrites, honest keyword placement map, five role-specific summaries, full LinkedIn rewrite, and a 20-question interview answer pack. Sibling of recruiter-lens: it produces while recruiter-lens judges. Never invents experience or numbers."
     },
