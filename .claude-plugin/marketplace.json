@@ -3,7 +3,7 @@
   "owner": {
     "name": "Abdul Rahman P Z"
   },
-  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, and multi-agent tournament plugins.",
+  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, and multi-agent tournament plugins.",
   "plugins": [
     {
       "name": "wordsmith",
@@ -76,6 +76,14 @@
         "repo": "arm-pz/application-pilot"
       },
       "description": "Runs the job search around the applications: search brief, role discovery with honest posting dates, rubric-based fit scoring, a reviewable CSV or Markdown tracker, follow-up drafts, interview briefings and a funnel review. Never submits, invents nothing, and has no CLI, telemetry, or browser automation. Coordinates with job-lens and recruiter-lens."
+    },
+    {
+      "name": "crash-test",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/crash-test"
+      },
+      "description": "Crash-tests a decision before you build it. Four fixed roles (Pragmatist, Skeptic, Specialist, Contrarian) draft the same task in separate contexts, attack each other's drafts anonymously, and a chair merges what survived, keeps a dissent log, and grounds the winner's claims against your source before adopting it. Optional Operator seat for cost, rollout and reversibility. No server, no API keys, no other agent CLIs."
     }
   ]
 }
