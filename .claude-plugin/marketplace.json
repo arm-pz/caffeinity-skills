@@ -84,6 +84,22 @@
         "repo": "arm-pz/crash-test"
       },
       "description": "Crash-tests a decision before you build it. Four fixed roles (Pragmatist, Skeptic, Specialist, Contrarian) draft the same task in separate contexts, attack each other's drafts anonymously, and a chair merges what survived, keeps a dissent log, and grounds the winner's claims against your source before adopting it. Optional Operator seat for cost, rollout and reversibility. No server, no API keys, no other agent CLIs."
+    },
+    {
+      "name": "pre-ship-performance-audit",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/pre-ship-performance-audit"
+      },
+      "description": "Audits and fixes web app performance before launch: four read-only subagent audits over twenty known slow-downs across images, fonts, bundles, database queries and servers, then same-condition mobile Lighthouse medians prove each fix. Never removes a feature for a score; asks before dependency, index, RLS or region changes."
+    },
+    {
+      "name": "pre-ship-security-red-team",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/pre-ship-security-red-team"
+      },
+      "description": "Authorized, evidence-driven red-team pass over a web app you own, before launch. Three read-only subagents run 14 authorization and abuse checks against isolated synthetic accounts, the chair fixes each failure, adds regression tests, and reruns with a negative control. Isolated local environments only; secrets masked in every artifact; anything unrun is reported not-proven, never passed."
     }
   ]
 }
