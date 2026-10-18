@@ -75,7 +75,7 @@
         "source": "github",
         "repo": "arm-pz/application-pilot"
       },
-      "description": "Runs the job search around the applications: search brief, role discovery with honest posting dates, rubric-based fit scoring, a reviewable CSV or Markdown tracker, follow-up drafts, interview briefings and a funnel review. Never submits, invents nothing, and has no CLI, telemetry, or browser automation. Coordinates with job-lens and recruiter-lens."
+      "description": "Runs the job search around the applications: search brief, role discovery with honest posting dates, rubric-based fit scoring, a reviewable CSV or Markdown tracker, follow-up drafts, interview briefings and a funnel review. Never submits, invents nothing, and has no CLI, telemetry, or browser automation. Coordinates with applicant-kit and recruiter-lens."
     },
     {
       "name": "crash-test",
