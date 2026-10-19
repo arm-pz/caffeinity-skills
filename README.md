@@ -1,6 +1,6 @@
 # caffeinity-skills
 
-A Claude Code plugin marketplace for Abdul Rahman P Z's skills: wordsmith, recruiter-lens, applicant-kit, topic-primer, application-pilot, do-better, keyword-guard, web-preflight, findable, crash-test, pre-ship-performance-audit, pre-ship-security-red-team, release-gate, and publish-release-gate.
+A Claude Code plugin marketplace for Abdul Rahman P Z's skills: wordsmith, recruiter-lens, applicant-kit, topic-primer, application-pilot, do-better, keyword-guard, web-preflight, findable, crash-test, pre-ship-performance-audit, pre-ship-security-red-team, release-gate, publish-release-gate, and upstream-check.
 
 ## Install
 
@@ -9,6 +9,6 @@ A Claude Code plugin marketplace for Abdul Rahman P Z's skills: wordsmith, recru
 /plugin install wordsmith@caffeinity-skills
 ```
 
-Replace `wordsmith` with any of: `recruiter-lens`, `applicant-kit`, `topic-primer`, `application-pilot`, `do-better`, `keyword-guard`, `web-preflight`, `findable`, `crash-test`, `pre-ship-performance-audit`, `pre-ship-security-red-team`, `release-gate`, `publish-release-gate`.
+Replace `wordsmith` with any of: `recruiter-lens`, `applicant-kit`, `topic-primer`, `application-pilot`, `do-better`, `keyword-guard`, `web-preflight`, `findable`, `crash-test`, `pre-ship-performance-audit`, `pre-ship-security-red-team`, `release-gate`, `publish-release-gate`, `upstream-check`.
 
 Each plugin lives in its own repository (see `.claude-plugin/marketplace.json` for sources).

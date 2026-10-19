@@ -71,6 +71,11 @@
       "name": "release-gate",
       "repo": "arm-pz/release-gate-chair",
       "description": "Three pre-launch passes (exposure, app-tests, perf) with one deterministic posture: HOLD or ready."
+    },
+    {
+      "name": "upstream-check",
+      "repo": "arm-pz/upstream-check",
+      "description": "Audit local git clones against their upstream, screen the unpushed diff for secrets, and push only fast-forwards."
     }
   ]
 }

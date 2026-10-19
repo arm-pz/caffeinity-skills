@@ -116,6 +116,14 @@
         "repo": "arm-pz/release-gate-chair"
       },
       "description": "Runs three pre-launch passes (exposure, app-tests, perf) in sequence and returns one release posture — HOLD or ready — with three separate verdicts and one merged finding register. Deterministic arithmetic over union of findings; a lane that did not run holds the gate. Use when asked 'is this safe to ship', 'ready to deploy', or for go/no-go decisions before any production release."
+    },
+    {
+      "name": "upstream-check",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/upstream-check"
+      },
+      "description": "Audits local git clones against their upstream before you push. Fetches first, classifies each repo as level, push-ready, behind or diverged, screens the unpushed diff for secrets, and only pushes with an explicit --push. A second script compares your published listings against the repos that actually ship a SKILL.md. Never force-pushes; a behind or diverged repo is reported, not touched."
     }
   ]
 }
