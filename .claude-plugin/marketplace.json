@@ -102,6 +102,14 @@
       "description": "Authorized, evidence-driven red-team pass over a web app you own, before launch. Three read-only subagents run 14 authorization and abuse checks against isolated synthetic accounts, the chair fixes each failure, adds regression tests, and reruns with a negative control. Isolated local environments only; secrets masked in every artifact; anything unrun is reported not-proven, never passed."
     },
     {
+      "name": "publish-release-gate",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/publish-release-gate"
+      },
+      "description": "Publishes a skill through three distribution channels: marketplace plugin, agent discovery protocol, and tarball delivery via Cloudflare Pages custom domain. Use when someone says 'publish to marketplace', 'make discoverable by agents', 'deploy skill site', or after completing a skill update that needs public distribution."
+    },
+    {
       "name": "release-gate",
       "source": {
         "source": "github",
