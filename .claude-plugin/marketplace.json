@@ -3,7 +3,7 @@
   "owner": {
     "name": "Abdul Rahman P Z"
   },
-  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, and multi-agent tournament plugins.",
+  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, skill authoring and tuning, and multi-agent tournament plugins.",
   "plugins": [
     {
       "name": "wordsmith",
@@ -124,6 +124,38 @@
         "repo": "arm-pz/upstream-check"
       },
       "description": "Audits local git clones against their upstream before you push. Fetches first, classifies each repo as level, push-ready, behind or diverged, screens the unpushed diff for secrets, and only pushes with an explicit --push. A second script compares your published listings against the repos that actually ship a SKILL.md. Never force-pushes; a behind or diverged repo is reported, not touched."
+    },
+    {
+      "name": "draft-skill",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/draft-skill"
+      },
+      "description": "Creates a new agent skill from a plain idea. Confirms the purpose before writing anything, checks the already-installed siblings for overlap, splits the work between scripts, references and assets, writes a description that actually triggers, then validates with tune-skill's check_skill.py and hands off for the boundary check. Original authoring skill: it contains no text from Qoder's built-in skill-creator, which ships without a licence permitting redistribution."
+    },
+    {
+      "name": "prompts-to-skill",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/prompts-to-skill"
+      },
+      "description": "Turns a list of your own prompts into a finished, tested agent skill, one skill per prompt. Interviews for intent, checks what is already installed so the new skill does not duplicate it, drafts with draft-skill, writes trigger test cases including near-misses, then gates the result with tune-skill. Requires draft-skill and tune-skill and stops with a clear message when either is missing. Does not do the release packaging."
+    },
+    {
+      "name": "prompts-to-skill-release",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/prompts-to-skill-release"
+      },
+      "description": "Packages a finished agent skill for release: runs its trigger test cases and records exactly which passed and which did not, sets the version and CHANGELOG, builds the archive, writes the README, and ends with a per-platform install checklist. Failed tests stay visible in the report instead of being dropped from it. Assumes the skill is already authored, by prompts-to-skill or draft-skill."
+    },
+    {
+      "name": "tune-skill",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/tune-skill"
+      },
+      "description": "Audits and fine-tunes an agent skill that already exists: the description that never fires, overlap with installed siblings, stale names and counts, and handoff contracts that do not hand off. Ships check_skill.py, a deterministic SKILL.md validator covering frontmatter, folder and heading agreement, description length, reference paths that do not exist, and count phrases that go stale. Not for creating a skill from an idea; that is draft-skill."
     }
   ]
 }

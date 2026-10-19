@@ -1,7 +1,7 @@
 {
   "name": "caffeinity-skills",
   "version": "0.1.0",
-  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release orchestration, decision review, and multi-agent tournament plugins.",
+  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release orchestration, decision review, skill authoring and tuning, and multi-agent tournament plugins.",
   "owner": {
     "name": "Abdul Rahman P Z",
     "github": "arm-pz"
@@ -76,6 +76,26 @@
       "name": "upstream-check",
       "repo": "arm-pz/upstream-check",
       "description": "Audit local git clones against their upstream, screen the unpushed diff for secrets, and push only fast-forwards."
+    },
+    {
+      "name": "draft-skill",
+      "repo": "arm-pz/draft-skill",
+      "description": "Create a new agent skill from an idea, with sibling overlap checks and validation."
+    },
+    {
+      "name": "prompts-to-skill",
+      "repo": "arm-pz/prompts-to-skill",
+      "description": "Turn a list of your own prompts into a finished, tested skill, one per prompt."
+    },
+    {
+      "name": "prompts-to-skill-release",
+      "repo": "arm-pz/prompts-to-skill-release",
+      "description": "Package a finished skill for release, keeping failed trigger tests visible."
+    },
+    {
+      "name": "tune-skill",
+      "repo": "arm-pz/tune-skill",
+      "description": "Audit and fine-tune a skill that already exists; ships the check_skill.py validator."
     }
   ]
 }
