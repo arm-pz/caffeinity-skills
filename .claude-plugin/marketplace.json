@@ -100,6 +100,14 @@
         "repo": "arm-pz/pre-ship-security-red-team"
       },
       "description": "Authorized, evidence-driven red-team pass over a web app you own, before launch. Three read-only subagents run 14 authorization and abuse checks against isolated synthetic accounts, the chair fixes each failure, adds regression tests, and reruns with a negative control. Isolated local environments only; secrets masked in every artifact; anything unrun is reported not-proven, never passed."
+    },
+    {
+      "name": "release-gate",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/release-gate-chair"
+      },
+      "description": "Runs three pre-launch passes (exposure, app-tests, perf) in sequence and returns one release posture — HOLD or ready — with three separate verdicts and one merged finding register. Deterministic arithmetic over union of findings; a lane that did not run holds the gate. Use when asked 'is this safe to ship', 'ready to deploy', or for go/no-go decisions before any production release."
     }
   ]
 }
