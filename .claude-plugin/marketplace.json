@@ -156,6 +156,14 @@
         "repo": "arm-pz/tune-skill"
       },
       "description": "Audits and fine-tunes an agent skill that already exists: the description that never fires, overlap with installed siblings, stale names and counts, and handoff contracts that do not hand off. Ships check_skill.py, a deterministic SKILL.md validator covering frontmatter, folder and heading agreement, description length, reference paths that do not exist, and count phrases that go stale. Not for creating a skill from an idea; that is draft-skill."
+    },
+    {
+      "name": "publish-pipeline",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/publish-pipeline"
+      },
+      "description": "Owns the machine that turns skill repos into a published site: one committed manifest as the publication decision, discovery that opens a pull request, a generated page per new skill, both discovery indexes, a sitemap, and gates that fail closed before and after the deploy. Not for releasing one skill through the marketplace or tarball channels; that is publish-release-gate."
     }
   ]
 }
