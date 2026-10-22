@@ -172,6 +172,22 @@
         "repo": "arm-pz/publish-pipeline"
       },
       "description": "Owns the machine that turns skill repos into a published site: one committed manifest as the publication decision, discovery that opens a pull request, a generated page per new skill, both discovery indexes, a sitemap, and gates that fail closed before and after the deploy. Not for releasing one skill through the marketplace or tarball channels; that is publish-release-gate."
+    },
+    {
+      "name": "cold-email-ops",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/cold-email-ops"
+      },
+      "description": "Plans and audits a cold-email program at volume: inbox and domain capacity from a monthly send target, reply-rate floors by domain, burn replacement, shadow-ban tests, automation error budgets and per-client reporting. Thresholds stay labelled as source benchmarks, and missing data returns INCONCLUSIVE rather than a pass. Not for pre-load list QA; that is cold-email-list-gate."
+    },
+    {
+      "name": "cold-email-list-gate",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/cold-email-list-gate"
+      },
+      "description": "Gates a cold-email lead list before it loads: samples ten rows against the ICP, returns GO or HOLD with the fail pattern and the re-run condition, and compares data providers on the same criteria. Not for lists that already sent; that diagnosis is cold-email-ops."
     }
   ]
 }
