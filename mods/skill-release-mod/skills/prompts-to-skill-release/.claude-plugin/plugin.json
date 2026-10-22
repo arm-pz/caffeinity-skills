@@ -1,0 +1,9 @@
+{
+  "name": "prompts-to-skill-release",
+  "version": "0.1.0",
+  "description": "Packages a finished agent skill for release: runs its trigger test cases and records what passed, sets the version and CHANGELOG, builds the archive, writes the README, gives a per-platform install checklist. Failed tests stay visible.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/prompts-to-skill-release"
+}

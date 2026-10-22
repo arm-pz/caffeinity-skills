@@ -1,0 +1,6 @@
+{
+  "description": "web-preflight-mod: triggers the web-preflight skill at the right moment.",
+  "modules": [
+    "./register.js"
+  ]
+}
