@@ -3,7 +3,7 @@
   "owner": {
     "name": "Abdul Rahman P Z"
   },
-  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, skill authoring and tuning, and multi-agent tournament plugins.",
+  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, skill authoring and tuning, and multi-agent tournament plugins, plus mods that trigger those skills at the right moment.",
   "plugins": [
     {
       "name": "wordsmith",
@@ -188,6 +188,36 @@
         "repo": "arm-pz/cold-email-list-gate"
       },
       "description": "Gates a cold-email lead list before it loads: samples ten rows against the ICP, returns GO or HOLD with the fail pattern and the re-run condition, and compares data providers on the same criteria. Not for lists that already sent; that diagnosis is cold-email-ops."
+    },
+    {
+      "name": "release-gate-mod",
+      "source": "./mods/release-gate-mod",
+      "description": "Mod: holds production deploys, PR merges, pushes and publishes until the release-gate chair has run since the last edit. Bundles release-gate-chair."
+    },
+    {
+      "name": "web-preflight-mod",
+      "source": "./mods/web-preflight-mod",
+      "description": "Mod: reminds Claude to run web-preflight before a production deploy (wrangler, vercel --prod, netlify --prod, firebase, fly). Bundles web-preflight."
+    },
+    {
+      "name": "pre-ship-security-red-team-mod",
+      "source": "./mods/pre-ship-security-red-team-mod",
+      "description": "Mod: holds production deploys until the pre-ship security red team has run since the last edit. Bundles pre-ship-security-red-team."
+    },
+    {
+      "name": "pre-ship-performance-audit-mod",
+      "source": "./mods/pre-ship-performance-audit-mod",
+      "description": "Mod: reminds Claude to run the pre-ship performance audit before a production deploy. Bundles pre-ship-performance-audit."
+    },
+    {
+      "name": "skill-release-mod",
+      "source": "./mods/skill-release-mod",
+      "description": "Mod: holds gh release create, npm publish and version tags until prompts-to-skill-release has run its test cases. Bundles prompts-to-skill-release."
+    },
+    {
+      "name": "tune-skill-mod",
+      "source": "./mods/tune-skill-mod",
+      "description": "Mod: after Claude edits a SKILL.md, nudges it to validate with tune-skill before pushing or releasing. Bundles tune-skill."
     }
   ]
 }

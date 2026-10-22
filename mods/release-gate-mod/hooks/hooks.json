@@ -1,0 +1,6 @@
+{
+  "description": "release-gate-mod: triggers the release-gate-chair skill at the right moment.",
+  "modules": [
+    "./register.js"
+  ]
+}

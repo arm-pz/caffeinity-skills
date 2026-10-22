@@ -1,0 +1,6 @@
+{
+  "description": "pre-ship-security-red-team-mod: triggers the pre-ship-security-red-team skill at the right moment.",
+  "modules": [
+    "./register.js"
+  ]
+}

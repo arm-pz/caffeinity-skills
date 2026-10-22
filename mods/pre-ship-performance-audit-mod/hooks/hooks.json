@@ -1,0 +1,6 @@
+{
+  "description": "pre-ship-performance-audit-mod: triggers the pre-ship-performance-audit skill at the right moment.",
+  "modules": [
+    "./register.js"
+  ]
+}

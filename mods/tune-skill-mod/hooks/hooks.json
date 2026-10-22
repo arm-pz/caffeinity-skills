@@ -1,0 +1,6 @@
+{
+  "description": "tune-skill-mod: triggers the tune-skill skill at the right moment.",
+  "modules": [
+    "./register.js"
+  ]
+}

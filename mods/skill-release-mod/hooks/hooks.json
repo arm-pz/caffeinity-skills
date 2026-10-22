@@ -1,0 +1,6 @@
+{
+  "description": "skill-release-mod: triggers the prompts-to-skill-release skill at the right moment.",
+  "modules": [
+    "./register.js"
+  ]
+}
