@@ -46,6 +46,14 @@
       "description": "Plans topic clusters and kills keyword cannibalization so exactly one page wins each query, with a mandatory cannibalization audit before content changes."
     },
     {
+      "name": "seo-crawl",
+      "source": {
+        "source": "github",
+        "repo": "arm-pz/seo-crawl"
+      },
+      "description": "Crawls a site you own and returns deterministic, evidence-backed technical SEO findings: indexability, canonicals, titles, metas, H1s, broken internal links, sitemap coverage and static JSON-LD. Bounded and read-only; blocked or unrun checks are reported INCONCLUSIVE, never a pass. Feeds seo-audit and keyword-guard."
+    },
+    {
       "name": "web-preflight",
       "source": {
         "source": "github",

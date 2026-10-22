@@ -43,6 +43,11 @@
       "description": "Plan topic clusters and eliminate keyword cannibalization."
     },
     {
+      "name": "seo-crawl",
+      "repo": "arm-pz/seo-crawl",
+      "description": "Crawl a site you own and return deterministic, evidence-backed technical SEO findings."
+    },
+    {
       "name": "web-preflight",
       "repo": "arm-pz/web-preflight",
       "description": "Check a site you own before shipping for accidental exposure and missing controls."
