@@ -1,0 +1,15 @@
+{
+  "name": "caffeinity-routing",
+  "version": "0.1.0",
+  "description": "Routes a multi-step goal across the caffeinity skills: nine numbered workflows (build a skill, get found, release gate, organic growth, job search, decisions, learning, outbound, one-person launch), each step's input and output, and a script that names the skills you have not installed.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "workflow",
+    "routing",
+    "claude-code"
+  ]
+}
