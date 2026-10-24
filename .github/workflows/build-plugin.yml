@@ -42,6 +42,8 @@ jobs:
         run: |
           python -I plugins/paper-trail/tests/test_check_pages.py
           python -I plugins/course-builder/tests/test_check_course.py
+      - name: trigger suite is current and covers every skill
+        run: python scripts/build_evals.py --check
       - name: agents are current
         run: python scripts/build_plugin.py --agents-only --check
       - name: manifests parse

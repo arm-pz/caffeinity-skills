@@ -1,0 +1,236 @@
+{
+  "startedAt": "2026-10-24T07:37:06.544Z",
+  "claudeVersion": "2.1.310",
+  "costUsd": 1.02,
+  "partial": false,
+  "passed": 43,
+  "total": 52,
+  "cases": {
+    "applicant-kit-rewrite": {
+      "pass": true,
+      "failed": []
+    },
+    "application-pilot-tracker": {
+      "pass": true,
+      "failed": []
+    },
+    "career-track-raise": {
+      "pass": true,
+      "failed": []
+    },
+    "cold-email-ops-inboxes": {
+      "pass": true,
+      "failed": []
+    },
+    "cold-list-gate": {
+      "pass": true,
+      "failed": []
+    },
+    "course-builder-cohort": {
+      "pass": true,
+      "failed": []
+    },
+    "course-builder-not-me": {
+      "pass": true,
+      "failed": []
+    },
+    "crash-test-decision": {
+      "pass": true,
+      "failed": []
+    },
+    "data-readout-ab": {
+      "pass": true,
+      "failed": []
+    },
+    "do-better-arena": {
+      "pass": true,
+      "failed": []
+    },
+    "draft-skill-new": {
+      "pass": true,
+      "failed": []
+    },
+    "findable-more-stars": {
+      "pass": true,
+      "failed": []
+    },
+    "findable-polish-readme": {
+      "pass": true,
+      "failed": []
+    },
+    "keyword-guard-cannibal": {
+      "pass": true,
+      "failed": []
+    },
+    "keyword-resolver-rewrites": {
+      "pass": true,
+      "failed": []
+    },
+    "none-weather": {
+      "pass": true,
+      "failed": []
+    },
+    "paper-trail-not-nda": {
+      "pass": true,
+      "failed": []
+    },
+    "paper-trail-privacy": {
+      "pass": true,
+      "failed": []
+    },
+    "paper-trail-which-pages": {
+      "pass": true,
+      "failed": []
+    },
+    "perf-audit-slow": {
+      "pass": true,
+      "failed": []
+    },
+    "platform-content-thread": {
+      "pass": true,
+      "failed": []
+    },
+    "production-code-error": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "prompts-to-skill-batch": {
+      "pass": true,
+      "failed": []
+    },
+    "publish-pipeline-missing-skill": {
+      "pass": true,
+      "failed": []
+    },
+    "recruiter-lens-why": {
+      "pass": true,
+      "failed": []
+    },
+    "red-team-idor": {
+      "pass": true,
+      "failed": []
+    },
+    "release-gate-go-no-go": {
+      "pass": true,
+      "failed": []
+    },
+    "release-gate-ledger-variant": {
+      "pass": true,
+      "failed": []
+    },
+    "release-gate-validator-reports": {
+      "pass": true,
+      "failed": []
+    },
+    "release-package-skill": {
+      "pass": true,
+      "failed": []
+    },
+    "research-brief-market": {
+      "pass": true,
+      "failed": []
+    },
+    "routing-how-fit": {
+      "pass": true,
+      "failed": []
+    },
+    "routing-sell-online": {
+      "pass": true,
+      "failed": []
+    },
+    "sales-copy-page": {
+      "pass": true,
+      "failed": []
+    },
+    "seo-crawl-broken-links": {
+      "pass": true,
+      "failed": []
+    },
+    "seo-polish-full": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "site-prompt-mega": {
+      "pass": true,
+      "failed": []
+    },
+    "skill-launch-zero-to-published": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "skill-to-mod-should": {
+      "pass": true,
+      "failed": []
+    },
+    "solo-income-what-sell": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "strategy-memo-pricing": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "study-system-forgetting": {
+      "pass": true,
+      "failed": []
+    },
+    "topic-primer-teach": {
+      "pass": true,
+      "failed": []
+    },
+    "tune-and-polish-both": {
+      "pass": true,
+      "failed": []
+    },
+    "tune-skill-family-regress": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "tune-skill-not-triggering": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "upstream-check-listing-drift": {
+      "pass": true,
+      "failed": []
+    },
+    "upstream-check-unpushed": {
+      "pass": true,
+      "failed": []
+    },
+    "upstream-polish-fix-drift": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    },
+    "web-preflight-env": {
+      "pass": true,
+      "failed": []
+    },
+    "wordsmith-not-resume": {
+      "pass": true,
+      "failed": []
+    },
+    "wordsmith-tighten": {
+      "pass": false,
+      "failed": [
+        "fires"
+      ]
+    }
+  }
+}

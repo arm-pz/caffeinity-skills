@@ -56,6 +56,21 @@ The bundle is generated, not edited: `scripts/build_plugin.py` renders the agent
 from its own repo (`plugins/caffeinity/SOURCES.md` records the commits). The `build plugin`
 workflow reruns it hourly and bumps the version only when something changed.
 
+## Trigger tests
+
+`evals/triggers.json` holds one or more real user messages per skill, with the skill that must load
+and the ones that must not. `scripts/build_evals.py` turns it into a `claude plugin eval` suite under
+`plugins/caffeinity/evals/` (CI checks it is current and that every bundled skill has a case), and
+
+```
+bash scripts/run_evals.sh
+```
+
+runs it on your own Claude login: about $0.10 a case, $5 for the suite, never in CI. Each case checks
+which skill the Skill tool actually loaded. `evals/last-run.json` records the result per case; a rerun
+prints NEWLY FAILING and NOW PASSING so a description edit that breaks triggering is caught by name.
+Single runs vary, so treat a case as a real miss when it fails twice.
+
 ## Install one skill as a Claude Code plugin
 
 ```

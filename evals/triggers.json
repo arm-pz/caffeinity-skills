@@ -1,0 +1,67 @@
+{
+  "about": "Trigger cases for every skill in the caffeinity bundle. Each case is one user message; `expect` is the skill that must load (null when none of these skills should), `not` lists skills that must not load. scripts/build_evals.py turns this file into plugins/caffeinity/evals/; scripts/run_evals.sh runs them with `claude plugin eval`. Add a case whenever a description changes or a misfire is reported.",
+  "cases": [
+    {"id": "routing-sell-online", "prompt": "I've installed all your caffeinity skills. Where do I start if I want to sell a small digital product online, and in what order should I run things?", "expect": "caffeinity-routing"},
+    {"id": "routing-how-fit", "prompt": "How do these caffeinity skills fit together? Which one should I run first to get my site safe to ship and then ranking on Google?", "expect": "caffeinity-routing"},
+
+    {"id": "draft-skill-new", "prompt": "Make me a skill that turns meeting transcripts into a list of decisions and owners. I don't have any prompts written yet, just the idea.", "expect": "draft-skill", "not": ["prompts-to-skill", "tune-skill"]},
+    {"id": "prompts-to-skill-batch", "prompt": "Here are five prompts I keep pasting every week for code review summaries. Turn these into a reusable skill:\n1. Summarise this diff for a non-engineer\n2. List risky changes in this PR\n3. Which tests should I add for this diff\n4. Write release notes from these commits\n5. Flag any secrets in this patch", "expect": "prompts-to-skill", "not": ["draft-skill"]},
+    {"id": "tune-skill-not-triggering", "prompt": "My SKILL.md for invoice-parser never triggers when people ask to read invoices. Here's the description: \"Parses documents.\" What's wrong and how do I fix it?", "expect": "tune-skill", "not": ["draft-skill"]},
+    {"id": "tune-skill-family-regress", "prompt": "I edited six of my agent skills this week. Can you check whether anything in the whole set got worse compared with last time: broken handoffs, two skills claiming the same trigger, that kind of thing?", "expect": "tune-skill"},
+    {"id": "release-package-skill", "prompt": "The skill folder above is finished. Package it as a zip, run its test cases, write the README and give me an install checklist.", "expect": "prompts-to-skill-release", "not": ["draft-skill", "tune-skill"]},
+    {"id": "skill-to-mod-should", "prompt": "Should my web-preflight skill become a Claude Code mod so it runs automatically before every git push? If yes, convert it.", "expect": "skill-to-mod"},
+    {"id": "skill-launch-zero-to-published", "prompt": "I have an idea for a skill that drafts changelogs. Take it from zero all the way to published: write it, validate it, and polish its README and listing, in one pipeline.", "expect": "skill-launch"},
+    {"id": "tune-and-polish-both", "prompt": "My keyword-guard skill fires on the wrong requests AND its GitHub README and About text are weak. Fix the triggering and then polish the listing, in one pass.", "expect": "tune-and-polish"},
+
+    {"id": "findable-more-stars", "prompt": "My GitHub repo for a Claude Code plugin gets no stars or installs. Another project with a similar name shows up instead of mine. How do I get it found?", "expect": "findable", "not": ["wordsmith"]},
+    {"id": "findable-polish-readme", "prompt": "Audit my README for search visibility gaps and then give me rewritten alternatives for the opening paragraph and the About text.", "expect": "findable-polish"},
+    {"id": "publish-pipeline-missing-skill", "prompt": "I pushed a new skill repo but it never appeared on my skills site, and the page for another one is stale. Set up or fix the CI/CD pipeline that publishes my skill repos to the Cloudflare Pages site.", "expect": "publish-pipeline"},
+    {"id": "upstream-check-unpushed", "prompt": "Which of the git clones in ~/skills have local commits that never reached GitHub? Push only the ones that are safe.", "expect": "upstream-check", "not": ["publish-pipeline"]},
+    {"id": "upstream-check-listing-drift", "prompt": "My site says 22 skills, the marketplace says 25 and GitHub has 27 repos with a SKILL.md. Why do the numbers disagree?", "expect": "upstream-check"},
+    {"id": "upstream-polish-fix-drift", "prompt": "My repo descriptions and the marketplace listing drifted apart after I pushed changes. Find the mismatches and write me polished replacement descriptions.", "expect": "upstream-polish"},
+
+    {"id": "site-prompt-mega", "prompt": "Write me a one-shot mega-prompt I can paste into a coding agent to build a landing page for a ceramic studio.", "expect": "site-prompt", "not": ["production-code"]},
+    {"id": "production-code-error", "prompt": "This Python script throws KeyError: 'user_id' on line 42 when the CSV has an empty row. Fix it and explain the root cause.\n\nfor row in csv.DictReader(f):\n    users[row['user_id']] = row", "expect": "production-code"},
+    {"id": "web-preflight-env", "prompt": "Before we ship https://example.com tomorrow, check whether our .env, source maps or admin pages are exposed.", "expect": "web-preflight", "not": ["pre-ship-security-red-team"]},
+    {"id": "red-team-idor", "prompt": "Play the bad guy on my web app before we launch: try to read other users' invoices by changing IDs, escalate to admin, and bypass the free-tier quota. I own the app and have a staging copy.", "expect": "pre-ship-security-red-team", "not": ["web-preflight"]},
+    {"id": "perf-audit-slow", "prompt": "Our dashboard takes 6 seconds to load and I suspect N+1 queries and huge JS bundles. Find and fix the slow parts before launch, with before and after Lighthouse numbers.", "expect": "pre-ship-performance-audit"},
+    {"id": "release-gate-go-no-go", "prompt": "Is this safe to launch? Give me a go/no-go on my web app before we deploy it on Friday.", "expect": "release-gate-chair", "not": ["release-gate-validator"]},
+    {"id": "release-gate-validator-reports", "prompt": "I already have the preflight, red-team and performance reports from last week. I can't re-run them. Turn those three reports into one HOLD or ready decision.", "expect": "release-gate-validator", "not": ["release-gate-chair"]},
+    {"id": "release-gate-ledger-variant", "prompt": "Run the ledger variant of the release gate, where each lane writes its own rows into the release-gate ledger.", "expect": "release-gate-ledger"},
+    {"id": "paper-trail-privacy", "prompt": "I need a privacy policy for my newsletter signup page. It collects emails through ConvertKit and I use Plausible for analytics.", "expect": "paper-trail", "not": ["wordsmith"]},
+    {"id": "paper-trail-which-pages", "prompt": "What legal pages do I need before I start charging for my Notion templates on Gumroad?", "expect": "paper-trail", "not": ["solo-income-blueprint"]},
+    {"id": "paper-trail-not-nda", "prompt": "Draft an NDA for a contractor who will see our source code.", "not": ["paper-trail"]},
+
+    {"id": "seo-crawl-broken-links", "prompt": "Crawl https://example.com for SEO: find broken internal links, check sitemap coverage and canonical tags.", "expect": "seo-crawl", "not": ["keyword-guard"]},
+    {"id": "keyword-guard-cannibal", "prompt": "Three of my blog posts compete for the keyword 'cold brew ratio'. Which page should own it, and how should I map the cluster so only one ranks?", "expect": "keyword-guard", "not": ["seo-crawl"]},
+    {"id": "keyword-resolver-rewrites", "prompt": "Resolve the keyword cannibalization between my /pricing and /plans pages and give me alternative titles, H1s and meta descriptions for each.", "expect": "keyword-resolver"},
+    {"id": "seo-polish-full", "prompt": "Give me a full technical and on-page SEO diagnosis of my site and then concrete rewritten titles and meta descriptions to fix what you find.", "expect": "seo-polish"},
+
+    {"id": "wordsmith-tighten", "prompt": "Tighten this paragraph and make it friendlier without changing what it says: \"Pursuant to our previous communication, we wish to inform you that the deliverables will be delayed.\"", "expect": "wordsmith", "not": ["sales-copy"]},
+    {"id": "wordsmith-not-resume", "prompt": "Proofread and polish the bullet points on my resume for a senior product manager role.", "not": ["wordsmith"]},
+    {"id": "platform-content-thread", "prompt": "Turn my blog post about bootstrapping a SaaS into a Twitter thread and three LinkedIn posts.", "expect": "platform-content", "not": ["sales-copy"]},
+    {"id": "sales-copy-page", "prompt": "Write a long-form sales page and a 5-email launch sequence for my $49 course on Figma for beginners.", "expect": "sales-copy", "not": ["platform-content"]},
+
+    {"id": "cold-list-gate", "prompt": "I bought a list of 4,000 leads for VP Marketing at SaaS companies. Check a sample against my ICP before I load it into the sender. Is it safe to send?", "expect": "cold-email-list-gate", "not": ["cold-email-ops"]},
+    {"id": "cold-email-ops-inboxes", "prompt": "I want to send 30,000 cold emails a month. How many inboxes and domains do I need, and why have my reply rates dropped on two domains?", "expect": "cold-email-ops", "not": ["cold-email-list-gate"]},
+
+    {"id": "recruiter-lens-why", "prompt": "Why is my resume not getting any interviews? Give me a recruiter's first-impression scan and an ATS check against this job description.", "expect": "recruiter-lens", "not": ["applicant-kit"]},
+    {"id": "applicant-kit-rewrite", "prompt": "Rewrite my resume bullets for this data analyst job description and draft five professional summaries and a LinkedIn About section.", "expect": "applicant-kit", "not": ["recruiter-lens"]},
+    {"id": "application-pilot-tracker", "prompt": "Build me an application tracker for the backend roles I'm applying to, flag the ones that went quiet for two weeks and draft follow-ups.", "expect": "application-pilot"},
+    {"id": "career-track-raise", "prompt": "How do I negotiate a raise and get promoted to senior engineer this cycle? My manager doesn't notice my work.", "expect": "career-track", "not": ["applicant-kit"]},
+
+    {"id": "research-brief-market", "prompt": "Research the market for AI meeting note-takers: who the main competitors are, their pricing, and what is known about market size, with sources.", "expect": "research-brief", "not": ["strategy-memo"]},
+    {"id": "data-readout-ab", "prompt": "Here are my A/B test results: control 1,200 visitors, 48 signups; variant 1,180 visitors, 71 signups. Did the variant win, and what should I do?", "expect": "data-readout", "not": ["production-code"]},
+    {"id": "strategy-memo-pricing", "prompt": "Should I enter the European market with my scheduling app, and how should I price it? I need a recommendation and a 90-day plan.", "expect": "strategy-memo", "not": ["research-brief"]},
+    {"id": "crash-test-decision", "prompt": "Crash test this: we plan to rewrite our monolith into twelve microservices over the next quarter. Pressure-test the plan before we commit.", "expect": "crash-test", "not": ["do-better"]},
+    {"id": "do-better-arena", "prompt": "That answer was bad. Do better: make a bunch of versions compete in an arena and give me the winner.", "expect": "do-better", "not": ["crash-test"]},
+    {"id": "solo-income-what-sell", "prompt": "I'm a graphic designer with 10 hours a week and $200. How can I make money online on my own, and what should I sell first?", "expect": "solo-income-blueprint", "not": ["strategy-memo"]},
+
+    {"id": "topic-primer-teach", "prompt": "Teach me linear algebra from zero, step by step, like a personal tutor.", "expect": "topic-primer", "not": ["study-system", "course-builder"]},
+    {"id": "study-system-forgetting", "prompt": "I've been learning Spanish for six months but I keep forgetting vocabulary. Give me a practice routine and a spaced-repetition schedule.", "expect": "study-system", "not": ["topic-primer", "course-builder"]},
+    {"id": "course-builder-cohort", "prompt": "I'm teaching a 6-week evening Python cohort for 20 career changers. Give me a syllabus with outcomes, modules and assessments that fits 2 hours a week.", "expect": "course-builder", "not": ["study-system", "topic-primer"]},
+    {"id": "course-builder-not-me", "prompt": "Make me a study plan to learn SQL in a month on my own.", "not": ["course-builder"]},
+
+    {"id": "none-weather", "prompt": "What's the capital of Australia?", "not": ["caffeinity-routing", "research-brief", "topic-primer"]}
+  ]
+}
