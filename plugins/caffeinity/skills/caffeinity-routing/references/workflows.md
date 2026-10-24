@@ -5,8 +5,8 @@ on, and when the workflow stops there. `scripts/route_check.py` reads the skill 
 from the second column, so keep one skill per row and mark optional steps with `(optional)`.
 A row may name alternatives as `` `a` or `b` ``; either one satisfies the step.
 
-Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail` and `course-builder`,
-which live in this repo: `npx skills add arm-pz/caffeinity-skills --skill <skill>`.
+Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail`, `course-builder` and
+`skill-estate`, which live in this repo: `npx skills add arm-pz/caffeinity-skills --skill <skill>`.
 
 ## W1 Build a skill and make it installable
 
@@ -111,3 +111,12 @@ once after changes and compare finding IDs; a code change alone does not prove a
 Run it on a schedule (the skills-site nightly health job opens the issue it starts from) or after
 any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site)
 only after saying why in the PR.
+
+## W11 Stand up or audit a skill estate
+
+| Step | Skill | Receives | Hands on | Stops when |
+| --- | --- | --- | --- | --- |
+| 1 | `skill-estate` | an owner or org with a collection of skill repos | eight gated phases run in order, each handed to its owner skill, with PRs and a list of owner actions | a phase gate fails and the owner has not waived it |
+
+`skill-estate` packages W2, W3, W10 and the publishing setup into one run for a whole collection.
+Use W10 for weekly upkeep once the estate is set up.
