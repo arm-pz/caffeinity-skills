@@ -1,0 +1,28 @@
+{
+  "name": "caffeinity",
+  "version": "1.20261024.0200",
+  "description": "All caffeinity agent skills in one install, plus nine workflow agents that hand work from one skill to the next: build a skill, get it found, gate a release, grow search traffic, land a job, make a decision, learn, run outbound, launch a solo product.",
+  "author": {
+    "name": "Abdul Rahman P Z",
+    "url": "https://github.com/arm-pz"
+  },
+  "homepage": "https://skills.caffeinity.com/",
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "workflows",
+    "subagents",
+    "seo",
+    "release-gate",
+    "skill-authoring",
+    "career"
+  ],
+  "displayName": "Caffeinity skills",
+  "icon": "./.claude-plugin/icon.png",
+  "documentationUrl": "https://skills.caffeinity.com/",
+  "supportUrl": "https://github.com/arm-pz/caffeinity-skills/issues",
+  "metadata": {
+    "bundleDigest": "f2fe72a385635438"
+  }
+}

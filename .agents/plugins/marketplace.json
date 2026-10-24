@@ -1,0 +1,20 @@
+{
+  "name": "caffeinity-skills",
+  "interface": {
+    "displayName": "Caffeinity skills"
+  },
+  "plugins": [
+    {
+      "name": "caffeinity",
+      "source": {
+        "source": "local",
+        "path": "./plugins/caffeinity"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
