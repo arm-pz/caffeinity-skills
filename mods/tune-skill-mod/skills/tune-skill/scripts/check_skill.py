@@ -44,6 +44,9 @@ def parse_simple(block):
                 continue
             if len(value) > 1 and value[0] == value[-1] and value[0] in "'\"":
                 value = value[1:-1]
+            elif re.search(r":\s|\s#", value):
+                # Strict YAML loaders reject an unquoted ": " and drop text after " #"; installers use them.
+                raise ValueError(f"unquoted '{key}' value contains ': ' or ' #'; quote it or use a >- block")
             meta[key], key = value, None
         elif key is not None and raw.strip():
             lines.append(raw.strip())
@@ -72,7 +75,11 @@ def main() -> int:
         return 1
 
     if yaml is None:
-        meta = parse_simple(match.group(1))
+        try:
+            meta = parse_simple(match.group(1))
+        except ValueError as exc:
+            print(f"FAIL  frontmatter is not valid YAML: {exc}")
+            return 1
         warns.append("PyYAML not installed; frontmatter read with the simple parser")
     else:
         try:

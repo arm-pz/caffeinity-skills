@@ -48,6 +48,12 @@ for newline, bom, no_yaml in (("\n", False, False), ("\r\n", False, False), ("\r
 code, out = run(SKILL.replace("name: demo-skill", "name: Demo Skill"))
 assert code == 1 and "lowercase" in out, out
 
+# An unquoted ": " parses in a lenient reader but breaks strict YAML loaders; both paths must fail it.
+BAD = SKILL.replace("description: >-\n  Checks a demo before release.", "description: Checks a demo: before release.")
+for no_yaml in (False, True):
+    code, out = run(BAD, no_yaml=no_yaml)
+    assert code == 1 and "not valid YAML" in out, (no_yaml, out)
+
 code, out = run("# no frontmatter\n")
 assert code == 1 and "no YAML frontmatter" in out, out
 

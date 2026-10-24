@@ -6,6 +6,11 @@
   "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, skill authoring and tuning, and multi-agent tournament plugins, plus mods that trigger those skills at the right moment.",
   "plugins": [
     {
+      "name": "caffeinity-routing",
+      "source": "./plugins/caffeinity-routing",
+      "description": "Start here: picks which caffeinity skills to run, in what order, for a goal that spans several of them, and names the ones you have not installed."
+    },
+    {
       "name": "wordsmith",
       "source": {
         "source": "github",
