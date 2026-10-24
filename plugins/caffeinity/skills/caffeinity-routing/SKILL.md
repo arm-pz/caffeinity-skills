@@ -4,7 +4,7 @@ description: >-
   Picks which caffeinity skills to run, in what order, for a goal that spans more than one of
   them, and says what each step hands the next: build and publish a skill, get a project found,
   pass a release gate, grow organic search traffic, run a job search, make a decision, learn a
-  skill, run cold outbound, or launch a one-person product. Checks which of those skills are
+  skill, run cold outbound, launch a one-person product, or keep the skills themselves healthy. Checks which of those skills are
   installed and names the missing ones instead of improvising their work. Use whenever someone
   asks which skill to use, what to run first, how the skills fit together, or describes a
   multi-step outcome such as "take this idea to a published skill" or "get my site ready to
@@ -15,7 +15,7 @@ description: >-
 # caffeinity-routing
 
 A goal like "ship my site" or "get hired" crosses several skills, and each one only knows its own
-edges. This skill holds the map: nine numbered workflows (W1 to W9), each an ordered list of
+edges. This skill holds the map: ten numbered workflows (W1 to W10), each an ordered list of
 skills with what every step receives and what it hands on. Other skills cite these numbers
 (`release-gate-chair` implements W3; `seo-crawl` is the first step of W4), so keep them stable.
 
@@ -66,12 +66,13 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | W1 | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod (only if it must run at a fixed moment) |
 | W2 | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
 | W3 | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| W4 | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith |
+| W4 | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit or platform-content (if they apply) |
 | W5 | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
 | W6 | Make a decision | research-brief → data-readout (if there is data) → crash-test → strategy-memo |
-| W7 | Learn a skill | topic-primer → study-system |
+| W7 | Learn a skill | topic-primer → study-system → course-builder (only when teaching a group) |
 | W8 | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
-| W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → W3 → platform-content |
+| W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → W3 → platform-content |
+| W10 | Maintain the skill family | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check |
 
 Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 3,
 and whenever a user asks what one skill needs from the previous one.

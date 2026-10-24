@@ -13,7 +13,7 @@ description: >-
   being taught the
   topic itself concept by concept (use topic-primer), for career positioning
   and moves (use career-track) or for course content written for a class of
-  students (use module-learning-path-generator).
+  students (use course-builder).
 ---
 
 # Study System
@@ -104,7 +104,7 @@ Before handing over, check your own output against this list:
 | --- | --- | --- |
 | "teach me X", "explain X simply", one concept at a time | `topic-primer` | The component map, the stage they are on and the seam the `feynman-test` just exposed |
 | Promotion, visibility, negotiating, which role to move to | `career-track` | The skill gap you found, phrased as the capability the role needs |
-| A curriculum for a class, cohort or course, not for one learner | `module-learning-path-generator` | The component map and the gates, restated as module outcomes |
+| A curriculum for a class, cohort or course, not for one learner | `course-builder` | The component map and the gates, restated as module outcomes |
 | "what is known about this field", tool or vendor comparisons, sourced | `research-brief` | The subject, the decision it informs, the claims you need dated sources for |
 | The plan is fine but the text needs tightening | `wordsmith` | The file and the voice the learner wants kept |
 
