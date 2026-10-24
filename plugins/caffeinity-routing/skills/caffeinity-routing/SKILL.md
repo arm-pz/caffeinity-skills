@@ -4,7 +4,7 @@ description: >-
   Picks which caffeinity skills to run, in what order, for a goal that spans more than one of
   them, and says what each step hands the next: build and publish a skill, get a project found,
   pass a release gate, grow organic search traffic, run a job search, make a decision, learn a
-  skill, run cold outbound, launch a one-person product, or keep the skills themselves healthy. Checks which of those skills are
+  skill, run cold outbound, launch a one-person product, or set up and keep the skills themselves healthy. Checks which of those skills are
   installed and names the missing ones instead of improvising their work. Use whenever someone
   asks which skill to use, what to run first, how the skills fit together, or describes a
   multi-step outcome such as "take this idea to a published skill" or "get my site ready to
@@ -15,7 +15,7 @@ description: >-
 # caffeinity-routing
 
 A goal like "ship my site" or "get hired" crosses several skills, and each one only knows its own
-edges. This skill holds the map: ten numbered workflows (W1 to W10), each an ordered list of
+edges. This skill holds the map: eleven numbered workflows (W1 to W11), each an ordered list of
 skills with what every step receives and what it hands on. Other skills cite these numbers
 (`release-gate-chair` implements W3; `seo-crawl` is the first step of W4), so keep them stable.
 
@@ -73,6 +73,7 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | W8 | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → W3 → platform-content |
 | W10 | Maintain the skill family | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check |
+| W11 | Stand up or audit a skill estate | skill-estate (eight gated phases over the whole collection) |
 
 Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 3,
 and whenever a user asks what one skill needs from the previous one.

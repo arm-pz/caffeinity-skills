@@ -2,12 +2,12 @@
 
 Agent skills for Claude Code, Codex, Cursor and any agent that reads a `SKILL.md`, by Abdul Rahman P Z:
 44 skills for writing, SEO, release checks, skill authoring, careers, decisions, learning and
-outbound, plus ten workflow agents that hand work from one skill to the next. Browse them at
+outbound, plus eleven workflow agents that hand work from one skill to the next. Browse them at
 [skills.caffeinity.com](https://skills.caffeinity.com/).
 
 ## Install everything at once
 
-**Claude Code** — the `caffeinity` plugin bundles every skill and the ten agents:
+**Claude Code** — the `caffeinity` plugin bundles every skill and the eleven agents:
 
 ```
 /plugin marketplace add arm-pz/caffeinity-skills
@@ -47,6 +47,7 @@ Each agent runs one workflow and preloads the skills it needs. In Claude Code, a
 | `outbound-lead` | W8 Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | `solo-launcher` | W9 Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → release-gate-chair → platform-content |
 | `skill-maintainer` | W10 Maintain the skill family | tune-skill → prompts-to-skill-release → upstream-check |
+| `estate-lead` | W11 Stand up or audit a skill estate | skill-estate |
 
 Codex has no subagents, so there the `caffeinity-routing` skill does this job: describe the outcome
 and it names the workflow and the next skill.

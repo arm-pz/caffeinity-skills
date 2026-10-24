@@ -42,7 +42,7 @@ def load(path=WORKFLOWS):
 
 
 # Skills that live in arm-pz/caffeinity-skills rather than a repo of their own.
-IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder"}
+IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder", "skill-estate"}
 
 
 def install(name):

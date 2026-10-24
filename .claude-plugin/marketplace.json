@@ -8,7 +8,7 @@
     {
       "name": "caffeinity",
       "source": "./plugins/caffeinity",
-      "description": "Everything in one install: every caffeinity skill plus ten workflow agents (skill-builder, discovery-lead, release-gatekeeper, seo-lead, job-search-coach, decision-analyst, learning-coach, outbound-lead, solo-launcher, skill-maintainer)."
+      "description": "Everything in one install: every caffeinity skill plus eleven workflow agents (skill-builder, discovery-lead, release-gatekeeper, seo-lead, job-search-coach, decision-analyst, learning-coach, outbound-lead, solo-launcher, skill-maintainer, estate-lead)."
     },
     {
       "name": "caffeinity-routing",
@@ -24,6 +24,11 @@
       "name": "course-builder",
       "source": "./plugins/course-builder",
       "description": "Designs a course for a class, cohort or workshop: measurable outcomes, modules in prerequisite order, aligned assessments and a time budget, checked by a script."
+    },
+    {
+      "name": "skill-estate",
+      "source": "./plugins/skill-estate",
+      "description": "Takes a whole collection of skill repos from scattered to published and self-maintaining, in gated phases handed to the skills that own them."
     },
     {
       "name": "wordsmith",

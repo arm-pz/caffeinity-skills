@@ -16,6 +16,7 @@ skills in order with what each one hands the next, and names the ones you have n
 | W8 | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → W3 → platform-content |
 | W10 | Maintain the skill family | tune-skill → prompts-to-skill-release (optional) → upstream-check |
+| W11 | Stand up or audit a skill estate | skill-estate |
 
 ## Install
 

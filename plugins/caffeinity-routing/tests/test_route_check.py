@@ -11,7 +11,7 @@ sys.path.insert(0, str(SCRIPT.parent))
 import route_check  # noqa: E402
 
 flows = route_check.load()
-assert [f"W{n}" for n in range(1, 11)] == list(flows), list(flows)
+assert [f"W{n}" for n in range(1, 12)] == list(flows), list(flows)
 # Other skills cite these numbers; renumbering breaks them.
 assert flows["W3"]["steps"][0]["skills"] == ["web-preflight"], flows["W3"]
 assert flows["W4"]["steps"][0]["skills"] == ["seo-crawl"], flows["W4"]

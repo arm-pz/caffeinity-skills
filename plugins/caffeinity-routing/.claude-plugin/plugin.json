@@ -1,7 +1,7 @@
 {
   "name": "caffeinity-routing",
-  "version": "0.2.0",
-  "description": "Routes a multi-step goal across the caffeinity skills: ten numbered workflows (build a skill, get found, release gate, organic growth, job search, decisions, learning, outbound, one-person launch, maintaining the skills), each step's input and output, and a script that names the skills you have not installed.",
+  "version": "0.3.0",
+  "description": "Routes a multi-step goal across the caffeinity skills: eleven numbered workflows (build a skill, get found, release gate, organic growth, job search, decisions, learning, outbound, one-person launch, maintaining the skills, setting up a skill estate), each step's input and output, and a script that names the skills you have not installed.",
   "author": {
     "name": "Abdul Rahman P Z"
   },
