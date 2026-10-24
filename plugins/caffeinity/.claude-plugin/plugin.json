@@ -1,7 +1,7 @@
 {
   "name": "caffeinity",
   "version": "1.20261024.0708",
-  "description": "All caffeinity agent skills in one install, plus ten workflow agents that hand work from one skill to the next: build a skill, get it found, gate a release, grow search traffic, land a job, make a decision, learn, run outbound, launch a solo product, maintain the skills.",
+  "description": "All caffeinity agent skills in one install, plus eleven workflow agents that hand work from one skill to the next: build a skill, get it found, gate a release, grow search traffic, land a job, make a decision, learn, run outbound, launch a solo product, maintain the skills, set up a skill estate.",
   "author": {
     "name": "Abdul Rahman P Z",
     "url": "https://github.com/arm-pz"

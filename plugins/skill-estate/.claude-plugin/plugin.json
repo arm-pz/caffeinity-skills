@@ -1,0 +1,16 @@
+{
+  "name": "skill-estate",
+  "version": "0.1.0",
+  "description": "Takes a whole collection of agent skill repos from scattered to published, consistent and self-maintaining, in gated phases that hand off to the skill that owns each one: inventory, reconcile listings, test and tune, close workflow gaps, publish and bundle, trigger tests, discovery, maintenance loop.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "workflow",
+    "ci-cd",
+    "skills-ecosystem",
+    "claude-code"
+  ]
+}

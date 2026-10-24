@@ -52,6 +52,8 @@ def pattern(skill):
 def load():
     data = json.loads(SOURCE.read_text(encoding="utf-8"))
     skills = sorted(p.name for p in (PLUGIN / "skills").iterdir() if (p / "SKILL.md").is_file())
+    # Skills that live in this repo count before the hourly rebuild has bundled them.
+    known = set(skills) | {p.parent.name for p in ROOT.glob("plugins/*/skills/*/SKILL.md")}
     errors, seen, covered = [], set(), set()
     for case in data["cases"]:
         cid = case.get("id", "")
@@ -66,8 +68,8 @@ def load():
         if expect is None and not nots:
             errors.append(f"{cid}: needs `expect`, `not`, or both")
         for name in ([expect] if expect else []) + nots:
-            if name not in skills:
-                errors.append(f"{cid}: {name} is not a bundled skill")
+            if name not in known:
+                errors.append(f"{cid}: {name} is neither bundled nor in this repo")
         if expect in nots:
             errors.append(f"{cid}: {expect} is both expected and forbidden")
         if expect:

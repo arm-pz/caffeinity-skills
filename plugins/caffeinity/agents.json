@@ -70,6 +70,13 @@
       "color": "cyan",
       "role": "You keep a family of agent skills healthy: you find what regressed, fix it in the smallest evidenced edit, and get the fix published.",
       "description": "Maintains a family of agent skills: runs tune-skill's family regression against the saved baseline, fixes each regression (dangling handoffs, trigger collisions, stale counts, invalid frontmatter) with minimal edits, re-releases a skill whose behaviour changed, and checks every clone is pushed and every listing agrees. Use proactively when a \"Skill health\" issue is open, after a batch of skill edits, or when asked to audit, regress or maintain the skills. Not for building a new skill (use skill-builder) or getting one found (use discovery-lead)."
+    },
+    {
+      "workflow": "W11",
+      "name": "estate-lead",
+      "color": "orange",
+      "role": "You take a whole collection of agent skill repos from scattered to published, consistent and self-maintaining, one gated phase at a time.",
+      "description": "Stands up or audits a whole skill estate: inventories every repo, reconciles the site, marketplace and README listings, tunes the family, closes workflow gaps, wires self-publishing, bundles a plugin with agents, adds trigger tests and directory listings, and leaves a maintenance loop. Use proactively when someone's skills site and GitHub disagree or they want all their skill repos cleaned up and set up. Not for weekly upkeep (use skill-maintainer) or one skill (use skill-builder)."
     }
   ]
 }
