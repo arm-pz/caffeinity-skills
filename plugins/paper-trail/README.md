@@ -5,7 +5,7 @@ terms of service, refund policy, cookie notice) from a fact sheet the owner conf
 them with `scripts/check_pages.py`: unfilled placeholders, missing required sections, a missing
 "Last updated" line, and emails or links the fact sheet does not contain all get flagged.
 
-Step 4 of workflow W9 (launch a one-person product) in `caffeinity-routing`. Plain-language
+Step 4 of workflow Brew 9 · Moka pot (launch a one-person product) in `caffeinity-routing`. Plain-language
 drafts, not legal advice; the skill says when a lawyer should review.
 
 ```

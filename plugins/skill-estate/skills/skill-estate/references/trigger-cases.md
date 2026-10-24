@@ -15,7 +15,7 @@ the `description` frontmatter only. Competing descriptions read: `caffeinity-rou
 | 4 | "Do the same cleanup we did for arm-pz on my company's skills org." | skill-estate | full run from phase 1 | written |
 | 5 | "My tune-skill isn't triggering." | tune-skill | skill-estate does not load | written |
 | 6 | "Why does my site list 22 skills and GitHub 27?" | upstream-check | skill-estate does not load (one drift question) | written |
-| 7 | "Run this week's maintenance on the skills." | caffeinity-routing (W10) | skill-estate does not load | written |
+| 7 | "Run this week's maintenance on the skills." | caffeinity-routing (Brew 10 · Descale) | skill-estate does not load | written |
 | 8 | "Set up the GitHub Actions publish pipeline for my skills site." | publish-pipeline | skill-estate does not load | written |
 
 ## Boundary pairs

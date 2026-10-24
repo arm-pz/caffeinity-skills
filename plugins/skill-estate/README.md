@@ -6,7 +6,7 @@ workflow gaps, publish and bundle, trigger tests, discovery, maintenance loop. E
 work to the skill that owns it (upstream-check, publish-pipeline, tune-skill, draft-skill,
 caffeinity-routing, findable) and ends in PRs.
 
-Workflow W11 in `caffeinity-routing`. Distilled from the run that set up the arm-pz skills;
+Workflow Brew 11 · Estate roast in `caffeinity-routing`. Distilled from the run that set up the arm-pz skills;
 `references/brief.md` keeps the eight requests behind it.
 
 ```

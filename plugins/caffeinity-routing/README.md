@@ -6,17 +6,17 @@ skills in order with what each one hands the next, and names the ones you have n
 
 | # | Goal | Steps |
 | --- | --- | --- |
-| W1 | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
-| W2 | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
-| W3 | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| W4 | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content (optional) |
-| W5 | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
-| W6 | Make a decision | research-brief → data-readout → crash-test → strategy-memo |
-| W7 | Learn a skill | topic-primer → study-system → course-builder (for a class) |
-| W8 | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
-| W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → W3 → platform-content |
-| W10 | Maintain the skill family | tune-skill → prompts-to-skill-release (optional) → upstream-check |
-| W11 | Stand up or audit a skill estate | skill-estate |
+| Brew 1 · Pour-over | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
+| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
+| Brew 3 · Espresso | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
+| Brew 4 · Cold brew | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content (optional) |
+| Brew 5 · French press | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
+| Brew 6 · Cupping | Make a decision | research-brief → data-readout → crash-test → strategy-memo |
+| Brew 7 · Slow drip | Learn a skill | topic-primer → study-system → course-builder (for a class) |
+| Brew 8 · Nitro | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
+| Brew 9 · Moka pot | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → Brew 3 · Espresso → platform-content |
+| Brew 10 · Descale | Maintain the skill family | tune-skill → prompts-to-skill-release (optional) → upstream-check |
+| Brew 11 · Estate roast | Stand up or audit a skill estate | skill-estate |
 
 ## Install
 

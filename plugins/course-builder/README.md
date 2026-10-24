@@ -6,7 +6,7 @@ every outcome, and a time budget that fits. The plan is written as `course.json`
 `scripts/check_course.py`, which fails on an outcome nobody teaches or assesses, a prerequisite
 out of order, or a plan over its hours.
 
-Optional step 3 of workflow W7 (learn a skill) in `caffeinity-routing`, for when the learner is a
+Optional step 3 of workflow Brew 7 · Slow drip (learn a skill) in `caffeinity-routing`, for when the learner is a
 class rather than one person.
 
 ```
