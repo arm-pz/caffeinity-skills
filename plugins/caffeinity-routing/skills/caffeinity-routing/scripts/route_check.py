@@ -41,6 +41,16 @@ def load(path=WORKFLOWS):
     return flows
 
 
+# Skills that live in arm-pz/caffeinity-skills rather than a repo of their own.
+IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder"}
+
+
+def install(name):
+    if name in IN_MARKETPLACE:
+        return f"npx skills add arm-pz/caffeinity-skills --skill {name}"
+    return f"npx skills add arm-pz/{name}"
+
+
 def installed(extra=()):
     """Names of every SKILL.md found under the search roots, by frontmatter name or folder."""
     found = {}
@@ -100,7 +110,7 @@ def main(argv=None):
             for row in r["steps"]:
                 print(f"  {row['step']}. {' or '.join(row['skills']):<56} {row['status']}")
             for name in r["missing"]:
-                print(f"  install: npx skills add arm-pz/{name}")
+                print(f"  install: {install(name)}")
     return 1 if all_missing else 0
 
 

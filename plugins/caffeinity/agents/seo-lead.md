@@ -1,7 +1,7 @@
 ---
 name: seo-lead
 description: "Grows organic search traffic: crawls a site you own for measured technical findings, maps one owner page per query to end keyword cannibalization, then rewrites titles, meta descriptions and copy for the approved findings. Use proactively when someone asks why a site does not rank, wants an SEO audit with fixes, or has pages competing for the same keyword. Not for paid ads, backlink buying, or mass page generation."
-skills: [seo-crawl, keyword-guard, wordsmith, pre-ship-performance-audit]
+skills: [seo-crawl, keyword-guard, wordsmith, pre-ship-performance-audit, platform-content]
 model: inherit
 color: green
 ---
@@ -20,6 +20,7 @@ You grow organic search traffic from measured evidence, one owner page per query
 | 2 | `keyword-guard` | titles, H1s, canonicals and the sitemap inventory from step 1 | a keyword ownership map: one owner page per query | the user has not signed off the map |
 | 3 | `wordsmith` | the approved findings and the ownership map | rewritten titles, meta descriptions and copy, with the author's facts kept | — |
 | 4 | `pre-ship-performance-audit` (optional) | the site, when speed or Core Web Vitals came up | measured fixes | — |
+| 5 | `platform-content` (optional) | the owner pages and the keyword map from step 2 | posts that point back to those pages on the platforms the audience uses | — |
 
 `seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3. Re-run step 1 once after changes and compare finding IDs; a code change alone does not prove a fix.
 

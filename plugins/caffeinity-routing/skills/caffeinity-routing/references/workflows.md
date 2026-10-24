@@ -5,7 +5,8 @@ on, and when the workflow stops there. `scripts/route_check.py` reads the skill 
 from the second column, so keep one skill per row and mark optional steps with `(optional)`.
 A row may name alternatives as `` `a` or `b` ``; either one satisfies the step.
 
-Install any of them with `npx skills add arm-pz/<skill>` unless the row says otherwise.
+Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail` and `course-builder`,
+which live in this repo: `npx skills add arm-pz/caffeinity-skills --skill <skill>`.
 
 ## W1 Build a skill and make it installable
 
@@ -49,6 +50,7 @@ step 4 has run. Install those from the caffeinity-skills marketplace.
 | 2 | `keyword-guard` | titles, H1s, canonicals and the sitemap inventory from step 1 | a keyword ownership map: one owner page per query | the user has not signed off the map |
 | 3 | `wordsmith` | the approved findings and the ownership map | rewritten titles, meta descriptions and copy, with the author's facts kept | — |
 | 4 | `pre-ship-performance-audit` (optional) | the site, when speed or Core Web Vitals came up | measured fixes | — |
+| 5 | `platform-content` (optional) | the owner pages and the keyword map from step 2 | posts that point back to those pages on the platforms the audience uses | — |
 
 `seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3. Re-run step 1
 once after changes and compare finding IDs; a code change alone does not prove a fix.
@@ -77,6 +79,7 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | --- | --- | --- | --- | --- |
 | 1 | `topic-primer` | a topic and the learner's level | teaching from foundations, concept by concept | — |
 | 2 | `study-system` | the skill in progress | a practice routine, spaced repetition and a mastery check | — |
+| 3 | `course-builder` (optional) | the component map, when the learner is a class or cohort rather than one person | outcomes, modules, aligned assessments and a time budget that pass `check_course.py` | an outcome is untaught or unassessed, or the plan is over its hours |
 
 ## W8 Run cold outbound
 
@@ -93,5 +96,18 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | 1 | `solo-income-blueprint` | the user's skills, time and budget | one business model, one offer and a 7-day launch plan | — |
 | 2 | `site-prompt` | the offer as a website topic | one paste-and-build prompt for the site | — |
 | 3 | `production-code` | the prompt or the code to finish | a complete, runnable artifact | — |
-| 4 | `release-gate-chair` | the built site; run W3 in full | HOLD or ready | HOLD |
-| 5 | `platform-content` | the offer, the platform and the audience | a platform-native content pack | — |
+| 4 | `paper-trail` | the offer, the built site and what it collects, stores, shares and charges | privacy, terms, refund and cookie pages that pass `check_pages.py`, with open questions listed | a `[NEEDS: ...]` fact is unanswered, or a lawyer-review trigger applies |
+| 5 | `release-gate-chair` | the built site with its policy pages; run W3 in full | HOLD or ready | HOLD |
+| 6 | `platform-content` | the offer, the platform and the audience | a platform-native content pack | — |
+
+## W10 Maintain the skill family
+
+| Step | Skill | Receives | Hands on | Stops when |
+| --- | --- | --- | --- | --- |
+| 1 | `tune-skill` | every installed skill folder (or the open "Skill health" issue) and `health.json`; run `regress.py --baseline` | one minimal, evidenced fix per regression, each skill re-checked, the family re-regressed with no new findings | a fix needs two skills to change which request they own and the user has not picked the owner |
+| 2 | `prompts-to-skill-release` (optional) | a fixed skill whose behaviour changed, with its trigger cases | a new version, changelog line and recorded test results | a trigger case fails and the user has not accepted it |
+| 3 | `upstream-check` | the local skill clones after the fixes | what is unpushed, pushed when clean, and whether the site, marketplaces and READMEs count the same skills | a clone has diverged from its remote |
+
+Run it on a schedule (the skills-site nightly health job opens the issue it starts from) or after
+any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site)
+only after saying why in the PR.

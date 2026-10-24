@@ -1,6 +1,6 @@
 name: build plugin
 
-# Keeps plugins/caffeinity in step with its sources: the nine agents with
+# Keeps plugins/caffeinity in step with its sources: the workflow agents with
 # caffeinity-routing's workflows.md, and the bundled skills with every skill
 # repo at HEAD (the list is skills-site's site/skills.json). A rebuild that
 # changes nothing commits nothing and keeps the version.
@@ -38,6 +38,10 @@ jobs:
           python-version: "3.11"
       - name: routing self-check
         run: python -I plugins/caffeinity-routing/tests/test_route_check.py
+      - name: skill self-checks
+        run: |
+          python -I plugins/paper-trail/tests/test_check_pages.py
+          python -I plugins/course-builder/tests/test_check_course.py
       - name: agents are current
         run: python scripts/build_plugin.py --agents-only --check
       - name: manifests parse

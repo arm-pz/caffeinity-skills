@@ -166,7 +166,8 @@ def build_skills(manifest, fetch):
         if s.get("repo") is None or s.get("kind") == "mod":
             continue
         if s["repo"] == "arm-pz/caffeinity-skills":   # lives in this repo
-            files = {str(p.relative_to(ROUTING)): p.read_bytes() for p in ROUTING.rglob("*")
+            src = ROOT / s["path"]
+            files = {p.relative_to(src).as_posix(): p.read_bytes() for p in src.rglob("*")
                      if p.is_file() and "__pycache__" not in p.parts}
             sha = "this repo"
         else:

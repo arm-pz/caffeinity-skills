@@ -9,12 +9,13 @@ skills in order with what each one hands the next, and names the ones you have n
 | W1 | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
 | W2 | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
 | W3 | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| W4 | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith |
+| W4 | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content (optional) |
 | W5 | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
 | W6 | Make a decision | research-brief → data-readout → crash-test → strategy-memo |
-| W7 | Learn a skill | topic-primer → study-system |
+| W7 | Learn a skill | topic-primer → study-system → course-builder (for a class) |
 | W8 | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
-| W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → W3 → platform-content |
+| W9 | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → W3 → platform-content |
+| W10 | Maintain the skill family | tune-skill → prompts-to-skill-release (optional) → upstream-check |
 
 ## Install
 

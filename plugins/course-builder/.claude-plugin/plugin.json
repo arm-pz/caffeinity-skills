@@ -1,0 +1,16 @@
+{
+  "name": "course-builder",
+  "version": "0.1.0",
+  "description": "Designs a course for a class, cohort or workshop: measurable outcomes, a module sequence with prerequisites, aligned activities and assessments, and a time budget, checked by a script so no outcome goes untaught or unassessed.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "curriculum",
+    "syllabus",
+    "teaching",
+    "claude-code"
+  ]
+}
