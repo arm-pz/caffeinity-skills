@@ -1,0 +1,75 @@
+name: build plugin
+
+# Keeps plugins/caffeinity in step with its sources: the nine agents with
+# caffeinity-routing's workflows.md, and the bundled skills with every skill
+# repo at HEAD (the list is skills-site's site/skills.json). A rebuild that
+# changes nothing commits nothing and keeps the version.
+
+on:
+  schedule:
+    - cron: "27 * * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [skills-updated]
+  push:
+    branches: [main]
+    paths:
+      - "plugins/caffeinity/agents.json"
+      - "plugins/caffeinity-routing/**"
+      - "scripts/build_plugin.py"
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-plugin
+  cancel-in-progress: false
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: routing self-check
+        run: python -I plugins/caffeinity-routing/tests/test_route_check.py
+      - name: agents are current
+        run: python scripts/build_plugin.py --agents-only --check
+      - name: manifests parse
+        run: |
+          for f in .claude-plugin/marketplace.json .agents/plugins/marketplace.json plugins/*/.claude-plugin/plugin.json plugins/caffeinity/plugin.json; do
+            python -c "import json,sys; json.load(open(sys.argv[1]))" "$f" && echo "ok $f"
+          done
+
+  rebuild:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: rebuild the bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/build_plugin.py
+      - name: commit if it changed
+        run: |
+          set -euo pipefail
+          [ -n "$(git status --porcelain plugins/caffeinity)" ] || { echo "bundle already current"; exit 0; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add plugins/caffeinity
+          git commit -m "Rebuild the caffeinity plugin from its sources" -m "$(cat plugins/caffeinity/.claude-plugin/plugin.json | python -c 'import json,sys; print("version " + json.load(sys.stdin)["version"])')"
+          git pull --rebase origin main
+          git push origin HEAD:main
