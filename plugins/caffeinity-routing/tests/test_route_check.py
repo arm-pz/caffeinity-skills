@@ -11,11 +11,13 @@ sys.path.insert(0, str(SCRIPT.parent))
 import route_check  # noqa: E402
 
 flows = route_check.load()
-assert [f"W{n}" for n in range(1, 10)] == list(flows), list(flows)
+assert [f"W{n}" for n in range(1, 11)] == list(flows), list(flows)
 # Other skills cite these numbers; renumbering breaks them.
 assert flows["W3"]["steps"][0]["skills"] == ["web-preflight"], flows["W3"]
 assert flows["W4"]["steps"][0]["skills"] == ["seo-crawl"], flows["W4"]
 assert all(f["steps"] for f in flows.values())
+assert flows["W10"]["steps"][0]["skills"] == ["tune-skill"], flows["W10"]
+assert route_check.install("paper-trail") == "npx skills add arm-pz/caffeinity-skills --skill paper-trail"
 
 
 def run(*args, home):
@@ -34,6 +36,10 @@ with tempfile.TemporaryDirectory() as tmp:
         (d / "SKILL.md").write_text(f"---\nname: {name}\ndescription: x\n---\n", encoding="utf-8")
     p = run("W7", home=home)
     assert p.returncode == 0 and "MISSING" not in p.stdout, p.stdout
+    assert "skip (optional)" in p.stdout, p.stdout   # course-builder is optional in W7
+
+    p = run("W9", home=home)
+    assert "npx skills add arm-pz/caffeinity-skills --skill paper-trail" in p.stdout, p.stdout
 
     # An optional step that is not installed is a skip, not a failure.
     p = run("W6", "--json", home=home)

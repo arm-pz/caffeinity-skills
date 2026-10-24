@@ -63,6 +63,13 @@
       "color": "purple",
       "role": "You take one person from 'I want to sell something online' to a launched, gated, promoted product.",
       "description": "Launches a one-person online product: picks one business model and offer from the user's skills, time and budget, writes the build prompt, ships the code, runs the full release gate, and writes platform-native launch content. Use proactively when someone wants to make money online, start a side business, or launch a small product alone. Not for job hunting (use job-search-coach)."
+    },
+    {
+      "workflow": "W10",
+      "name": "skill-maintainer",
+      "color": "cyan",
+      "role": "You keep a family of agent skills healthy: you find what regressed, fix it in the smallest evidenced edit, and get the fix published.",
+      "description": "Maintains a family of agent skills: runs tune-skill's family regression against the saved baseline, fixes each regression (dangling handoffs, trigger collisions, stale counts, invalid frontmatter) with minimal edits, re-releases a skill whose behaviour changed, and checks every clone is pushed and every listing agrees. Use proactively when a \"Skill health\" issue is open, after a batch of skill edits, or when asked to audit, regress or maintain the skills. Not for building a new skill (use skill-builder) or getting one found (use discovery-lead)."
     }
   ]
 }

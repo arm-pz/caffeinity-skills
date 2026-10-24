@@ -1,0 +1,16 @@
+{
+  "name": "paper-trail",
+  "version": "0.1.0",
+  "description": "Drafts the privacy policy, terms, refund policy and cookie notice a small product needs from a confirmed fact sheet, and checks the drafts for placeholders, missing sections and invented facts. Plain-language drafts, not legal advice.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "privacy-policy",
+    "terms-of-service",
+    "launch",
+    "claude-code"
+  ]
+}

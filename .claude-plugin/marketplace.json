@@ -8,12 +8,22 @@
     {
       "name": "caffeinity",
       "source": "./plugins/caffeinity",
-      "description": "Everything in one install: every caffeinity skill plus nine workflow agents (skill-builder, discovery-lead, release-gatekeeper, seo-lead, job-search-coach, decision-analyst, learning-coach, outbound-lead, solo-launcher)."
+      "description": "Everything in one install: every caffeinity skill plus ten workflow agents (skill-builder, discovery-lead, release-gatekeeper, seo-lead, job-search-coach, decision-analyst, learning-coach, outbound-lead, solo-launcher, skill-maintainer)."
     },
     {
       "name": "caffeinity-routing",
       "source": "./plugins/caffeinity-routing",
       "description": "Start here: picks which caffeinity skills to run, in what order, for a goal that spans several of them, and names the ones you have not installed."
+    },
+    {
+      "name": "paper-trail",
+      "source": "./plugins/paper-trail",
+      "description": "Drafts the privacy policy, terms, refund policy and cookie notice a small product needs from a confirmed fact sheet, and checks them for placeholders, missing sections and invented facts. Not legal advice."
+    },
+    {
+      "name": "course-builder",
+      "source": "./plugins/course-builder",
+      "description": "Designs a course for a class, cohort or workshop: measurable outcomes, modules in prerequisite order, aligned assessments and a time budget, checked by a script."
     },
     {
       "name": "wordsmith",

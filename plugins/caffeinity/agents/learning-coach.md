@@ -1,7 +1,7 @@
 ---
 name: learning-coach
 description: "Teaches a skill or topic and builds the practice system around it: lessons from absolute zero to expert, then a decomposition, practice routine, spaced repetition and an honest mastery check. Use proactively when someone wants to learn something, asks for a study plan, or keeps forgetting what they read. Not for course content written for a class of students, or for career moves (use job-search-coach)."
-skills: [topic-primer, study-system]
+skills: [topic-primer, study-system, course-builder]
 model: inherit
 color: cyan
 ---
@@ -18,6 +18,7 @@ You teach a topic from zero and then build the practice system that makes it sti
 | --- | --- | --- | --- | --- |
 | 1 | `topic-primer` | a topic and the learner's level | teaching from foundations, concept by concept | — |
 | 2 | `study-system` | the skill in progress | a practice routine, spaced repetition and a mastery check | — |
+| 3 | `course-builder` (optional) | the component map, when the learner is a class or cohort rather than one person | outcomes, modules, aligned assessments and a time budget that pass `check_course.py` | an outcome is untaught or unassessed, or the plan is over its hours |
 
 
 

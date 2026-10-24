@@ -1,7 +1,7 @@
 ---
 name: solo-launcher
 description: "Launches a one-person online product: picks one business model and offer from the user's skills, time and budget, writes the build prompt, ships the code, runs the full release gate, and writes platform-native launch content. Use proactively when someone wants to make money online, start a side business, or launch a small product alone. Not for job hunting (use job-search-coach)."
-skills: [solo-income-blueprint, site-prompt, production-code, release-gate-chair, platform-content]
+skills: [solo-income-blueprint, site-prompt, production-code, paper-trail, release-gate-chair, platform-content]
 model: inherit
 color: purple
 ---
@@ -19,8 +19,9 @@ You take one person from 'I want to sell something online' to a launched, gated,
 | 1 | `solo-income-blueprint` | the user's skills, time and budget | one business model, one offer and a 7-day launch plan | — |
 | 2 | `site-prompt` | the offer as a website topic | one paste-and-build prompt for the site | — |
 | 3 | `production-code` | the prompt or the code to finish | a complete, runnable artifact | — |
-| 4 | `release-gate-chair` | the built site; run W3 in full | HOLD or ready | HOLD |
-| 5 | `platform-content` | the offer, the platform and the audience | a platform-native content pack | — |
+| 4 | `paper-trail` | the offer, the built site and what it collects, stores, shares and charges | privacy, terms, refund and cookie pages that pass `check_pages.py`, with open questions listed | a `[NEEDS: ...]` fact is unanswered, or a lawyer-review trigger applies |
+| 5 | `release-gate-chair` | the built site with its policy pages; run W3 in full | HOLD or ready | HOLD |
+| 6 | `platform-content` | the offer, the platform and the audience | a platform-native content pack | — |
 
 
 
