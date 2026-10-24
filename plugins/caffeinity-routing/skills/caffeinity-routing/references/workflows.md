@@ -1,6 +1,10 @@
-# Workflows
+# Brews
 
-One section per workflow. Each table row is one step: the skill, what it receives, what it hands
+The caffeinity workflows are called brews: each has a number, a brew name and a plain goal, as in
+"Brew 3 · Espresso: Decide whether a site is safe to launch". Other skills cite them by name; the
+old ids W1 to W11 still resolve in `route_check.py`.
+
+One section per brew. Each table row is one step: the skill, what it receives, what it hands
 on, and when the workflow stops there. `scripts/route_check.py` reads the skill names in backticks
 from the second column, so keep one skill per row and mark optional steps with `(optional)`.
 A row may name alternatives as `` `a` or `b` ``; either one satisfies the step.
@@ -8,7 +12,7 @@ A row may name alternatives as `` `a` or `b` ``; either one satisfies the step.
 Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail`, `course-builder` and
 `skill-estate`, which live in this repo: `npx skills add arm-pz/caffeinity-skills --skill <skill>`.
 
-## W1 Build a skill and make it installable
+## Brew 1 · Pour-over: Build a skill and make it installable
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -20,7 +24,7 @@ Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail`, 
 `skill-launch` packages steps 1 and 2 with a discovery pass. Offer it when the user wants one
 command; keep the steps visible when they want to stop between them.
 
-## W2 Get a repo, skill or plugin found
+## Brew 2 · Bloom: Get a repo, skill or plugin found
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -30,7 +34,7 @@ command; keep the steps visible when they want to stop between them.
 
 `findable-polish` and `upstream-polish` add a wordsmith rewrite to steps 1 and 3.
 
-## W3 Decide whether a site is safe to launch
+## Brew 3 · Espresso: Decide whether a site is safe to launch
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -42,7 +46,7 @@ command; keep the steps visible when they want to stop between them.
 `ship-sentinel` or the `release-gate-mod` plugin can hold `git push` and deploy commands until
 step 4 has run. Install those from the caffeinity-skills marketplace.
 
-## W4 Grow organic search traffic
+## Brew 4 · Cold brew: Grow organic search traffic
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -55,7 +59,7 @@ step 4 has run. Install those from the caffeinity-skills marketplace.
 `seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3. Re-run step 1
 once after changes and compare finding IDs; a code change alone does not prove a fix.
 
-## W5 Land a job
+## Brew 5 · French press: Land a job
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -64,7 +68,7 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | 3 | `application-pilot` | role criteria and the tailored material | a deduplicated shortlist, fit scores with evidence, and a tracker | it never submits; the user sends every application |
 | 4 | `career-track` (optional) | an offer, a promotion case or a pivot | negotiation scripts, a positioning line and a 90-day plan | — |
 
-## W6 Make a decision
+## Brew 6 · Cupping: Make a decision
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -73,7 +77,7 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | 3 | `crash-test` or `do-better` | the brief and the decision to make (crash-test), or one artifact to make as good as possible (do-better) | a merged answer with a dissent log, or one winning draft | — |
 | 4 | `strategy-memo` | the brief and the crash-tested option | a decision document: recommendation, risks and roadmap | — |
 
-## W7 Learn a skill
+## Brew 7 · Slow drip: Learn a skill
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -81,7 +85,7 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | 2 | `study-system` | the skill in progress | a practice routine, spaced repetition and a mastery check | — |
 | 3 | `course-builder` (optional) | the component map, when the learner is a class or cohort rather than one person | outcomes, modules, aligned assessments and a time budget that pass `check_course.py` | an outcome is untaught or unassessed, or the plan is over its hours |
 
-## W8 Run cold outbound
+## Brew 8 · Nitro: Run cold outbound
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -89,7 +93,7 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | 2 | `cold-email-ops` | the gated list and a monthly send target | inbox and domain capacity, per-domain limits, a warmup and audit plan | — |
 | 3 | `sales-copy` | the offer and the audience | the email sequence and landing copy | — |
 
-## W9 Launch a one-person product
+## Brew 9 · Moka pot: Launch a one-person product
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -97,10 +101,10 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | 2 | `site-prompt` | the offer as a website topic | one paste-and-build prompt for the site | — |
 | 3 | `production-code` | the prompt or the code to finish | a complete, runnable artifact | — |
 | 4 | `paper-trail` | the offer, the built site and what it collects, stores, shares and charges | privacy, terms, refund and cookie pages that pass `check_pages.py`, with open questions listed | a `[NEEDS: ...]` fact is unanswered, or a lawyer-review trigger applies |
-| 5 | `release-gate-chair` | the built site with its policy pages; run W3 in full | HOLD or ready | HOLD |
+| 5 | `release-gate-chair` | the built site with its policy pages; run Brew 3 · Espresso in full | HOLD or ready | HOLD |
 | 6 | `platform-content` | the offer, the platform and the audience | a platform-native content pack | — |
 
-## W10 Maintain the skill family
+## Brew 10 · Descale: Maintain the skill family
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -112,11 +116,11 @@ Run it on a schedule (the skills-site nightly health job opens the issue it star
 any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site)
 only after saying why in the PR.
 
-## W11 Stand up or audit a skill estate
+## Brew 11 · Estate roast: Stand up or audit a skill estate
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
 | 1 | `skill-estate` | an owner or org with a collection of skill repos | eight gated phases run in order, each handed to its owner skill, with PRs and a list of owner actions | a phase gate fails and the owner has not waived it |
 
-`skill-estate` packages W2, W3, W10 and the publishing setup into one run for a whole collection.
-Use W10 for weekly upkeep once the estate is set up.
+`skill-estate` packages Brew 2 · Bloom, Brew 3 · Espresso, Brew 10 · Descale and the publishing setup into one run for a whole collection.
+Use Brew 10 · Descale for weekly upkeep once the estate is set up.

@@ -13,7 +13,7 @@ dashboard).
 | 5 | Publish and bundle | `publish-pipeline` | the manifest and workflows | scheduled sync; a bundle plugin with one agent per workflow (Claude Code) and a portable manifest (Codex) | `claude plugin validate --strict` passes; the bundle versions only when content changes |
 | 6 | Trigger tests | `tune-skill` (case format) | every skill's description | a `claude plugin eval` suite: one must-load case per skill, near-misses that must not load | baseline recorded; misses that repeat on a second run listed as tuning targets |
 | 7 | Discovery | `findable` | the published set | topics and homepage per repo; site structured data; a directory kit with status | owner action: metadata applied from the owner's machine; forms submitted by the owner |
-| 8 | Maintenance loop | `caffeinity-routing` W10 | everything above | nightly health issue; weekly scheduled W10 session; PROJECT.md | the loop has run once, or its first run is scheduled and the owner knows when |
+| 8 | Maintenance loop | `caffeinity-routing` Brew 10 · Descale | everything above | nightly health issue; weekly scheduled Brew 10 · Descale session; PROJECT.md | the loop has run once, or its first run is scheduled and the owner knows when |
 
 ## Patterns that worked
 

@@ -58,7 +58,7 @@ and say when the facts point to something a lawyer should review (see the escala
    It fails on unfilled placeholders, missing required sections, a missing "Last updated" line,
    and emails, URLs or company names that do not appear in the fact sheet (an invented fact).
    Fix every FAIL; explain every WARN you keep.
-6. **Hand on.** The pages go to whoever builds the site (`site-prompt` or `production-code` in W9)
+6. **Hand on.** The pages go to whoever builds the site (`site-prompt` or `production-code` in Brew 9 · Moka pot)
    with the footer links they need, then to `release-gate-chair`, which should see them before a
    launch verdict.
 
