@@ -37,17 +37,17 @@ Each agent runs one workflow and preloads the skills it needs. In Claude Code, a
 
 | Agent | Workflow | Skills, in order |
 | --- | --- | --- |
-| `skill-builder` | Brew 1 · Pour-over: Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
-| `discovery-lead` | Brew 2 · Bloom: Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
-| `release-gatekeeper` | Brew 3 · Espresso: Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| `seo-lead` | Brew 4 · Cold brew: Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content |
-| `job-search-coach` | Brew 5 · French press: Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
-| `decision-analyst` | Brew 6 · Cupping: Make a decision | research-brief → data-readout → crash-test or do-better → strategy-memo |
-| `learning-coach` | Brew 7 · Slow drip: Learn a skill | topic-primer → study-system → course-builder |
-| `outbound-lead` | Brew 8 · Nitro: Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
-| `solo-launcher` | Brew 9 · Moka pot: Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → release-gate-chair → platform-content |
-| `skill-maintainer` | Brew 10 · Descale: Maintain the skill family | tune-skill → prompts-to-skill-release → upstream-check |
-| `estate-lead` | Brew 11 · Estate roast: Stand up or audit a skill estate | skill-estate |
+| `skill-builder` | Workflow 1 (build-a-skill): Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
+| `discovery-lead` | Workflow 2 (get-found): Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
+| `release-gatekeeper` | Workflow 3 (launch-safely): Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
+| `seo-lead` | Workflow 4 (grow-search-traffic): Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content |
+| `job-search-coach` | Workflow 5 (land-a-job): Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
+| `decision-analyst` | Workflow 6 (make-a-decision): Make a decision | research-brief → data-readout → crash-test or do-better → strategy-memo |
+| `learning-coach` | Workflow 7 (learn-a-skill): Learn a skill | topic-primer → study-system → course-builder |
+| `outbound-lead` | Workflow 8 (run-cold-outbound): Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
+| `solo-launcher` | Workflow 9 (launch-a-product): Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → release-gate-chair → platform-content |
+| `skill-maintainer` | Workflow 10 (maintain-skills): Keep your skills healthy | tune-skill → prompts-to-skill-release → upstream-check |
+| `estate-lead` | Workflow 11 (audit-a-skill-estate): Audit all your skills | skill-estate |
 
 Codex has no subagents, so there the `caffeinity-routing` skill does this job: describe the outcome
 and it names the workflow and the next skill.
