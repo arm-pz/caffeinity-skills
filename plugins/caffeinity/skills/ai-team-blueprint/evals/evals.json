@@ -1,0 +1,49 @@
+{
+  "skill_name": "ai-team-blueprint",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "<one_shot_setup.xml: the original 'first AI team' prompt by @eng_khairallah1>"
+    },
+    {
+      "id": 2,
+      "prompt": "I want to set up a small team of AI agents for my business. Where do I start?"
+    },
+    {
+      "id": 3,
+      "prompt": "Design me a 3-agent setup for content research and writing, with prompts and a launch plan."
+    },
+    {
+      "id": 4,
+      "prompt": "Which AI agents should I have working for me? I run a 2-person marketing agency."
+    },
+    {
+      "id": 5,
+      "prompt": "I'm drowning in support emails and lead follow-ups. Can Claude take some of this off me, and how would I organise it?"
+    },
+    {
+      "id": 6,
+      "prompt": "How do I split work between a researcher, writer and editor agent so they don't step on each other?"
+    },
+    {
+      "id": 7,
+      "prompt": "Write Python using the Anthropic SDK that runs a researcher agent and a writer agent in a loop."
+    },
+    {
+      "id": 8,
+      "prompt": "Make me a skill that formats my meeting notes."
+    },
+    {
+      "id": 9,
+      "prompt": "What's the best AI tool to transcribe this one podcast episode?"
+    },
+    {
+      "id": 10,
+      "prompt": "My team blueprint for the Q3 offsite needs an agenda. Can you draft it?"
+    },
+    {
+      "id": 11,
+      "prompt": "Spin up a few subagents and research the top 5 CRMs for me."
+    }
+  ]
+}
