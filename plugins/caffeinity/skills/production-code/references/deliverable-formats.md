@@ -22,6 +22,8 @@ Tends to fail by: wrapping the crash in a `try` and calling it fixed.
 
 ## `review`: code or a diff judged
 
+Reviews belong to `consistent-code-review`. Hand the scope over with the shared block in SKILL.md. The shape below is the fallback for when that skill is not installed.
+
 Read first: the diff in context, the surrounding file, the tests that cover it, the calling code.
 
 Shape: findings ranked by real impact, each as `file:line`, what breaks, the smallest change. Correctness and data loss first, then security, then performance, then clarity. A line for what you checked and found sound. If nothing is wrong, write that and stop.

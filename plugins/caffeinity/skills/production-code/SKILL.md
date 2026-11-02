@@ -1,7 +1,7 @@
 ---
 name: production-code
 description: >-
-  Production-ready code delivered as a complete artifact: scripts, bug fixes with the root cause, code reviews, API integrations, SQL of any complexity, automation jobs, scrapers, data analysis in pandas or R, technical documentation and architecture write-ups, each with setup steps, error handling and a plain-English explanation of every section. Use whenever someone describes something they want code to do, pastes an error or a snippet to fix or review, asks for a query, a scraper, an automation or a system design, even if they never say write code or name a language. Not for auditing a live web app before launch (use pre-ship-performance-audit, pre-ship-security-red-team), or for the business decision behind the build (use strategy-memo).
+  Production-ready code delivered as a complete artifact: scripts, bug fixes with the root cause, API integrations, SQL of any complexity, automation jobs, scrapers, data analysis in pandas or R, technical documentation and architecture write-ups, each with setup steps, error handling and a plain-English explanation of every section. Use whenever someone describes something they want code to do, pastes an error or a snippet to fix, asks for a query, a scraper, an automation or a system design, even if they never say write code or name a language. Not for auditing a live web app before launch (use pre-ship-performance-audit, pre-ship-security-red-team), for the business decision behind the build (use strategy-memo), or for reviewing code or a diff without changing it (use consistent-code-review, which this skill calls for its review mode).
 ---
 
 # Production Code
@@ -24,7 +24,7 @@ Read before you write: the repo, the traceback, the file, the schema, the instal
 | --- | --- | --- |
 | "make something that does X" | `write` | One runnable file, or the smallest set, plus how to run it |
 | an error, a traceback, wrong output | `fix` | Root cause, the patch, the check that keeps it from returning |
-| code or a diff to judge | `review` | Findings ranked by real impact, each with `file:line` |
+| code or a diff to judge | `review` | Hand to `consistent-code-review` (see Handoffs); its own review below only when that skill is not installed |
 | two tools that must talk | `integrate` | Client with auth, retries, rate-limit and webhook handling |
 | a question about rows in a database | `query` | SQL plus plain-English complexity and index reasoning |
 | a manual task done every week | `automate` | A job with schedule, idempotency, logs and failure signal |
@@ -84,6 +84,7 @@ Before you hand off, run this against your own output:
 | --- | --- | --- |
 | "what do these numbers mean for us" | `data-readout` | The script, its output table, n, and the caveats you observed |
 | "should we build this, or which option" | `strategy-memo` | The options, their costs and the constraints you found |
+| "review this", a diff or code to judge | `consistent-code-review` | The exact scope (files, diff range or commit), the question asked, and any earlier review report |
 | "is this safe to launch" | `pre-ship-security-red-team` | Endpoints, auth model, test accounts, what you already checked |
 | "it is slow in production" | `pre-ship-performance-audit` | The suspect paths, the query plans, the environment |
 | "polish the README I wrote" | `wordsmith` | The draft and the audience it serves |
@@ -101,4 +102,6 @@ Gaps: <unverified figures, missing inputs>
 Next: <one line offering the target skill>
 ```
 
-If the sibling is not installed, output the block anyway and say which skill normally owns it.
+If the sibling is not installed, output the block anyway and say which skill normally owns it. The one exception is `review`: when `consistent-code-review` is missing, run the built-in review in `references/deliverable-formats.md` and say in its first line that it is the fallback.
+
+Findings that come back from `consistent-code-review` are taken into `fix` by their IDs (C1, H1, …). Fix only the findings the user picks, and cite each ID in the Verification report.
