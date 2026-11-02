@@ -5,7 +5,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-SKILL = Path(__file__).resolve().parent.parent / "skills" / "caffeinity-routing"
+SKILL = Path(__file__).resolve().parent.parent / "skills" / "workflow-router"
 SCRIPT = SKILL / "scripts" / "route_check.py"
 sys.path.insert(0, str(SCRIPT.parent))
 import route_check  # noqa: E402

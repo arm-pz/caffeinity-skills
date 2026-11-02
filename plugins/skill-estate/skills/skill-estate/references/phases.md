@@ -9,11 +9,11 @@ dashboard).
 | 1 | Inventory | `upstream-check` | the owner or org name; clones of its repos | a table: repo, kind (skill, mod, bundle, none), where it is listed, drift | every repo classified; counts from SKILL.md files, not descriptions |
 | 2 | Reconcile listings | `publish-pipeline` | the inventory | one manifest; generated hub, pages, indexes, sitemap, README block; aliases and 301s for renames | regenerated outputs match the manifest; a missing repo stops the sync instead of deleting |
 | 3 | Test and tune | `tune-skill` (+ `web-preflight`, `seo-crawl` on the site) | every SKILL.md; the live site | validator results, a family regression baseline, fix PRs | 0 FAIL; no dangling handoff; site checks run and findings fixed or listed |
-| 4 | Close workflow gaps | `caffeinity-routing`, `draft-skill` | the skills and their handoffs | numbered workflows with each step's input and output; new skills for missing steps | every handoff names a published skill; new skills pass the validator |
+| 4 | Close workflow gaps | `workflow-router`, `draft-skill` | the skills and their handoffs | numbered workflows with each step's input and output; new skills for missing steps | every handoff names a published skill; new skills pass the validator |
 | 5 | Publish and bundle | `publish-pipeline` | the manifest and workflows | scheduled sync; a bundle plugin with one agent per workflow (Claude Code) and a portable manifest (Codex) | `claude plugin validate --strict` passes; the bundle versions only when content changes |
 | 6 | Trigger tests | `tune-skill` (case format) | every skill's description | a `claude plugin eval` suite: one must-load case per skill, near-misses that must not load | baseline recorded; misses that repeat on a second run listed as tuning targets |
 | 7 | Discovery | `findable` | the published set | topics and homepage per repo; site structured data; a directory kit with status | owner action: metadata applied from the owner's machine; forms submitted by the owner |
-| 8 | Maintenance loop | `caffeinity-routing` Workflow 10 (maintain-skills) | everything above | nightly health issue; weekly scheduled Workflow 10 (maintain-skills) session; PROJECT.md | the loop has run once, or its first run is scheduled and the owner knows when |
+| 8 | Maintenance loop | `workflow-router` Workflow 10 (maintain-skills) | everything above | nightly health issue; weekly scheduled Workflow 10 (maintain-skills) session; PROJECT.md | the loop has run once, or its first run is scheduled and the owner knows when |
 
 ## Patterns that worked
 

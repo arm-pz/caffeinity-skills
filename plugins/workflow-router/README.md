@@ -1,4 +1,4 @@
-# caffeinity-routing
+# workflow-router
 
 The start-here skill for the caffeinity skills. Tell it the outcome you want ("get my site ready
 to ship and ranking", "take this idea to a published skill") and it picks the workflow, lists the
@@ -22,15 +22,15 @@ skills in order with what each one hands the next, and names the ones you have n
 
 ```
 /plugin marketplace add arm-pz/caffeinity-skills
-/plugin install caffeinity-routing@caffeinity-skills
+/plugin install workflow-router@caffeinity-skills
 ```
 
-or `npx skills add arm-pz/caffeinity-skills --skill caffeinity-routing`.
+or `npx skills add arm-pz/caffeinity-skills --skill workflow-router`.
 
 ## Check what you have
 
 ```
-python skills/caffeinity-routing/scripts/route_check.py --all
+python skills/workflow-router/scripts/route_check.py --all
 python -I tests/test_route_check.py      # self-check
 ```
 

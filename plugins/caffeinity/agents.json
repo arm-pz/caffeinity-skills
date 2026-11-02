@@ -1,5 +1,5 @@
 {
-  "_comment": "One agent per caffeinity-routing workflow. scripts/build_plugin.py renders agents/<name>.md from this file and the workflow's table in caffeinity-routing/references/workflows.md; edit those, not the generated agents.",
+  "_comment": "One agent per workflow-router workflow. scripts/build_plugin.py renders agents/<name>.md from this file and the workflow's table in workflow-router/references/workflows.md; edit those, not the generated agents.",
   "agents": [
     {
       "workflow": "build-a-skill",

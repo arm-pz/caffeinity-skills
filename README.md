@@ -49,11 +49,11 @@ Each agent runs one workflow and preloads the skills it needs. In Claude Code, a
 | `skill-maintainer` | Workflow 10 (maintain-skills): Keep your skills healthy | tune-skill → prompts-to-skill-release → upstream-check |
 | `estate-lead` | Workflow 11 (audit-a-skill-estate): Audit all your skills | skill-estate |
 
-Codex has no subagents, so there the `caffeinity-routing` skill does this job: describe the outcome
+Codex has no subagents, so there the `workflow-router` skill does this job: describe the outcome
 and it names the workflow and the next skill.
 
 The bundle is generated, not edited: `scripts/build_plugin.py` renders the agents from
-`plugins/caffeinity/agents.json` and caffeinity-routing's `workflows.md`, and copies each skill
+`plugins/caffeinity/agents.json` and workflow-router's `workflows.md`, and copies each skill
 from its own repo (`plugins/caffeinity/SOURCES.md` records the commits). The `build plugin`
 workflow reruns it hourly and bumps the version only when something changed.
 
@@ -79,6 +79,6 @@ Single runs vary, so treat a case as a real miss when it fails twice.
 /plugin install wordsmith@caffeinity-skills
 ```
 
-Replace `wordsmith` with any of: `caffeinity-routing`, `recruiter-lens`, `applicant-kit`, `topic-primer`, `application-pilot`, `do-better`, `keyword-guard`, `seo-crawl`, `web-preflight`, `findable`, `crash-test`, `pre-ship-performance-audit`, `pre-ship-security-red-team`, `release-gate`, `publish-release-gate`, `upstream-check`, `tune-skill`, `draft-skill`, `prompts-to-skill`, `prompts-to-skill-release`, `publish-pipeline`, `cold-email-ops`, `cold-email-list-gate`.
+Replace `wordsmith` with any of: `workflow-router`, `recruiter-lens`, `applicant-kit`, `topic-primer`, `application-pilot`, `do-better`, `keyword-guard`, `seo-crawl`, `web-preflight`, `findable`, `crash-test`, `pre-ship-performance-audit`, `pre-ship-security-red-team`, `release-gate`, `publish-release-gate`, `upstream-check`, `tune-skill`, `draft-skill`, `prompts-to-skill`, `prompts-to-skill-release`, `publish-pipeline`, `cold-email-ops`, `cold-email-list-gate`.
 
 Each of those plugins lives in its own repository (see `.claude-plugin/marketplace.json` for sources).

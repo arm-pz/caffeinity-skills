@@ -79,7 +79,7 @@ def label(flow):
 
 
 # Skills that live in arm-pz/caffeinity-skills rather than a repo of their own.
-IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder", "skill-estate"}
+IN_MARKETPLACE = {"workflow-router", "paper-trail", "course-builder", "skill-estate"}
 
 
 def install(name):
