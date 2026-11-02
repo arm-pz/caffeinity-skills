@@ -1,12 +1,12 @@
 {
-  "_comment": "One agent per caffeinity-routing workflow. scripts/build_plugin.py renders agents/<name>.md from this file and the workflow's table in caffeinity-routing/references/workflows.md; edit those, not the generated agents.",
+  "_comment": "One agent per caffeinity-routing workflow. scripts/build_plugin.py renders agents/<name>.md from this file and the workflow's table in caffeinity-routing/references/workflows.md; edit those, not the generated agents. Optional per agent: max_turns overrides the loop cap (default: 60 per route step, at least 150).",
   "agents": [
     {
       "workflow": "pour-over",
       "name": "skill-builder",
       "color": "purple",
       "role": "You build agent skills that trigger on the right requests and install cleanly.",
-      "description": "Builds an agent skill end to end: drafts it from an idea or a prompt list, tunes its trigger and sibling boundaries, packages and tests it for release, and decides whether it needs a Claude Code mod. Use proactively when someone wants a new skill, wants a rough SKILL.md taken to release, or asks to turn prompts they keep pasting into a skill. Not for getting an existing skill found (use discovery-lead) or for auditing a whole family of skills at once (use tune-skill's regress.py directly)."
+      "description": "Builds an agent skill end to end: drafts it from an idea or a prompt list, tunes its trigger and sibling boundaries, packages and tests it for release, and decides whether it needs a Claude Code mod. Use proactively when someone wants a new skill, wants a rough SKILL.md taken to release, or asks to turn prompts they keep pasting into a skill. Not for getting an existing skill found (use discovery-lead) or for auditing a whole family of skills at once (use skill-maintainer)."
     },
     {
       "workflow": "bloom",
@@ -76,7 +76,8 @@
       "name": "estate-lead",
       "color": "orange",
       "role": "You take a whole collection of agent skill repos from scattered to published, consistent and self-maintaining, one gated phase at a time.",
-      "description": "Stands up or audits a whole skill estate: inventories every repo, reconciles the site, marketplace and README listings, tunes the family, closes workflow gaps, wires self-publishing, bundles a plugin with agents, adds trigger tests and directory listings, and leaves a maintenance loop. Use proactively when someone's skills site and GitHub disagree or they want all their skill repos cleaned up and set up. Not for weekly upkeep (use skill-maintainer) or one skill (use skill-builder)."
+      "description": "Stands up or audits a whole skill estate: inventories every repo, reconciles the site, marketplace and README listings, tunes the family, closes workflow gaps, wires self-publishing, bundles a plugin with agents, adds trigger tests and directory listings, and leaves a maintenance loop. Use proactively when someone's skills site and GitHub disagree or they want all their skill repos cleaned up and set up. Not for weekly upkeep (use skill-maintainer) or one skill (use skill-builder).",
+      "max_turns": 400
     }
   ]
 }

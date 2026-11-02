@@ -1,5 +1,5 @@
 {
-  "about": "Trigger cases for every skill in the caffeinity bundle. Each case is one user message; `expect` is the skill that must load (null when none of these skills should), `not` lists skills that must not load. scripts/build_evals.py turns this file into plugins/caffeinity/evals/; scripts/run_evals.sh runs them with `claude plugin eval`. Add a case whenever a description changes or a misfire is reported.",
+  "about": "Trigger cases for every skill in the caffeinity bundle. Each case is one user message; `expect` is the skill that must load (null when none of these skills should), `not` lists skills that must not load; `agent` is the workflow agent the message must be delegated to, and `not_agents` lists agents it must not go to. scripts/build_evals.py turns this file into plugins/caffeinity/evals/; scripts/run_evals.sh runs them with `claude plugin eval`. Add a case whenever a description changes or a misfire is reported.",
   "cases": [
     {"id": "routing-sell-online", "prompt": "I've installed all your caffeinity skills. Where do I start if I want to sell a small digital product online, and in what order should I run things?", "expect": "caffeinity-routing"},
     {"id": "routing-how-fit", "prompt": "How do these caffeinity skills fit together? Which one should I run first to get my site safe to ship and then ranking on Google?", "expect": "caffeinity-routing"},
@@ -55,6 +55,28 @@
     {"id": "study-system-forgetting", "prompt": "I've been learning Spanish for six months but I keep forgetting vocabulary. Give me a practice routine and a spaced-repetition schedule.", "expect": "study-system", "not": ["topic-primer", "course-builder"]},
     {"id": "course-builder-cohort", "prompt": "I'm teaching a 6-week evening Python cohort for 20 career changers. Give me a syllabus with outcomes, modules and assessments that fits 2 hours a week.", "expect": "course-builder", "not": ["study-system", "topic-primer"]},
     {"id": "course-builder-not-me", "prompt": "Make me a study plan to learn SQL in a month on my own.", "not": ["course-builder"]},
-    {"id": "none-weather", "prompt": "What's the capital of Australia?", "not": ["caffeinity-routing", "research-brief", "topic-primer"]}
+    {"id": "none-weather", "prompt": "What's the capital of Australia?", "not": ["caffeinity-routing", "research-brief", "topic-primer"]},
+    {"id": "agent-skill-builder", "prompt": "I keep pasting the same five prompts to review my Terraform. Take that all the way to a released skill I can install, start to finish.", "agent": "skill-builder"},
+    {"id": "agent-discovery-lead", "prompt": "My skill repo has 3 stars and nobody finds it. Get it found: About text, topics, README opening, publish it, and check every listing matches the repo.", "agent": "discovery-lead"},
+    {"id": "agent-release-gatekeeper", "prompt": "We deploy the web app on Friday. Run the whole launch gate on it, preflight, security and performance, and give me one go/no-go.", "agent": "release-gatekeeper"},
+    {"id": "agent-seo-lead", "prompt": "Our site stopped ranking and three of our pages compete for the same keyword. Run the full SEO workflow: crawl it, fix the cannibalization, then rewrite the titles and copy.", "agent": "seo-lead"},
+    {"id": "agent-job-search-coach", "prompt": "I've sent 60 applications and got no callbacks. Run my whole job search with me, from why my resume fails to tracking the roles I apply to.", "agent": "job-search-coach"},
+    {"id": "agent-decision-analyst", "prompt": "Should we build our own billing system or buy one? Research it, stress-test both options and give me a decision memo I can defend to the board.", "agent": "decision-analyst"},
+    {"id": "agent-learning-coach", "prompt": "I want to learn statistics from zero and actually keep it this time. Teach me and build the practice routine and spaced repetition around it.", "agent": "learning-coach"},
+    {"id": "agent-outbound-lead", "prompt": "We're starting cold email at 20k sends a month. Run the whole outbound setup: check our lead list, size the inboxes and warmup, and write the sequence.", "agent": "outbound-lead"},
+    {"id": "agent-solo-launcher", "prompt": "I'm a designer with 10 hours a week and $500. Take me from nothing to a launched product I sell online, on my own.", "agent": "solo-launcher"},
+    {"id": "agent-skill-maintainer", "prompt": "The Skill health issue is open again with regressions. Work through it, fix each skill and get the fixes published.", "agent": "skill-maintainer"},
+    {"id": "agent-estate-lead", "prompt": "My skills site, marketplace and GitHub all disagree and I have 40 skill repos. Clean up and set up the whole estate.", "agent": "estate-lead"},
+    {"id": "agent-not-single-lane", "prompt": "Just run the performance audit on my app's checkout page, nothing else.", "not_agents": ["release-gatekeeper"]},
+    {"id": "agent-not-weekly-upkeep", "prompt": "Do this week's routine regression check on my skills.", "not_agents": ["estate-lead"]},
+    {"id": "choose-effort-before-big-task", "prompt": "I'm about to kick off a long unattended Claude Code refactor across the whole monorepo. What effort level should I use, and should I fan out to subagents?", "expect": "choose-effort", "not": ["diagnose-usage"]},
+    {"id": "diagnose-usage-drained", "prompt": "My Claude Code usage limit drained in two hours today and I barely did anything. Why, and what should I change?", "expect": "diagnose-usage", "not": ["choose-effort"]},
+    {"id": "consistent-code-review-same-bugs", "prompt": "Review this PR for bugs. Last time I asked twice and got two different bug lists on the same code, so I need findings that hold up on a re-run.", "expect": "consistent-code-review", "not": ["production-code"]},
+    {"id": "get-indexed-submit-urls", "prompt": "I published 30 new pages last week and Google and Bing still don't show them. Submit my URLs and get them indexed.", "expect": "get-indexed", "not": ["seo-crawl"]},
+    {"id": "seo-sweep-brand-search", "prompt": "When I search my site's name, other domains show up instead of mine. Run the Skillsmith SEO skills on my site and fix what they find in the code.", "expect": "seo-sweep", "not": ["get-indexed"]},
+    {"id": "session-retrace-find-chat", "prompt": "Find the Claude Code session from last month where we fixed the redirect loop. I can't remember which chat it was.", "expect": "session-retrace"},
+    {"id": "agent-audit-subagents", "prompt": "Review the subagents in my .claude/agents folder and tell me what's missing before we let them run unattended.", "expect": "agent-audit", "not": ["tune-skill"]},
+    {"id": "agent-audit-acts-without-asking", "prompt": "Our support agent keeps emailing customers without asking anyone first and sometimes loops for an hour. Make it production-ready.", "expect": "agent-audit", "not": ["consistent-code-review"]},
+    {"id": "agent-audit-not-skill", "prompt": "My SKILL.md never triggers when people ask to parse invoices. What's wrong with its description?", "expect": "tune-skill", "not": ["agent-audit"]}
   ]
 }
