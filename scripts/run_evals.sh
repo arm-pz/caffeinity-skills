@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run the trigger suite for the caffeinity bundle on your own Claude login (never in CI: it costs
 # about $0.10 a case, ~$5 for the suite). Writes evals/last-run.json, a per-case summary you commit
-# so the next run, and the weekly W10 session, can say what changed.
+# so the next run, and the weekly Workflow 10 (maintain-skills) session, can say what changed.
 #
 #   bash scripts/run_evals.sh                 # every case, one run each
 #   bash scripts/run_evals.sh --case 'seo-*'  # extra flags go to `claude plugin eval`

@@ -38,14 +38,14 @@ REPO_META_DIRS = {".claude-plugin", ".codex-plugin", ".github", ".git", "tests",
 
 
 def workflows():
-    """{"espresso": {"label": "Brew 3 · Espresso", "title", "steps": [cells...], "notes": [lines]}}
-    from workflows.md, keyed by the brew name as a slug (what agents.json names)."""
+    """{"launch-safely": {"label": "Workflow 3 (launch-safely)", "title", "steps": [cells...], "notes": [lines]}}
+    from workflows.md, keyed by the workflow's short name (what agents.json names)."""
     flows, cur = {}, None
     for line in WORKFLOWS.read_text(encoding="utf-8").splitlines():
-        m = re.match(r"^## Brew (\d+) · ([^:]+): (.+)$", line)
+        m = re.match(r"^## Workflow (\d+) · ([a-z0-9-]+): (.+)$", line)
         if m:
-            key = re.sub(r"[^a-z0-9]+", "-", m.group(2).lower()).strip("-")
-            cur = flows.setdefault(key, {"label": f"Brew {m.group(1)} · {m.group(2).strip()}",
+            key = m.group(2)
+            cur = flows.setdefault(key, {"label": f"Workflow {m.group(1)} ({key})",
                                          "title": m.group(3).strip(), "steps": [], "notes": []})
             continue
         if cur is None:
