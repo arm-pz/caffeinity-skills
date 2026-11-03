@@ -1,8 +1,8 @@
 {
   "about": "Trigger cases for every skill in the caffeinity bundle. Each case is one user message; `expect` is the skill that must load (null when none of these skills should), `not` lists skills that must not load. scripts/build_evals.py turns this file into plugins/caffeinity/evals/; scripts/run_evals.sh runs them with `claude plugin eval`. Add a case whenever a description changes or a misfire is reported.",
   "cases": [
-    {"id": "routing-sell-online", "prompt": "I've installed all your caffeinity skills. Where do I start if I want to sell a small digital product online, and in what order should I run things?", "expect": "caffeinity-routing"},
-    {"id": "routing-how-fit", "prompt": "How do these caffeinity skills fit together? Which one should I run first to get my site safe to ship and then ranking on Google?", "expect": "caffeinity-routing"},
+    {"id": "routing-sell-online", "prompt": "I've installed all your caffeinity skills. Where do I start if I want to sell a small digital product online, and in what order should I run things?", "expect": "workflow-router"},
+    {"id": "routing-how-fit", "prompt": "How do these caffeinity skills fit together? Which one should I run first to get my site safe to ship and then ranking on Google?", "expect": "workflow-router"},
     {"id": "estate-site-github-mismatch", "prompt": "My skills site lists different skills than my GitHub repos, some repos were renamed, and nothing deploys on its own. Sort out the whole ecosystem.", "expect": "skill-estate", "not": ["publish-pipeline"]},
     {"id": "estate-new-org", "prompt": "We have 30 agent skill repos in our company org with no site, no marketplace and no tests. Set the whole collection up like a proper ecosystem.", "expect": "skill-estate"},
     {"id": "estate-not-weekly", "prompt": "Run this week's maintenance pass on my skills: check for regressions and fix them.", "not": ["skill-estate"]},
@@ -55,6 +55,13 @@
     {"id": "study-system-forgetting", "prompt": "I've been learning Spanish for six months but I keep forgetting vocabulary. Give me a practice routine and a spaced-repetition schedule.", "expect": "study-system", "not": ["topic-primer", "course-builder"]},
     {"id": "course-builder-cohort", "prompt": "I'm teaching a 6-week evening Python cohort for 20 career changers. Give me a syllabus with outcomes, modules and assessments that fits 2 hours a week.", "expect": "course-builder", "not": ["study-system", "topic-primer"]},
     {"id": "course-builder-not-me", "prompt": "Make me a study plan to learn SQL in a month on my own.", "not": ["course-builder"]},
-    {"id": "none-weather", "prompt": "What's the capital of Australia?", "not": ["caffeinity-routing", "research-brief", "topic-primer"]}
+    {"id": "ai-team-first-agents", "prompt": "I run a two-person bookkeeping firm and want to set up my first team of Claude agents. Where do I start and what should each agent do?", "expect": "ai-team-blueprint"},
+    {"id": "choose-effort-big-task", "prompt": "I'm about to have Claude Code migrate our whole API to a new framework overnight. Should I use xhigh or max effort, and should it use subagents?", "expect": "choose-effort"},
+    {"id": "consistent-review-rerun", "prompt": "Review this PR for bugs. Last time I asked twice I got completely different bugs on the same code, so I need findings that hold up on a re-run.", "expect": "consistent-code-review"},
+    {"id": "diagnose-usage-burned", "prompt": "Claude Code ate my whole usage limit in two hours today. Here's my /usage breakdown. What happened and what should I change?", "expect": "diagnose-usage", "not": ["choose-effort"]},
+    {"id": "get-indexed-new-pages", "prompt": "I just published twelve new pages on my site. Tell Google and Bing about them and tell me what I still have to submit by hand.", "expect": "get-indexed", "not": ["seo-crawl"]},
+    {"id": "seo-sweep-fix-site", "prompt": "Run all your SEO skills on my site in order and actually fix what they find in the code. My site doesn't show up when I search its name.", "expect": "seo-sweep"},
+    {"id": "session-retrace-find", "prompt": "Last week I had a Claude Code session where we fixed the redirect loop on the login page. I can't find it. Which session was that?", "expect": "session-retrace"},
+    {"id": "none-weather", "prompt": "What's the capital of Australia?", "not": ["workflow-router", "research-brief", "topic-primer"]}
   ]
 }
