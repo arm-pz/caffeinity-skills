@@ -1,7 +1,7 @@
 # Trigger cases for skill-estate
 
 Written to tune-skill's case format (`references/test-cases.md` in arm-pz/tune-skill). Judged from
-the `description` frontmatter only. Competing descriptions read: `caffeinity-routing`,
+the `description` frontmatter only. Competing descriptions read: `workflow-router`,
 `publish-pipeline`, `upstream-check`, `findable`, `tune-skill`, `skill-launch`.
 
 **Run:** written 2026-10-24 and hand-checked against the descriptions; the automated cases in
@@ -15,7 +15,7 @@ the `description` frontmatter only. Competing descriptions read: `caffeinity-rou
 | 4 | "Do the same cleanup we did for arm-pz on my company's skills org." | skill-estate | full run from phase 1 | written |
 | 5 | "My tune-skill isn't triggering." | tune-skill | skill-estate does not load | written |
 | 6 | "Why does my site list 22 skills and GitHub 27?" | upstream-check | skill-estate does not load (one drift question) | written |
-| 7 | "Run this week's maintenance on the skills." | caffeinity-routing (Workflow 10 (maintain-skills)) | skill-estate does not load | written |
+| 7 | "Run this week's maintenance on the skills." | workflow-router (Workflow 10 (maintain-skills)) | skill-estate does not load | written |
 | 8 | "Set up the GitHub Actions publish pipeline for my skills site." | publish-pipeline | skill-estate does not load | written |
 
 ## Boundary pairs
@@ -25,4 +25,4 @@ the `description` frontmatter only. Competing descriptions read: `caffeinity-rou
 | "Clean up and set up my whole skills ecosystem." | skill-estate | the whole collection, every phase |
 | "Fix the drift between my site and the marketplace." | upstream-check | one phase |
 | "Get my skills repo more stars." | findable | one repo's discovery |
-| "Weekly health check on my skills." | caffeinity-routing | upkeep of an estate already set up |
+| "Weekly health check on my skills." | workflow-router | upkeep of an estate already set up |

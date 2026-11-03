@@ -1,5 +1,5 @@
 {
-  "name": "caffeinity-routing",
+  "name": "workflow-router",
   "version": "0.4.0",
   "description": "Routes a multi-step goal across the caffeinity skills: eleven numbered workflows (build a skill, get found, launch safely, grow search traffic, land a job, make a decision, learn a skill, run cold outbound, launch a one-person product, keep your skills healthy, audit all your skills), each step's input and output, and a script that names the skills you have not installed.",
   "author": {
