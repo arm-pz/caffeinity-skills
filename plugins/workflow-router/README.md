@@ -36,3 +36,8 @@ python -I tests/test_route_check.py      # self-check
 
 It routes and hands off; it never does a step's work itself, and a step whose skill is missing is
 reported as missing rather than improvised.
+
+Every run starts with a brief (what you expect, what done looks like, what is out of scope) and
+ends with a report that puts the evidence first, then the decisions it made for you, then what its
+checks did not cover, and the summary last. The workflow agents in the `caffeinity` plugin follow
+the same contract: `skills/workflow-router/references/report-contract.md`.

@@ -36,8 +36,13 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 - **Never fill a missing step yourself.** Run `scripts/route_check.py` and report what is not
   installed with its install command. A step skipped for lack of a skill is reported as skipped,
   not as passed.
-- **Carry outputs forward verbatim.** Each step's output is the next step's input, as listed in
-  `references/workflows.md`. Summarizing between steps loses the evidence the next skill checks.
+- **Carry outputs forward verbatim, with the source.** Each step's output is the next step's
+  input, as listed in `references/workflows.md`, and every step also gets the user's original
+  inputs. Summarizing between steps loses the evidence the next skill checks.
+- **Brief first, evidence last.** Every run starts with a brief (what the user expects, what
+  done looks like, what is out of scope) and ends with the four-part report in
+  `references/report-contract.md`: evidence, decisions, what the checks did not cover, then the
+  summary.
 - **Respect each skill's own gates.** A release gate that says HOLD, a keyword map that is not
   signed off, or a draft the user has not confirmed stops the workflow there. Say so; do not
   route around it.
@@ -47,7 +52,11 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 1. **Classify the goal.** Read the request against the workflow table below. If it fits one
    skill, route there and stop. If it fits more than one workflow, pick the one whose first step the user
    can start now and say which you set aside.
-2. **Check what is installed.** Run:
+2. **Write the brief.** Before routing a multi-step run, get the user's "Expect", "Done when"
+   and "Out of scope" lines, or fill them from the request and show them. Open
+   `references/report-contract.md` for the fields and for when to mark them `(assumed)` instead
+   of asking. If the user cannot say what done looks like, ask about that before going on.
+3. **Check what is installed.** Run:
 
        python scripts/route_check.py launch-safely # one workflow, by name, number or old W id
        python scripts/route_check.py --all         # every workflow
@@ -55,14 +64,14 @@ off. Doing a step's job here produces a worse version of a skill that already ex
    It reads `references/workflows.md` and looks for each skill's `SKILL.md` under the usual skill
    folders (`~/.claude/skills`, `~/.qoder/skills`, `~/.cursor/skills`, `~/.agents/skills`,
    `.claude/skills` and plugin caches). Add `--path <dir>` for any other location.
-3. **Lay out the route.** Open `references/workflows.md` for the chosen workflow and write one
+4. **Lay out the route.** Open `references/workflows.md` for the chosen workflow and write one
    line per step: skill, what it receives, what it hands on, and whether it is installed. Mark the
    chain skill if one already packages the steps (Workflow 1 (build-a-skill) has `skill-launch`, Workflow 3 (launch-safely) has the
    `release-gate-*` forks, Workflow 4 (grow-search-traffic) has `seo-polish` and `keyword-resolver`).
-4. **Hand off step 1.** Load the first skill with its input. When a step finishes, come back to
-   the route, record the step's verdict or output location, and hand off the next one.
-5. **Close the loop.** When the last step finishes, list each step as done, skipped (with the
-   reason) or stopped at a gate, plus the one next action.
+5. **Hand off step 1.** Load the first skill with its input and the user's original inputs.
+   When a step finishes, come back to the route, record the step's verdict or output location, and hand off the next one.
+6. **Close the loop.** When the last step finishes, write the report in
+   `references/report-contract.md`.
 
 ## The workflows
 
@@ -80,13 +89,23 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | Workflow 10 (maintain-skills) | Keep your skills healthy | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check |
 | Workflow 11 (audit-a-skill-estate) | Audit all your skills | skill-estate (eight gated phases over the whole collection) |
 
-Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 3,
+Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 4,
 and whenever a user asks what one skill needs from the previous one.
 `references/trigger-cases.md` holds the hand-run trigger cases; open it when tuning this
 description or adding a workflow.
 
 ## Report
 
-Lead with the route: workflow number, then one line per step with its status. Then the missing
-skills with install commands, any gate that stopped the run, and the one next action. Say which
-steps you only planned and which actually ran.
+For a routing answer (no step has run yet): the workflow number and name, the brief, one line per
+step with whether it is installed, the missing skills with install commands, and the first
+hand-off.
+
+After a run: the four sections of `references/report-contract.md`, in order.
+
+1. **Evidence:** one line per step with its status and the deciding line of its output. A step
+   with no evidence is planned, not done.
+2. **Decisions and assumptions:** what the run chose that the user did not.
+3. **What the checks did not cover:** for each green verdict, what it proved and what it left
+   open, plus the answer to "what did this run miss?"
+4. **Summary and next action:** the outcome against the brief's "Expect" line, whether "Done
+   when" was met, and the one next action.
