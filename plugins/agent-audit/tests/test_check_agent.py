@@ -78,8 +78,31 @@ assert "ignored in a plugin agent" not in " ".join(f["message"] for f in run(BAD
 # A read-only agent with no web tools is not a trifecta risk and needs no approval rule.
 readonly = GOOD.replace("tools: [Read, Grep, Glob, Write]", "tools: Read, Grep, Glob").replace(
     "Ask first, every time, before deleting a file or anything that spends money: show the action\n"
-    "and wait for the user's yes.\n", "")
+    "and wait for the user's yes.\n", "").replace(", or when an\naction needs approval", "")
+assert not check_agent.APPROVAL.search(readonly), "the read-only fixture must hold no approval wording"
 assert not levels(run(readonly), "WARN"), run(readonly)
+# ...and the same body with a write tool does need one (this is what the case above guards).
+assert any(f["layer"] == 7 for f in levels(run(readonly.replace("tools: Read, Grep, Glob", "tools: Read, Write")), "WARN"))
+
+# A denylist is honoured: denying every built-in web and write tool clears L6/L7, and the
+# inherited MCP servers are named once as INFO.
+denylist = GOOD.replace("tools: [Read, Grep, Glob, Write]",
+                        "disallowedTools: Bash, Write, Edit, NotebookEdit, WebFetch, WebSearch").replace(
+    "Ask first, every time, before deleting a file or anything that spends money: show the action\n"
+    "and wait for the user's yes.\n", "").replace(", or when an\naction needs approval", "")
+found = run(denylist)
+assert not [f for f in levels(found, "WARN") if f["layer"] in (6, 7)], found
+assert any("MCP servers are still inherited" in f["message"] for f in levels(found, "INFO")), found
+
+# A bare "until" is not a stop condition.
+looping = GOOD.replace("Stop when every invoice has a status, when a file cannot be read twice in a row, or when an\n"
+                       "action needs approval.", "Keep matching invoices until they all reconcile.")
+assert any(f["layer"] == 5 for f in levels(run(looping), "WARN")), run(looping)
+
+# A list-valued name or description is a FAIL, not a crash.
+listy = run("---\nname:\n  - a\ndescription:\n  - Summarises notes\n---\nbody\n")
+assert {"`name` must be a single string, not a list",
+        "`description` must be a single string, not a list: use `>-` for a long one"} <= {f["message"] for f in listy}, listy
 
 # Missing frontmatter is a FAIL, and the CLI exits 1 on any FAIL.
 assert levels(run("# no frontmatter\n"), "FAIL")

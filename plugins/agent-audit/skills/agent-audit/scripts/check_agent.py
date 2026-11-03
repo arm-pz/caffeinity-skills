@@ -36,7 +36,9 @@ MODEL_ALIASES = {"inherit", "sonnet", "opus", "haiku", "fable"}
 WEB_TOOLS = {"WebFetch", "WebSearch"}
 ACT_TOOLS = {"Bash", "Write", "Edit", "NotebookEdit"}
 
-STOP = re.compile(r"\b(stop(s|ping)?\b|exit condition|done when|until\b|finish(es)? when|gate)", re.I)
+# Stop phrasing only: a bare "until" ("edit until the tests pass") describes a loop, not its exit.
+STOP = re.compile(r"\b(stops? (when|if|on|at|there|after)|stopping (when|if)|exit condition|done when|"
+                  r"finish(es)? when|halt (when|if))\b", re.I)
 APPROVAL = re.compile(r"\b(confirm|approv|ask (the user |first|before)|wait for (the user|a yes|approval)|user's yes)", re.I)
 UNTRUSTED = re.compile(r"(untrusted|data,? not instructions|prompt injection|never act on (it|instructions)|"
                        r"instructions? (inside|in|embedded in) (it|them|the (page|content|file)))", re.I)
@@ -120,11 +122,16 @@ def check(path, plugin=None):
     name = fm.get("name")
     if not name or name is True:
         add("FAIL", 2, "missing `name`")
+    elif not isinstance(name, str):
+        add("FAIL", 2, "`name` must be a single string, not a list")
     elif ":" in name or name.startswith("-") or len(name) > 256:
         add("FAIL", 2, f"invalid name `{name}`: no `:`, no leading `-`, at most 256 characters")
     desc = fm.get("description")
     if not desc or desc is True:
         add("FAIL", 2, "missing `description`: Claude routes to an agent by its description alone")
+        desc = ""
+    elif not isinstance(desc, str):
+        add("FAIL", 2, "`description` must be a single string, not a list: use `>-` for a long one")
         desc = ""
     for k, allowed in ENUMS.items():
         v = fm.get(k)
@@ -175,11 +182,21 @@ def check(path, plugin=None):
         add("WARN", 5, "the prompt never says when to stop (done, unrecoverable error, or waiting on approval)")
 
     # L6 guardrails
-    effective = set(t.split("(")[0] for t in tools) if tools else None   # None = everything
+    base = lambda ts: {t.split("(")[0] for t in ts}
+    listed, removed = base(tools), base(denied)
+    # With no `tools` list the agent inherits every built-in tool (minus the denylist) and every
+    # MCP server in the session; an explicit list grants only what it names.
+    # Listed MCP tools count as able to read and act. Inherited ones depend on the session the
+    # agent runs in, so they are reported once as INFO instead of driving the L6/L7 warnings.
+    mcp_listed = bool(tools) and any(t.startswith("mcp__") for t in listed - removed)
+    inherits_mcp = not tools and not any(t.startswith("mcp__") for t in removed)
     def has(group):
-        return effective is None or bool(effective & group) or any(t.startswith("mcp__") for t in (effective or []))
+        return bool(((listed if tools else group) & group) - removed) or mcp_listed
     reads_untrusted = has(WEB_TOOLS)
     can_act = has(ACT_TOOLS)
+    if inherits_mcp and denied and not ((WEB_TOOLS | ACT_TOOLS) - removed):
+        add("INFO", 3, "the denylist removes every built-in web and write tool, but MCP servers are still inherited; "
+                       "list `tools` explicitly to close them too")
     if reads_untrusted and not UNTRUSTED.search(body):
         add("WARN", 6, "it can read web or external content but never says that content is data, not instructions")
     if reads_untrusted and can_act and not APPROVAL.search(body):

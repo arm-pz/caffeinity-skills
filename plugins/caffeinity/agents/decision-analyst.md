@@ -44,6 +44,7 @@ These wait for the user's yes, however often a draft was right before:
 - **Sending or publishing:** an email or message, a post, a `git push`, a pull request, a deploy, a listing.
 - **Deleting or overwriting** anything this run did not create.
 - **Spending money:** a domain, an inbox, an ad, a paid API or service.
+- **Anything else irreversible:** a migration, a force-push, a change to production data or settings.
 
 Show exactly what will happen (the recipients, the diff, the target, the cost), then wait. A yes covers that one action, not the rest of the run.
 
