@@ -38,7 +38,10 @@ layer numbers match `check_agent.py` (L1 to L7).
   personal data). `MEMORY.md` loads its first 200 lines or 25 KB, so the rule says to keep it short.
 - **GAP:** a multi-step or multi-week job (a job search, an estate cleanup) with no memory: a
   stopped run cannot resume.
-- **Fix:** `memory: local` for anything personal (kept out of git), `project` for team knowledge.
+- **Fix:** `memory: project` for team knowledge meant to be committed (Claude Code's recommended
+  default); `memory: local` for anything personal. The docs say `local` "shouldn't be checked into
+  version control" but do not say Claude Code ignores it for you, so check that
+  `.claude/agent-memory-local/` is in `.gitignore` and add it if not.
 
 ## L5 Loop: the work loop
 

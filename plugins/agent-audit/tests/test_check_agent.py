@@ -113,4 +113,15 @@ with tempfile.TemporaryDirectory() as d:
     p.write_text(GOOD, encoding="utf-8")
     assert check_agent.main([str(p)]) == 0
 
+# Each invalid enum value is reported under its own layer.
+layered = {f["message"].split("`")[1].split(":")[0]: f["layer"]
+           for f in run(GOOD.replace("memory: local", "memory: forever").replace("color: green", "color: magenta"))
+           if f["level"] == "FAIL"}
+assert layered == {"memory": 4, "color": 2}, layered
+
+# "payload" is not a spend action, so an approval rule that only mentions it still gets the INFO.
+payload = GOOD.replace("before deleting a file or anything that spends money", "before sending a payload")
+assert any(f["layer"] == 7 for f in levels(run(payload), "INFO")), run(payload)
+assert not [f for f in levels(run(GOOD), "INFO") if f["layer"] == 7]
+
 print("check_agent: ok")

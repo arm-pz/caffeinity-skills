@@ -32,6 +32,8 @@ ENUMS = {
     "isolation": {"worktree"},
     "color": {"red", "blue", "green", "yellow", "purple", "orange", "pink", "cyan"},
 }
+# The layer each enum field belongs to, so an invalid value is reported where it matters.
+ENUM_LAYER = {"model": 1, "effort": 1, "memory": 4, "permissionMode": 6, "isolation": 6, "color": 2}
 MODEL_ALIASES = {"inherit", "sonnet", "opus", "haiku", "fable"}
 WEB_TOOLS = {"WebFetch", "WebSearch"}
 ACT_TOOLS = {"Bash", "Write", "Edit", "NotebookEdit"}
@@ -42,6 +44,8 @@ STOP = re.compile(r"\b(stops? (when|if|on|at|there|after)|stopping (when|if)|exi
 APPROVAL = re.compile(r"\b(confirm|approv|ask (the user |first|before)|wait for (the user|a yes|approval)|user's yes)", re.I)
 UNTRUSTED = re.compile(r"(untrusted|data,? not instructions|prompt injection|never act on (it|instructions)|"
                        r"instructions? (inside|in|embedded in) (it|them|the (page|content|file)))", re.I)
+SPEND_OR_DELETE = re.compile(r"\b(delet(e|es|ed|ing|ion)|spend(s|ing)?|money|pay(s|ing|ment|ments)?|"
+                             r"purchas(e|es|ed|ing)|buy(s|ing)?|cost(s)?)\b", re.I)
 NOT_FOR = re.compile(r"\b(not for|do not use|don't use|never use)\b", re.I)
 USE_WHEN = re.compile(r"\b(use (proactively|when|whenever|for|after|before|immediately)|when (someone|the user|asked))", re.I)
 
@@ -82,6 +86,17 @@ def parse(text):
             fm[key] = (cur + " " + line.strip()).strip()
     fm = {k: ("" if v is None else v) for k, v in fm.items()}
     return fm, body, None
+
+
+def approval_text(body):
+    """The paragraphs that state the approval rule, each with the paragraph after it (where its
+    list usually sits), so a "purchase order" elsewhere in the prompt is not read as a spend rule."""
+    paras = [p for p in re.split(r"\n\s*\n", body) if p.strip()]
+    keep = set()
+    for i, para in enumerate(paras):
+        if APPROVAL.search(para):
+            keep.update({i, i + 1})
+    return "\n\n".join(paras[i] for i in sorted(keep) if i < len(paras))
 
 
 def as_list(val):
@@ -136,7 +151,7 @@ def check(path, plugin=None):
     for k, allowed in ENUMS.items():
         v = fm.get(k)
         if allowed and isinstance(v, str) and v and v not in allowed:
-            add("FAIL", 1 if k in ("model", "effort") else 6, f"`{k}: {v}` is not one of {sorted(allowed)}")
+            add("FAIL", ENUM_LAYER[k], f"`{k}: {v}` is not one of {sorted(allowed)}")
     model = fm.get("model")
     if isinstance(model, str) and model and model not in MODEL_ALIASES and not re.match(r"^[a-z0-9][a-z0-9.\-\[\]_]+$", model):
         add("FAIL", 1, f"`model: {model}` is neither an alias ({', '.join(sorted(MODEL_ALIASES))}) nor a model id")
@@ -205,7 +220,7 @@ def check(path, plugin=None):
     # L7 approval
     if can_act and not APPROVAL.search(body):
         add("WARN", 7, "no human approval rule: name the actions that wait for a yes (send, publish, delete, spend)")
-    elif APPROVAL.search(body) and not re.search(r"\b(delet|spend|money|pay|purchas|buy)", body, re.I):
+    elif APPROVAL.search(body) and not SPEND_OR_DELETE.search(approval_text(body)):
         add("INFO", 7, "the approval rule names no delete or spend actions; check those are covered")
     return out
 

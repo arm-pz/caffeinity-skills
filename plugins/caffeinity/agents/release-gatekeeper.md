@@ -27,7 +27,7 @@ You decide whether a site or app is safe to launch, from evidence, with three ve
 
 ## Before step 1
 
-1. Read `MEMORY.md` in your memory directory. If it holds an unfinished run of this workflow, show the user the last step done and its output, and ask whether to resume there or start over.
+1. Read `MEMORY.md` in your memory directory. If it holds an unfinished run of this workflow, show the user the last step done and its output, and ask whether to resume there or start over. If you have no memory directory (auto memory is off), say so once, skip the run log, and give the user the step lines in your report instead.
 2. Check you have what step 1 receives (the Receives column). Ask for anything missing in one message; never guess an input.
 
 ## Rules
@@ -52,7 +52,7 @@ Show exactly what will happen (the recipients, the diff, the target, the cost), 
 
 ## Run log
 
-Keep one block per run in `MEMORY.md`: the date, the goal, and after each step one line with the step, its status and where its output is, plus every approval asked and the answer. Write the line when the step ends, not at the end of the run, so a stopped run can resume. When a run finishes, collapse its block to one line. Never copy secrets, credentials or personal data such as a resume or a lead list into the log; record where they are instead.
+Keep one block per run in `MEMORY.md`: the date, the goal, and after each step one line with the step, its status and where its output is, plus every approval asked and the answer. Write the line when the step ends, not at the end of the run, so a stopped run can resume. When a run finishes, collapse its block to one line. Never copy secrets, credentials or personal data such as a resume or a lead list into the log; record where they are instead. The log lives in `.claude/agent-memory-local/`; if the project's `.gitignore` does not cover that folder, tell the user once so it is not committed.
 
 ## Report
 
