@@ -2,7 +2,7 @@
 
 Written to tune-skill's case format (`references/test-cases.md` in arm-pz/tune-skill). Judged from
 the `description` frontmatter only. Competing descriptions read: `tune-skill`, `skill-builder`
-(agent), `consistent-code-review`, `pre-ship-security-red-team`, `skill-estate`.
+(agent), `consistent-code-review`, `pre-ship-security-red-team`, `skill-estate`, `ai-team-blueprint`.
 
 **Run:** hand-run on 2026-11-02 against the descriptions only. No automated triggering loop was run.
 
@@ -14,7 +14,7 @@ the `description` frontmatter only. Competing descriptions read: `tune-skill`, `
 | 4 | "My agent never gets picked when I ask for a code review." | agent-audit | L2 routing finding, delegation tests | PASS ("never gets picked") |
 | 5 | "My SKILL.md never triggers." | tune-skill | agent-audit does not load | PASS ("Not for SKILL.md files") |
 | 6 | "Review this PR for bugs." | consistent-code-review | agent-audit does not load | PASS |
-| 7 | "Build me a new agent that triages issues." | skill-builder | agent-audit does not load | PASS ("Not for building a new agent") |
+| 7 | "Which agents should my agency set up first?" | ai-team-blueprint | agent-audit does not load | PASS ("Not for designing a new agent team") |
 
 ## Boundary pairs
 

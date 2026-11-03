@@ -11,8 +11,9 @@ description: >-
   review, audit, harden or improve their agents or subagents, asks why an agent misbehaves in
   production, loops, acts without asking or never gets picked, or wants an agent made
   production-ready, even if they never say "audit". Not for SKILL.md files (use tune-skill),
-  building a new agent from an idea (use skill-builder), reviewing ordinary code (use
-  consistent-code-review), or red-teaming a live app (use pre-ship-security-red-team).
+  designing a new agent team (use ai-team-blueprint), building a new skill from an idea (use
+  skill-builder), reviewing ordinary code (use consistent-code-review), or red-teaming a live
+  app (use pre-ship-security-red-team).
 ---
 
 # agent-audit
