@@ -10,7 +10,7 @@ description: >-
   cleaned up, wants new skills to publish themselves, or wants that cleanup repeated on another
   org, even if they never say estate. Not for one skill (use tune-skill), one listing (use
   findable), the site pipeline alone (use publish-pipeline), or weekly upkeep (use
-  caffeinity-routing's Descale brew).
+  workflow-router's Workflow 10 · maintain-skills).
 ---
 
 # skill-estate
@@ -55,7 +55,7 @@ when the earlier gate passed or the owner waived it.
    handoffs, run the cheapest real targets (the site itself is a good one). Owner: `tune-skill`,
    plus the check skills on the site (`web-preflight`, `seo-crawl`).
 4. **Close workflow gaps.** Map the workflows across skills; every handoff must land on a published
-   skill. Draft the missing ones. Owners: `caffeinity-routing` (the map), `draft-skill` (new skills).
+   skill. Draft the missing ones. Owners: `workflow-router` (the map), `draft-skill` (new skills).
 5. **Publish and bundle.** Hourly sync from GitHub to the site and profile README; a plugin that
    bundles every skill plus one agent per workflow, for Claude Code and Codex. Owner:
    `publish-pipeline`; the bundle builder pattern is in `references/phases.md`.
@@ -64,7 +64,7 @@ when the earlier gate passed or the owner waived it.
 7. **Discovery.** Topics and homepages on every repo, structured data on the site, and a
    directory kit the owner submits. Owner: `findable`.
 8. **Maintenance loop.** A nightly health check that opens an issue on regression, and a weekly
-   scheduled session that runs the Descale brew and opens PRs. Write the project map (`PROJECT.md`): what
+   scheduled session that runs Workflow 10 · maintain-skills and opens PRs. Write the project map (`PROJECT.md`): what
    exists, how a skill goes live, the workflows, and the gaps still open.
 
 ## Report
