@@ -33,8 +33,10 @@ PLUGIN = ROOT / "plugins" / "caffeinity"
 ROUTING = ROOT / "plugins" / "caffeinity-routing" / "skills" / "caffeinity-routing"
 WORKFLOWS = ROUTING / "references" / "workflows.md"
 MANIFEST_URL = "https://raw.githubusercontent.com/arm-pz/skills-site/main/site/skills.json"
-REPO_META = {"README.md", "LICENSE", "LICENSE.md", "CHANGELOG.md", "CONTRIBUTING.md"}
-REPO_META_DIRS = {".claude-plugin", ".codex-plugin", ".github", ".git", "tests", "node_modules"}
+REPO_META = {"README.md", "LICENSE", "LICENSE.md", "CHANGELOG.md", "CONTRIBUTING.md",
+             "discovery-kit.md", ".copier-answers.yml"}  # working files, never bundled
+REPO_META_DIRS = {".claude-plugin", ".codex-plugin", ".github", ".git", "tests", "node_modules",
+                  "discovery"}
 
 
 def workflows():
