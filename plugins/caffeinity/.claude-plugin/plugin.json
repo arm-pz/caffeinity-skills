@@ -6,7 +6,7 @@
     "name": "Abdul Rahman P Z",
     "url": "https://github.com/arm-pz"
   },
-  "homepage": "https://skills.caffeinity.com/",
+  "homepage": "https://skillsmith.tech/",
   "repository": "https://github.com/arm-pz/caffeinity-skills",
   "license": "MIT",
   "keywords": [
@@ -20,7 +20,7 @@
   ],
   "displayName": "Caffeinity skills",
   "icon": "./.claude-plugin/icon.png",
-  "documentationUrl": "https://skills.caffeinity.com/",
+  "documentationUrl": "https://skillsmith.tech/",
   "supportUrl": "https://github.com/arm-pz/caffeinity-skills/issues",
   "metadata": {
     "bundleDigest": "c94f15bd6d16870c"
