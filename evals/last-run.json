@@ -1,11 +1,73 @@
 {
-  "startedAt": "2026-10-24T07:37:06.544Z",
-  "claudeVersion": "2.1.310",
-  "costUsd": 1.02,
+  "startedAt": "2026-11-04T02:23:28.124Z",
+  "claudeVersion": "2.1.318",
+  "costUsd": 1.97,
   "partial": false,
-  "passed": 43,
-  "total": 52,
+  "passed": 51,
+  "total": 65,
   "cases": {
+    "agent-decision-analyst": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-discovery-lead": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-estate-lead": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-job-search-coach": {
+      "pass": false,
+      "failed": [
+        "delegates"
+      ]
+    },
+    "agent-learning-coach": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-not-single-lane": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-not-weekly-upkeep": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-outbound-lead": {
+      "pass": false,
+      "failed": [
+        "delegates"
+      ]
+    },
+    "agent-release-gatekeeper": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-seo-lead": {
+      "pass": false,
+      "failed": [
+        "delegates"
+      ]
+    },
+    "agent-skill-builder": {
+      "pass": false,
+      "failed": [
+        "delegates"
+      ]
+    },
+    "agent-skill-maintainer": {
+      "pass": true,
+      "failed": []
+    },
+    "agent-solo-launcher": {
+      "pass": false,
+      "failed": [
+        "delegates"
+      ]
+    },
     "applicant-kit-rewrite": {
       "pass": true,
       "failed": []
