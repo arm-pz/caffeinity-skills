@@ -6,7 +6,7 @@ dashboard).
 
 | # | Phase | Owner skill | Receives | Hands on | Gate |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Inventory | `upstream-check` | the owner or org name; clones of its repos | a table: repo, kind (skill, mod, bundle, none), where it is listed, drift | every repo classified; counts from SKILL.md files, not descriptions |
+| 1 | Inventory | `listing-drift` | the owner or org name and the site URL | a table: repo, kind (skill, mod, bundle, none), where it is listed, drift | every repo classified; counts from SKILL.md files, not descriptions |
 | 2 | Reconcile listings | `publish-pipeline` | the inventory | one manifest; generated hub, pages, indexes, sitemap, README block; aliases and 301s for renames | regenerated outputs match the manifest; a missing repo stops the sync instead of deleting |
 | 3 | Test and tune | `tune-skill` (+ `web-preflight`, `seo-crawl` on the site) | every SKILL.md; the live site | validator results, a family regression baseline, fix PRs | 0 FAIL; no dangling handoff; site checks run and findings fixed or listed |
 | 4 | Close workflow gaps | `caffeinity-routing`, `draft-skill` | the skills and their handoffs | numbered workflows with each step's input and output; new skills for missing steps | every handoff names a published skill; new skills pass the validator |
