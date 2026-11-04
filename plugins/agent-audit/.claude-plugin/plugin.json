@@ -1,0 +1,16 @@
+{
+  "name": "agent-audit",
+  "version": "0.1.0",
+  "description": "Audits AI agents and Claude Code subagents against the seven layers a production agent needs (model, instructions, tools, memory, loop, guardrails, human approval), with a linter for agent files and delegation tests.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "subagents",
+    "ai-agents",
+    "guardrails",
+    "claude-code"
+  ]
+}

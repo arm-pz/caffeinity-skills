@@ -26,6 +26,11 @@
       "description": "Designs a course for a class, cohort or workshop: measurable outcomes, modules in prerequisite order, aligned assessments and a time budget, checked by a script."
     },
     {
+      "name": "agent-audit",
+      "source": "./plugins/agent-audit",
+      "description": "Audits AI agents and Claude Code subagents against the seven layers a production agent needs: model, instructions, tools, memory, loop, guardrails and human approval, with a linter and delegation tests."
+    },
+    {
       "name": "skill-estate",
       "source": "./plugins/skill-estate",
       "description": "Takes a whole collection of skill repos from scattered to published and self-maintaining, in gated phases handed to the skills that own them."
