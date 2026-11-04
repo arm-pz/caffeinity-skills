@@ -64,7 +64,7 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | # | Goal | Steps, in order |
 | --- | --- | --- |
 | Brew 1 · Pour-over | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod (only if it must run at a fixed moment) |
-| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
+| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check → listing-drift |
 | Brew 3 · Espresso | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
 | Brew 4 · Cold brew | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit or platform-content (if they apply) |
 | Brew 5 · French press | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
@@ -72,7 +72,7 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | Brew 7 · Slow drip | Learn a skill | topic-primer → study-system → course-builder (only when teaching a group) |
 | Brew 8 · Nitro | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | Brew 9 · Moka pot | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → Brew 3 · Espresso → platform-content |
-| Brew 10 · Descale | Maintain the skill family | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check |
+| Brew 10 · Descale | Maintain the skill family | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check → listing-drift |
 | Brew 11 · Estate roast | Stand up or audit a skill estate | skill-estate (eight gated phases over the whole collection) |
 
 Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 3,

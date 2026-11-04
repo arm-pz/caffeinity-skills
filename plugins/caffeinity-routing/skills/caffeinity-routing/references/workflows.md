@@ -30,9 +30,10 @@ command; keep the steps visible when they want to stop between them.
 | --- | --- | --- | --- | --- |
 | 1 | `findable` | the repo and what it does | `discovery-kit.md`: baseline, target queries, About, topics, README opening, site page, distribution list | the user has not approved public changes |
 | 2 | `publish-pipeline` | the approved site page and the skill repo | a manifest entry, a generated page, both discovery indexes and the sitemap, deployed and verified | the build or the post-deploy proof fails |
-| 3 | `upstream-check` | the folder of clones and the site URL | push-state verdicts and a listing drift table | a repo is behind or diverged |
+| 3 | `upstream-check` | the folder of clones | push-state verdicts, clean repos pushed | a repo is behind or diverged |
+| 4 | `listing-drift` | the owner and the site URL, after the push | a drift table: names, stated counts, retired-host links | a source is unreadable (reported, not counted as agreeing) |
 
-`findable-polish` and `upstream-polish` add a wordsmith rewrite to steps 1 and 3.
+`findable-polish` adds a wordsmith rewrite to step 1; `upstream-polish` runs steps 3 and 4 and adds one to their findings.
 
 ## Brew 3 · Espresso: Decide whether a site is safe to launch
 
@@ -110,7 +111,8 @@ once after changes and compare finding IDs; a code change alone does not prove a
 | --- | --- | --- | --- | --- |
 | 1 | `tune-skill` | every installed skill folder (or the open "Skill health" issue) and `health.json`; run `regress.py --baseline` | one minimal, evidenced fix per regression, each skill re-checked, the family re-regressed with no new findings | a fix needs two skills to change which request they own and the user has not picked the owner |
 | 2 | `prompts-to-skill-release` (optional) | a fixed skill whose behaviour changed, with its trigger cases | a new version, changelog line and recorded test results | a trigger case fails and the user has not accepted it |
-| 3 | `upstream-check` | the local skill clones after the fixes | what is unpushed, pushed when clean, and whether the site, marketplaces and READMEs count the same skills | a clone has diverged from its remote |
+| 3 | `upstream-check` | the local skill clones after the fixes | what is unpushed, pushed when clean | a clone has diverged from its remote |
+| 4 | `listing-drift` | the owner and the site URL, after the push | whether the site, marketplaces and READMEs name and count the same skills | a source is unreadable (reported, not counted as agreeing) |
 
 Run it on a schedule (the skills-site nightly health job opens the issue it starts from) or after
 any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site)

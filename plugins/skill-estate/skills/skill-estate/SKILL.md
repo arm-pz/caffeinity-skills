@@ -48,7 +48,7 @@ when the earlier gate passed or the owner waived it.
 
 1. **Inventory.** List every repo the owner controls; classify each as skill, mod, plugin bundle,
    or not a skill. Count what the site, marketplace(s) and profile README publish. Owner:
-   `upstream-check` (its drift checker does the counting).
+   `listing-drift` (its drift checker does the counting).
 2. **Reconcile listings.** One manifest decides what is public; generate the site, indexes,
    sitemap and README block from it. Follow renames with aliases and 301s. Owner: `publish-pipeline`.
 3. **Test and tune.** Validate every SKILL.md, run the family regression, fix FAILs and dangling

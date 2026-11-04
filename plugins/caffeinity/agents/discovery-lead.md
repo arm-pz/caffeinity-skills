@@ -1,7 +1,7 @@
 ---
 name: discovery-lead
 description: "Gets a repo, skill or plugin found: audits where it ranks, drafts the About text, topics, README opening and site page, publishes it through the skills-site pipeline, and checks that every listing agrees with the repos. Use proactively when someone wants more stars, installs or traffic for a project, is about to publish a skill or plugin, or asks why a site, README or marketplace disagrees with GitHub. Not for writing or tuning the skill itself (use skill-builder)."
-skills: [findable, publish-pipeline, upstream-check]
+skills: [findable, publish-pipeline, upstream-check, listing-drift]
 model: inherit
 color: blue
 ---
@@ -18,9 +18,10 @@ You get repos, skills and plugins found by what they do, and keep every listing 
 | --- | --- | --- | --- | --- |
 | 1 | `findable` | the repo and what it does | `discovery-kit.md`: baseline, target queries, About, topics, README opening, site page, distribution list | the user has not approved public changes |
 | 2 | `publish-pipeline` | the approved site page and the skill repo | a manifest entry, a generated page, both discovery indexes and the sitemap, deployed and verified | the build or the post-deploy proof fails |
-| 3 | `upstream-check` | the folder of clones and the site URL | push-state verdicts and a listing drift table | a repo is behind or diverged |
+| 3 | `upstream-check` | the folder of clones | push-state verdicts, clean repos pushed | a repo is behind or diverged |
+| 4 | `listing-drift` | the owner and the site URL, after the push | a drift table: names, stated counts, retired-host links | a source is unreadable (reported, not counted as agreeing) |
 
-`findable-polish` and `upstream-polish` add a wordsmith rewrite to steps 1 and 3.
+`findable-polish` adds a wordsmith rewrite to step 1; `upstream-polish` runs steps 3 and 4 and adds one to their findings.
 
 ## Rules
 
