@@ -1,9 +1,9 @@
 {
-  "startedAt": "2026-11-04T02:23:28.124Z",
+  "startedAt": "2026-11-04T10:49:04.131Z",
   "claudeVersion": "2.1.318",
-  "costUsd": 1.97,
+  "costUsd": 0.08,
   "partial": false,
-  "passed": 51,
+  "passed": 52,
   "total": 65,
   "cases": {
     "agent-decision-analyst": {
@@ -47,10 +47,8 @@
       "failed": []
     },
     "agent-seo-lead": {
-      "pass": false,
-      "failed": [
-        "delegates"
-      ]
+      "pass": true,
+      "failed": []
     },
     "agent-skill-builder": {
       "pass": false,
