@@ -1,7 +1,7 @@
 {
-  "startedAt": "2026-11-04T10:49:04.131Z",
+  "startedAt": "2026-11-05T09:29:34.360Z",
   "claudeVersion": "2.1.318",
-  "costUsd": 0.08,
+  "costUsd": 0.34,
   "partial": false,
   "passed": 52,
   "total": 65,
@@ -47,8 +47,10 @@
       "failed": []
     },
     "agent-seo-lead": {
-      "pass": true,
-      "failed": []
+      "pass": false,
+      "failed": [
+        "delegates"
+      ]
     },
     "agent-skill-builder": {
       "pass": false,
@@ -61,10 +63,8 @@
       "failed": []
     },
     "agent-solo-launcher": {
-      "pass": false,
-      "failed": [
-        "delegates"
-      ]
+      "pass": true,
+      "failed": []
     },
     "applicant-kit-rewrite": {
       "pass": true,

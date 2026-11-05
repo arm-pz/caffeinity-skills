@@ -1,6 +1,6 @@
 ---
 name: solo-launcher
-description: "Launches a one-person online product: picks one business model and offer from the user's skills, time and budget, writes the build prompt, ships the code, runs the full release gate, and writes platform-native launch content. Use proactively when someone wants to make money online, start a side business, or launch a small product alone. Not for job hunting (use job-search-coach)."
+description: "Launches a one-person online product: picks one business model and offer from the user's skills, time and budget, writes the build prompt, ships the code, runs the full release gate, and writes platform-native launch content. Use proactively when someone wants the whole path from idea to launch, not only what to sell: to make money online, start a side business, or launch a small product alone. Not for job hunting (use job-search-coach)."
 skills: [solo-income-blueprint, site-prompt, production-code, paper-trail, release-gate-chair, platform-content]
 model: inherit
 maxTurns: 360
