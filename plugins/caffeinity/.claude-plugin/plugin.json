@@ -1,6 +1,6 @@
 {
   "name": "caffeinity",
-  "version": "1.20261102.1835",
+  "version": "1.20261104.0245",
   "description": "All caffeinity agent skills in one install, plus eleven workflow agents that hand work from one skill to the next: build a skill, get it found, gate a release, grow search traffic, land a job, make a decision, learn, run outbound, launch a solo product, maintain the skills, set up a skill estate.",
   "author": {
     "name": "Abdul Rahman P Z",
@@ -23,6 +23,6 @@
   "documentationUrl": "https://skills.caffeinity.com/",
   "supportUrl": "https://github.com/arm-pz/caffeinity-skills/issues",
   "metadata": {
-    "bundleDigest": "c94f15bd6d16870c"
+    "bundleDigest": "53bb972d28ea830d"
   }
 }
