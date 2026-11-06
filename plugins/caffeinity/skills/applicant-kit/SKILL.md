@@ -14,6 +14,7 @@ description: >-
   use the application-pilot skill. Optionally uses the third-party dani-aisystems
   recruiter-lens MCP server for checkable GitHub facts; it runs third-party code.
   Works standalone or with either companion.
+version: 1.0.0
 ---
 
 # Applicant Kit

@@ -1,6 +1,7 @@
 ---
 name: prompts-to-skill-release
 description: Release a skill built from prompts. Use after prompts-to-skill has drafted and tuned a skill, to package it as a zip, run its test cases and record real results, check install and discovery in a fresh session, write the repo README and version, and hand the user an install checklist. Use whenever the user has a finished skill folder in context and says "package this skill", "release it", "ship it", "make it installable", "run the tests on this skill", or "is it ready to install", even if they don't name a step. A bare "publish this to GitHub" with no skill to package is not this job. Not for drafting or tuning a skill (use prompts-to-skill or tune-skill), for repo discoverability copy (use findable), or for pushing existing clones (use upstream-check).
+version: 1.0.0
 ---
 
 # prompts-to-skill-release

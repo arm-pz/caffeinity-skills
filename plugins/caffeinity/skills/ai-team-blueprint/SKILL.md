@@ -1,6 +1,7 @@
 ---
 name: ai-team-blueprint
 description: Guide a solo operator or small business from "I want an AI team" to a ready-to-run v1 blueprint for a team of 3 to 5 Claude agents. Asks five sharp questions, recommends one starting use case, then delivers the team structure, a production prompt per agent, the handoff workflow, a lean tool stack, a QA plan and a 7-day launch plan ending in START HERE FIRST. Use whenever someone wants to set up their first AI agents or multi-agent team, asks which agents they need, how to split work between agents, how to get Claude to take a recurring chunk of their work off their plate, or how to use AI agents for content, lead generation, support, research or operations, even if they never say "blueprint" or "team". Not for writing agent code against the Claude API or Agent SDK (use claude-api), building a single skill (use draft-skill), running agents on a task right now, or picking one AI tool for a one-off task.
+version: 1.0.0
 ---
 
 # ai-team-blueprint

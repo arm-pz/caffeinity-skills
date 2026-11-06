@@ -1,6 +1,7 @@
 ---
 name: draft-skill
 description: Create a new agent skill from a plain idea, with no prompt list to work from. Confirms intent before writing anything, decides what belongs in scripts versus references versus assets, writes a description that actually triggers, validates with tune-skill's check_skill.py, then hands off for boundaries and packaging. Use whenever the user wants to build, scaffold, author, start or design a new skill, describes a capability they want an agent to have repeatedly, points at an empty skill folder, or says "make me a skill for X", even if they never mention frontmatter or file layout. Not for turning a batch of existing prompts into a skill (use prompts-to-skill), tightening a skill that already exists (use tune-skill), or releasing a finished one (use prompts-to-skill-release).
+version: 1.0.0
 ---
 
 # Draft skill

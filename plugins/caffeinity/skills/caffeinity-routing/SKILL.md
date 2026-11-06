@@ -10,6 +10,7 @@ description: >-
   multi-step outcome such as "take this idea to a published skill" or "get my site ready to
   ship and ranking", even if they never name a skill. Not for a request one skill already owns
   (load that skill directly), and not for doing a step's work itself: the named skill does it.
+version: 1.0.0
 ---
 
 # caffeinity-routing

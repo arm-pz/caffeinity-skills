@@ -13,6 +13,7 @@ description: >-
   recommendation and roadmap (use strategy-memo), for analysing the user's own
   dataset (use data-readout), or for being taught a topic step by step (use
   topic-primer).
+version: 1.0.0
 ---
 
 # Research Brief

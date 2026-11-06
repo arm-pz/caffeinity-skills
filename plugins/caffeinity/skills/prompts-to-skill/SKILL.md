@@ -1,6 +1,7 @@
 ---
 name: prompts-to-skill
 description: Turn a set of user-supplied prompts into a finished, tested agent skill. Runs an intent interview and overlap check, drafts with draft-skill, writes test cases, tunes with tune-skill, and optionally names and lists the repo with findable. Use whenever the user has a list of prompts, instructions, or example requests and wants them packaged as a reusable skill, even if they only say "make a skill from these", "turn these into a skill", or paste a batch of prompts with no further instruction. Not for editing an existing skill (use tune-skill), creating a skill from a plain description with no prompts (use draft-skill), or finding existing skills for a task.
+version: 1.0.0
 ---
 
 # prompts-to-skill

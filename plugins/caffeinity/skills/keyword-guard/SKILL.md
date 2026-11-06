@@ -1,6 +1,7 @@
 ---
 name: keyword-guard
 description: Plan SEO topic clusters and eliminate keyword cannibalization so exactly one page wins each query. Use when mapping pillar and satellite pages, deciding which page should rank for a keyword, resolving internal competition between pages, writing title/H1/meta to avoid primary-keyword overlap, assigning cluster ownership from Search Console or from a sitemap when GSC access is missing, de-conflicting mixed-language pages with hreflang, or building keyword-research, on-page, and link-authority plans for organic growth. Not for crawl and index health (use seo-crawl), rewriting the copy once ownership is settled (use keyword-resolver), or mass page generation (use programmatic-seo).
+version: 1.0.0
 ---
 
 # Keyword guard

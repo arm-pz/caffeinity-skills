@@ -13,6 +13,7 @@ description: >-
   (use keyword-resolver), repo or skill discoverability alone (use findable), or
   writing a new skill (use draft-skill).
 argument-hint: "[site URL] [path to the site's repo]"
+version: 1.0.0
 ---
 
 # SEO Sweep

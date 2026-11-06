@@ -9,6 +9,7 @@ description: >-
   workshop structure, or wants an existing course checked for gaps and overload, even if they
   never say "curriculum". Not for one person's own learning plan (use study-system), for being
   taught the topic (use topic-primer), or for marketing the course (use sales-copy).
+version: 1.0.0
 ---
 
 # course-builder

@@ -14,6 +14,7 @@ description: >-
   topic itself concept by concept (use topic-primer), for career positioning
   and moves (use career-track) or for course content written for a class of
   students (use course-builder).
+version: 1.0.0
 ---
 
 # Study System

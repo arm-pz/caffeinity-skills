@@ -8,6 +8,7 @@ description: >-
   a list is clean or safe to load, or is choosing between data providers for one
   filter set. Not for buying, scraping, or enriching contacts (out of scope), writing
   the email copy (wordsmith), or diagnosing a list that already sent (cold-email-ops).
+version: 1.0.0
 ---
 
 # Cold email list gate

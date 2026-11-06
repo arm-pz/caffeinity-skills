@@ -12,6 +12,7 @@ description: >-
   finding repos or skills for a task, which is the reverse problem. Not for
   authoring a new skill (use draft-skill) or tuning a SKILL.md description so an
   agent triggers it better (use tune-skill).
+version: 1.0.0
 ---
 
 # Findable

@@ -10,6 +10,7 @@ description: >-
   or one-person business. Not for job hunting
   (application-pilot, applicant-kit), SEO for an existing site (seo-audit), or
   privacy and legal pages (paper-trail).
+version: 1.0.0
 ---
 
 # Solo income blueprint

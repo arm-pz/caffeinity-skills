@@ -1,6 +1,7 @@
 ---
 name: choose-effort
 description: Asks the user how much effort a Claude Code task deserves before heavy work starts, then recommends an effort level, whether to fan out to subagents, goal mode, workflows or agent teams, how to set it, and when to check /usage. Use when the user is about to start a large, long or unattended Claude Code task, asks what effort level to use or whether to use xhigh or max, asks how to use less usage from now on, or is about to start /goal, a workflow or an agent team. Not for working out why usage already drained (use diagnose-usage), or for plan limits, prices and which models support which levels (use product-self-knowledge).
+version: 1.0.0
 ---
 
 # Choose effort

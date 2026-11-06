@@ -2,6 +2,7 @@
 name: career-track
 description: >-
   Career positioning and the moves around it: personal brand and function-level visibility, promotion and performance-review narratives, executive presence, salary negotiation scripts, career pivots, networking that reaches opportunities before they are posted, interview preparation for the rooms you are already in, and a plan with immediate actions and ninety-day milestones. Use whenever someone wants to move up or across: how do I get promoted, negotiate a raise, am I ready for senior, pivot out of this role, prep for a promotion panel, people do not notice my work, even if they never say career plan. Not for the application documents themselves: resume and CV judging (use recruiter-lens) or tailored application material and LinkedIn rewrites (use applicant-kit).
+version: 1.0.0
 ---
 
 # Career Track

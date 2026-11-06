@@ -12,6 +12,7 @@ description: >-
   strategy. Not for pressure-testing a decision you already made (use
   crash-test), the copy or pages that execute it (use sales-copy,
   platform-content), or the numbers behind it (use data-readout).
+version: 1.0.0
 ---
 
 # Strategy Memo

@@ -13,6 +13,7 @@ description: >-
   crunches the file (use production-code), for market research outside the
   user's own data (use research-brief) or for the strategic roadmap that
   follows (use strategy-memo).
+version: 1.0.0
 ---
 
 # Data Readout

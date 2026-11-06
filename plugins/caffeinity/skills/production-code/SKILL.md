@@ -2,6 +2,7 @@
 name: production-code
 description: >-
   Production-ready code delivered as a complete artifact: scripts, bug fixes with the root cause, API integrations, SQL of any complexity, automation jobs, scrapers, data analysis in pandas or R, technical documentation and architecture write-ups, each with setup steps, error handling and a plain-English explanation of every section. Use whenever someone describes something they want code to do, pastes an error or a snippet to fix, asks for a query, a scraper, an automation or a system design, even if they never say write code or name a language. Not for auditing a live web app before launch (use pre-ship-performance-audit, pre-ship-security-red-team), for the business decision behind the build (use strategy-memo), or for reviewing code or a diff without changing it (use consistent-code-review, which this skill calls for its review mode).
+version: 1.0.0
 ---
 
 # Production Code

@@ -1,6 +1,7 @@
 ---
 name: session-retrace
 description: Find a past AI coding conversation from a fuzzy memory — "the session where we fixed the redirect" — across Qoder, Claude Code, Codex and Gemini CLI. Searches the transcript files those tools already keep on disk, ranks sessions with verbatim evidence and a session ID, then prints the chosen chat. Use when the user cannot find an earlier session, asks which chat covered something, asks to search past sessions or conversation history, or wants to reopen a conversation from a rough recollection. Not for searching code or project files (use Grep), summarizing the conversation already open, or durable project memory (use the workspace memory index).
+version: 1.0.0
 ---
 
 # session-retrace

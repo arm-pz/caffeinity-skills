@@ -1,6 +1,7 @@
 ---
 name: consistent-code-review
 description: Perform a deterministic, evidence-backed code review that produces the same findings on re-runs of unchanged code, reconciled against a previous report when one is supplied. Use whenever the user asks to review code, a diff, a PR or a file, says "check for bugs" or "find bugs", complains that earlier reviews invented different bugs on the same code, or wants a review they can compare across runs, even if they never say "consistent" or "deterministic". Not for architectural redesign, live security red-teaming (use pre-ship-security-red-team), live performance scoring (use pre-ship-performance-audit), or writing code and applying fixes (use production-code).
+version: 1.0.0
 ---
 
 # Consistent Code Review

@@ -11,6 +11,7 @@ description: >-
   paste a product brief expecting buyer-facing text, even if they never say copywriting. Not
   for organic audience content (use platform-content), editing text the user already wrote
   (use wordsmith), or pricing and go-to-market decisions (use strategy-memo).
+version: 1.0.0
 ---
 
 # Sales Copy

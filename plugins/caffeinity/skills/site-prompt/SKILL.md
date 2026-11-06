@@ -1,6 +1,7 @@
 ---
 name: site-prompt
 description: Writes one self-contained, paste-and-build prompt for a website from a topic. Narrows the topic to a concrete subject, derives the concept from that subject's world, builds and verifies the site in a scratch folder, then embeds every file verbatim with a pinned stack, final copy, code-native visuals and the checks that were actually run. Use when the user asks for a website prompt, one-shot build prompt, mega-prompt or SELENE-style prompt for a new site, landing page or one-pager. Not for building, hosting or reviewing the site itself, not for redesigning an existing page, and not for authoring skills.
+version: 1.0.0
 ---
 
 # Site Prompt
