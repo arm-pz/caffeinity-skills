@@ -10,6 +10,7 @@ description: >-
   really does, even if they never say "legal". Not legal advice and not for contracts, NDAs or
   employment documents (use a lawyer), and not for the launch plan itself (use
   solo-income-blueprint) or the site build (use site-prompt).
+version: 1.0.0
 ---
 
 # paper-trail

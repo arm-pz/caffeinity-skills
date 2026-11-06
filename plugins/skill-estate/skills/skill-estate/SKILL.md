@@ -11,6 +11,7 @@ description: >-
   org, even if they never say estate. Not for one skill (use tune-skill), one listing (use
   findable), the site pipeline alone (use publish-pipeline), or weekly upkeep (use
   caffeinity-routing's Descale brew).
+version: 1.0.0
 ---
 
 # skill-estate
