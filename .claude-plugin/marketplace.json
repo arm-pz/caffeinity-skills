@@ -1,223 +1,231 @@
-{
-  "name": "caffeinity-skills",
-  "owner": {
-    "name": "Abdul Rahman P Z"
-  },
-  "description": "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, skill authoring and tuning, and multi-agent tournament plugins, plus mods that trigger those skills at the right moment.",
-  "plugins": [
-    {
-      "name": "wordsmith",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/wordsmith"
-      },
-      "description": "Teaches your agent to edit, not just generate: 44 commands across 5 disciplines that tighten, rewrite, critique and proofread while keeping the author's meaning, hedges and voice intact."
-    },
-    {
-      "name": "recruiter-lens",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/recruiter-lens"
-      },
-      "description": "Reviews resumes, CVs and LinkedIn profiles the way recruiters screen them: first-impression scans, ATS compatibility, rejection-pattern diagnosis and interview prep. Never invents a metric."
-    },
-    {
-      "name": "topic-primer",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/topic-primer"
-      },
-      "description": "A world-class teacher for any topic, from zero background toward expert depth, in eight modes from foundations and curricula to strict exams and ELI5."
-    },
-    {
-      "name": "do-better",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/do-better"
-      },
-      "description": "When an answer is bad, runs a single-elimination tournament of sub-agents with different strategy cards until one solution survives."
-    },
-    {
-      "name": "keyword-guard",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/keyword-guard"
-      },
-      "description": "Plans topic clusters and kills keyword cannibalization so exactly one page wins each query, with a mandatory cannibalization audit before content changes."
-    },
-    {
-      "name": "seo-crawl",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/seo-crawl"
-      },
-      "description": "Crawls a site you own and returns deterministic, evidence-backed technical SEO findings: indexability, canonicals, titles, metas, H1s, broken internal links, sitemap coverage and static JSON-LD. Bounded and read-only; blocked or unrun checks are reported INCONCLUSIVE, never a pass. Feeds seo-audit and keyword-guard."
-    },
-    {
-      "name": "web-preflight",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/web-preflight"
-      },
-      "description": "Checks a site you own before you ship it, treating status codes as signals rather than findings; unrun checks are reported as INCONCLUSIVE, never a pass."
-    },
-    {
-      "name": "applicant-kit",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/applicant-kit"
-      },
-      "description": "Produces tailored job-application material: decoded JD table, action-task-result-impact bullet rewrites, honest keyword placement map, five role-specific summaries, full LinkedIn rewrite, and a 20-question interview answer pack. Sibling of recruiter-lens: it produces while recruiter-lens judges. Never invents experience or numbers."
-    },
-    {
-      "name": "findable",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/findable"
-      },
-      "description": "Sets up discovery for a GitHub repo, agent skill, Claude Code plugin or MCP server so people and agents find it by what it does, not just its name: audits current visibility and same-name collisions, derives the queries strangers actually type, drafts the About text, topics, README opening, release notes and a project page, then plans directories and a dated re-check. Never games stars or leaves example slots with invented output."
-    },
-    {
-      "name": "application-pilot",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/application-pilot"
-      },
-      "description": "Runs the job search around the applications: search brief, role discovery with honest posting dates, rubric-based fit scoring, a reviewable CSV or Markdown tracker, follow-up drafts, interview briefings and a funnel review. Never submits, invents nothing, and has no CLI, telemetry, or browser automation. Coordinates with applicant-kit and recruiter-lens."
-    },
-    {
-      "name": "crash-test",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/crash-test"
-      },
-      "description": "Crash-tests a decision before you build it. Four fixed roles (Pragmatist, Skeptic, Specialist, Contrarian) draft the same task in separate contexts, attack each other's drafts anonymously, and a chair merges what survived, keeps a dissent log, and grounds the winner's claims against your source before adopting it. Optional Operator seat for cost, rollout and reversibility. No server, no API keys, no other agent CLIs."
-    },
-    {
-      "name": "pre-ship-performance-audit",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/pre-ship-performance-audit"
-      },
-      "description": "Audits and fixes web app performance before launch: four read-only subagent audits over twenty known slow-downs across images, fonts, bundles, database queries and servers, then same-condition mobile Lighthouse medians prove each fix. Never removes a feature for a score; asks before dependency, index, RLS or region changes."
-    },
-    {
-      "name": "pre-ship-security-red-team",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/pre-ship-security-red-team"
-      },
-      "description": "Authorized, evidence-driven red-team pass over a web app you own, before launch. Three read-only subagents run 14 authorization and abuse checks against isolated synthetic accounts, the chair fixes each failure, adds regression tests, and reruns with a negative control. Isolated local environments only; secrets masked in every artifact; anything unrun is reported not-proven, never passed."
-    },
-    {
-      "name": "publish-release-gate",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/publish-release-gate"
-      },
-      "description": "Publishes a skill through three distribution channels: marketplace plugin, agent discovery protocol, and tarball delivery via Cloudflare Pages custom domain. Use when someone says 'publish to marketplace', 'make discoverable by agents', 'deploy skill site', or after completing a skill update that needs public distribution."
-    },
-    {
-      "name": "release-gate",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/release-gate-chair"
-      },
-      "description": "Runs three pre-launch passes (exposure, app-tests, perf) in sequence and returns one release posture — HOLD or ready — with three separate verdicts and one merged finding register. Deterministic arithmetic over union of findings; a lane that did not run holds the gate. Use when asked 'is this safe to ship', 'ready to deploy', or for go/no-go decisions before any production release."
-    },
-    {
-      "name": "upstream-check",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/upstream-check"
-      },
-      "description": "Audits local git clones against their upstream before you push. Fetches first, classifies each repo as level, push-ready, behind or diverged, screens the unpushed diff for secrets, and only pushes with an explicit --push. A second script compares your published listings against the repos that actually ship a SKILL.md. Never force-pushes; a behind or diverged repo is reported, not touched."
-    },
-    {
-      "name": "draft-skill",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/draft-skill"
-      },
-      "description": "Creates a new agent skill from a plain idea. Confirms the purpose before writing anything, checks the already-installed siblings for overlap, splits the work between scripts, references and assets, writes a description that actually triggers, then validates with tune-skill's check_skill.py and hands off for the boundary check. Original authoring skill: it contains no text from Qoder's built-in skill-creator, which ships without a licence permitting redistribution."
-    },
-    {
-      "name": "prompts-to-skill",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/prompts-to-skill"
-      },
-      "description": "Turns a list of your own prompts into a finished, tested agent skill, one skill per prompt. Interviews for intent, checks what is already installed so the new skill does not duplicate it, drafts with draft-skill, writes trigger test cases including near-misses, then gates the result with tune-skill. Requires draft-skill and tune-skill and stops with a clear message when either is missing. Does not do the release packaging."
-    },
-    {
-      "name": "prompts-to-skill-release",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/prompts-to-skill-release"
-      },
-      "description": "Packages a finished agent skill for release: runs its trigger test cases and records exactly which passed and which did not, sets the version and CHANGELOG, builds the archive, writes the README, and ends with a per-platform install checklist. Failed tests stay visible in the report instead of being dropped from it. Assumes the skill is already authored, by prompts-to-skill or draft-skill."
-    },
-    {
-      "name": "tune-skill",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/tune-skill"
-      },
-      "description": "Audits and fine-tunes an agent skill that already exists: the description that never fires, overlap with installed siblings, stale names and counts, and handoff contracts that do not hand off. Ships check_skill.py, a deterministic SKILL.md validator covering frontmatter, folder and heading agreement, description length, reference paths that do not exist, and count phrases that go stale. Not for creating a skill from an idea; that is draft-skill."
-    },
-    {
-      "name": "publish-pipeline",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/publish-pipeline"
-      },
-      "description": "Owns the machine that turns skill repos into a published site: one committed manifest as the publication decision, discovery that opens a pull request, a generated page per new skill, both discovery indexes, a sitemap, and gates that fail closed before and after the deploy. Not for releasing one skill through the marketplace or tarball channels; that is publish-release-gate."
-    },
-    {
-      "name": "cold-email-ops",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/cold-email-ops"
-      },
-      "description": "Plans and audits a cold-email program at volume: inbox and domain capacity from a monthly send target, reply-rate floors by domain, burn replacement, shadow-ban tests, automation error budgets and per-client reporting. Thresholds stay labelled as source benchmarks, and missing data returns INCONCLUSIVE rather than a pass. Not for pre-load list QA; that is cold-email-list-gate."
-    },
-    {
-      "name": "cold-email-list-gate",
-      "source": {
-        "source": "github",
-        "repo": "arm-pz/cold-email-list-gate"
-      },
-      "description": "Gates a cold-email lead list before it loads: samples ten rows against the ICP, returns GO or HOLD with the fail pattern and the re-run condition, and compares data providers on the same criteria. Not for lists that already sent; that diagnosis is cold-email-ops."
-    },
-    {
-      "name": "release-gate-mod",
-      "source": "./mods/release-gate-mod",
-      "description": "Mod: holds production deploys, PR merges, pushes and publishes until the release-gate chair has run since the last edit. Bundles release-gate-chair."
-    },
-    {
-      "name": "web-preflight-mod",
-      "source": "./mods/web-preflight-mod",
-      "description": "Mod: reminds Claude to run web-preflight before a production deploy (wrangler, vercel --prod, netlify --prod, firebase, fly). Bundles web-preflight."
-    },
-    {
-      "name": "pre-ship-security-red-team-mod",
-      "source": "./mods/pre-ship-security-red-team-mod",
-      "description": "Mod: holds production deploys until the pre-ship security red team has run since the last edit. Bundles pre-ship-security-red-team."
-    },
-    {
-      "name": "pre-ship-performance-audit-mod",
-      "source": "./mods/pre-ship-performance-audit-mod",
-      "description": "Mod: reminds Claude to run the pre-ship performance audit before a production deploy. Bundles pre-ship-performance-audit."
-    },
-    {
-      "name": "skill-release-mod",
-      "source": "./mods/skill-release-mod",
-      "description": "Mod: holds gh release create, npm publish and version tags until prompts-to-skill-release has run its test cases. Bundles prompts-to-skill-release."
-    },
-    {
-      "name": "tune-skill-mod",
-      "source": "./mods/tune-skill-mod",
-      "description": "Mod: after Claude edits a SKILL.md, nudges it to validate with tune-skill before pushing or releasing. Bundles tune-skill."
-    }
-  ]
+﻿{
+    "name":  "caffeinity-skills",
+    "owner":  {
+                  "name":  "Abdul Rahman P Z"
+              },
+    "description":  "Caffeinity skills marketplace: editing, teaching, recruiting, SEO, release-preflight, decision review, skill authoring and tuning, and multi-agent tournament plugins, plus mods that trigger those skills at the right moment.",
+    "plugins":  [
+                    {
+                        "name":  "applicant-kit",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/applicant-kit"
+                                   },
+                        "description":  "Produces tailored job-application material: decoded JD table, action-task-result-impact bullet rewrites, honest keyword placement map, five role-specific summaries, full LinkedIn rewrite, and a 20-question interview answer pack. Sibling of recruiter-lens: it produces while recruiter-lens judges. Never invents experience or numbers."
+                    },
+                    {
+                        "name":  "application-pilot",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/application-pilot"
+                                   },
+                        "description":  "Runs the job search around the applications: search brief, role discovery with honest posting dates, rubric-based fit scoring, a reviewable CSV or Markdown tracker, follow-up drafts, interview briefings and a funnel review. Never submits, invents nothing, and has no CLI, telemetry, or browser automation. Coordinates with applicant-kit and recruiter-lens."
+                    },
+                    {
+                        "name":  "cold-email-list-gate",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/cold-email-list-gate"
+                                   },
+                        "description":  "Gates a cold-email lead list before it loads: samples ten rows against the ICP, returns GO or HOLD with the fail pattern and the re-run condition, and compares data providers on the same criteria. Not for lists that already sent; that diagnosis is cold-email-ops."
+                    },
+                    {
+                        "name":  "cold-email-ops",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/cold-email-ops"
+                                   },
+                        "description":  "Plans and audits a cold-email program at volume: inbox and domain capacity from a monthly send target, reply-rate floors by domain, burn replacement, shadow-ban tests, automation error budgets and per-client reporting. Thresholds stay labelled as source benchmarks, and missing data returns INCONCLUSIVE rather than a pass. Not for pre-load list QA; that is cold-email-list-gate."
+                    },
+                    {
+                        "name":  "crash-test",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/crash-test"
+                                   },
+                        "description":  "Crash-tests a decision before you build it. Four fixed roles (Pragmatist, Skeptic, Specialist, Contrarian) draft the same task in separate contexts, attack each other\u0027s drafts anonymously, and a chair merges what survived, keeps a dissent log, and grounds the winner\u0027s claims against your source before adopting it. Optional Operator seat for cost, rollout and reversibility. No server, no API keys, no other agent CLIs."
+                    },
+                    {
+                        "name":  "do-better",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/do-better"
+                                   },
+                        "description":  "When an answer is bad, runs a single-elimination tournament of sub-agents with different strategy cards until one solution survives."
+                    },
+                    {
+                        "name":  "draft-skill",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/draft-skill"
+                                   },
+                        "description":  "Creates a new agent skill from a plain idea. Confirms the purpose before writing anything, checks the already-installed siblings for overlap, splits the work between scripts, references and assets, writes a description that actually triggers, then validates with tune-skill\u0027s check_skill.py and hands off for the boundary check. Original authoring skill: it contains no text from Qoder\u0027s built-in skill-creator, which ships without a licence permitting redistribution."
+                    },
+                    {
+                        "name":  "findable",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/findable"
+                                   },
+                        "description":  "Sets up discovery for a GitHub repo, agent skill, Claude Code plugin or MCP server so people and agents find it by what it does, not just its name: audits current visibility and same-name collisions, derives the queries strangers actually type, drafts the About text, topics, README opening, release notes and a project page, then plans directories and a dated re-check. Never games stars or leaves example slots with invented output."
+                    },
+                    {
+                        "name":  "keyword-guard",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/keyword-guard"
+                                   },
+                        "description":  "Plans topic clusters and kills keyword cannibalization so exactly one page wins each query, with a mandatory cannibalization audit before content changes."
+                    },
+                    {
+                        "name":  "pre-ship-performance-audit",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/pre-ship-performance-audit"
+                                   },
+                        "description":  "Audits and fixes web app performance before launch: four read-only subagent audits over twenty known slow-downs across images, fonts, bundles, database queries and servers, then same-condition mobile Lighthouse medians prove each fix. Never removes a feature for a score; asks before dependency, index, RLS or region changes."
+                    },
+                    {
+                        "name":  "pre-ship-performance-audit-mod",
+                        "source":  "./mods/pre-ship-performance-audit-mod",
+                        "description":  "Mod: reminds Claude to run the pre-ship performance audit before a production deploy. Bundles pre-ship-performance-audit."
+                    },
+                    {
+                        "name":  "pre-ship-security-red-team",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/pre-ship-security-red-team"
+                                   },
+                        "description":  "Authorized, evidence-driven red-team pass over a web app you own, before launch. Three read-only subagents run 14 authorization and abuse checks against isolated synthetic accounts, the chair fixes each failure, adds regression tests, and reruns with a negative control. Isolated local environments only; secrets masked in every artifact; anything unrun is reported not-proven, never passed."
+                    },
+                    {
+                        "name":  "pre-ship-security-red-team-mod",
+                        "source":  "./mods/pre-ship-security-red-team-mod",
+                        "description":  "Mod: holds production deploys until the pre-ship security red team has run since the last edit. Bundles pre-ship-security-red-team."
+                    },
+                    {
+                        "name":  "prompts-to-skill",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/prompts-to-skill"
+                                   },
+                        "description":  "Turns a list of your own prompts into a finished, tested agent skill, one skill per prompt. Interviews for intent, checks what is already installed so the new skill does not duplicate it, drafts with draft-skill, writes trigger test cases including near-misses, then gates the result with tune-skill. Requires draft-skill and tune-skill and stops with a clear message when either is missing. Does not do the release packaging."
+                    },
+                    {
+                        "name":  "prompts-to-skill-release",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/prompts-to-skill-release"
+                                   },
+                        "description":  "Packages a finished agent skill for release: runs its trigger test cases and records exactly which passed and which did not, sets the version and CHANGELOG, builds the archive, writes the README, and ends with a per-platform install checklist. Failed tests stay visible in the report instead of being dropped from it. Assumes the skill is already authored, by prompts-to-skill or draft-skill."
+                    },
+                    {
+                        "name":  "publish-pipeline",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/publish-pipeline"
+                                   },
+                        "description":  "Owns the machine that turns skill repos into a published site: one committed manifest as the publication decision, discovery that opens a pull request, a generated page per new skill, both discovery indexes, a sitemap, and gates that fail closed before and after the deploy. Not for releasing one skill through the marketplace or tarball channels; that is publish-release-gate."
+                    },
+                    {
+                        "name":  "publish-release-gate",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/publish-release-gate"
+                                   },
+                        "description":  "Publishes a skill through three distribution channels: marketplace plugin, agent discovery protocol, and tarball delivery via Cloudflare Pages custom domain. Use when someone says \u0027publish to marketplace\u0027, \u0027make discoverable by agents\u0027, \u0027deploy skill site\u0027, or after completing a skill update that needs public distribution."
+                    },
+                    {
+                        "name":  "recruiter-lens",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/recruiter-lens"
+                                   },
+                        "description":  "Reviews resumes, CVs and LinkedIn profiles the way recruiters screen them: first-impression scans, ATS compatibility, rejection-pattern diagnosis and interview prep. Never invents a metric."
+                    },
+                    {
+                        "name":  "release-gate",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/release-gate-chair"
+                                   },
+                        "description":  "Runs three pre-launch passes (exposure, app-tests, perf) in sequence and returns one release posture â€” HOLD or ready â€” with three separate verdicts and one merged finding register. Deterministic arithmetic over union of findings; a lane that did not run holds the gate. Use when asked \u0027is this safe to ship\u0027, \u0027ready to deploy\u0027, or for go/no-go decisions before any production release."
+                    },
+                    {
+                        "name":  "release-gate-mod",
+                        "source":  "./mods/release-gate-mod",
+                        "description":  "Mod: holds production deploys, PR merges, pushes and publishes until the release-gate chair has run since the last edit. Bundles release-gate-chair."
+                    },
+                    {
+                        "name":  "seo-crawl",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/seo-crawl"
+                                   },
+                        "description":  "Crawls a site you own and returns deterministic, evidence-backed technical SEO findings: indexability, canonicals, titles, metas, H1s, broken internal links, sitemap coverage and static JSON-LD. Bounded and read-only; blocked or unrun checks are reported INCONCLUSIVE, never a pass. Feeds seo-audit and keyword-guard."
+                    },
+                    {
+                        "name":  "setup-claude-advisor",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/setup-claude-advisor"
+                                   },
+                        "description":  "Configures Claude Code for quota-optimised model tiering: Sonnet main session, Opus on-call advisor, Haiku for read-only subagents, Sonnet for code-editing subagents. Audits existing subagents, env vars and CLI version, shows a diff preview, writes nothing until approved."
+                    },
+                    {
+                        "name":  "skill-release-mod",
+                        "source":  "./mods/skill-release-mod",
+                        "description":  "Mod: holds gh release create, npm publish and version tags until prompts-to-skill-release has run its test cases. Bundles prompts-to-skill-release."
+                    },
+                    {
+                        "name":  "topic-primer",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/topic-primer"
+                                   },
+                        "description":  "A world-class teacher for any topic, from zero background toward expert depth, in eight modes from foundations and curricula to strict exams and ELI5."
+                    },
+                    {
+                        "name":  "tune-skill",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/tune-skill"
+                                   },
+                        "description":  "Audits and fine-tunes an agent skill that already exists: the description that never fires, overlap with installed siblings, stale names and counts, and handoff contracts that do not hand off. Ships check_skill.py, a deterministic SKILL.md validator covering frontmatter, folder and heading agreement, description length, reference paths that do not exist, and count phrases that go stale. Not for creating a skill from an idea; that is draft-skill."
+                    },
+                    {
+                        "name":  "tune-skill-mod",
+                        "source":  "./mods/tune-skill-mod",
+                        "description":  "Mod: after Claude edits a SKILL.md, nudges it to validate with tune-skill before pushing or releasing. Bundles tune-skill."
+                    },
+                    {
+                        "name":  "upstream-check",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/upstream-check"
+                                   },
+                        "description":  "Audits local git clones against their upstream before you push. Fetches first, classifies each repo as level, push-ready, behind or diverged, screens the unpushed diff for secrets, and only pushes with an explicit --push. A second script compares your published listings against the repos that actually ship a SKILL.md. Never force-pushes; a behind or diverged repo is reported, not touched."
+                    },
+                    {
+                        "name":  "web-preflight",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/web-preflight"
+                                   },
+                        "description":  "Checks a site you own before you ship it, treating status codes as signals rather than findings; unrun checks are reported as INCONCLUSIVE, never a pass."
+                    },
+                    {
+                        "name":  "web-preflight-mod",
+                        "source":  "./mods/web-preflight-mod",
+                        "description":  "Mod: reminds Claude to run web-preflight before a production deploy (wrangler, vercel --prod, netlify --prod, firebase, fly). Bundles web-preflight."
+                    },
+                    {
+                        "name":  "wordsmith",
+                        "source":  {
+                                       "source":  "github",
+                                       "repo":  "arm-pz/wordsmith"
+                                   },
+                        "description":  "Teaches your agent to edit, not just generate: 44 commands across 5 disciplines that tighten, rewrite, critique and proofread while keeping the author\u0027s meaning, hedges and voice intact."
+                    }
+                ]
 }
