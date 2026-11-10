@@ -2,9 +2,12 @@
 
 Written to the format in tune-skill's `references/test-cases.md`. The skill under test is
 `setup-claude-advisor`, judged from its `description` frontmatter. Competing descriptions
-checked: `choose-effort`, `diagnose-usage`.
+checked: `choose-effort` and `diagnose-usage`, read from their own SKILL.md files (both
+v1.0.0) on 2026-11-10. Both also name `product-self-knowledge` for plan limits and prices;
+that skill's file was not read.
 
-**Run:** hand-run on 2026-11-08 against descriptions only. No automated triggering loop.
+**Run:** cases 1–9 hand-run on 2026-11-08, cases 10–12 on 2026-11-10 (v0.1.2), against the
+description and SKILL.md body only. No automated triggering loop.
 
 ## Cases
 
@@ -19,6 +22,9 @@ checked: `choose-effort`, `diagnose-usage`.
 | 7 | "Upgrade my Claude Code to the latest version" | neither (not a skill job) | does not load setup-claude-advisor | PASS |
 | 8 | "Optimise my $20 Claude Code plan by splitting models across roles" | setup-claude-advisor | treats this as the advisor setup workflow | PASS |
 | 9 | "Add a rule to CLAUDE.md that asks the advisor before committing to a plan" | setup-claude-advisor | drafts the advisory rule block, shows it, waits for approval | PASS |
+| 10 | "Can Claude Code use the cheap model for the grunt work and keep Opus for the hard calls?" | setup-claude-advisor | implicit trigger with no "advisor" or "tiering"; runs pre-flight and shows a diff preview | PASS |
+| 11 | "Run the advisor setup again" (CLAUDE.md already has `## Advisor protocol`) | setup-claude-advisor | preview proposes replacing the section; the block is not appended a second time | PASS |
+| 12 | "Why did my quota drain yesterday?" (`diagnose-usage` not installed) | setup-claude-advisor names the sibling | says in one line that `diagnose-usage` is not installed, answers briefly, proposes no config changes | PASS |
 
 ## Boundary pairs
 
@@ -28,9 +34,14 @@ checked: `choose-effort`, `diagnose-usage`.
 | "My quota drained fast, what happened?" | diagnose-usage | post-mortem analysis of existing usage |
 | "What effort level for this task?" | choose-effort | per-task effort recommendation |
 | "Configure Opus as advisor" | setup-claude-advisor | the advisor pattern specifically |
-| "Make Claude Code cheaper to run" | setup-claude-advisor (if about model tiers) or choose-effort (if about effort levels) | ambiguous — ask which |
+| "How do I use less usage from now on?" | choose-effort | its description claims this phrase; no model-tier ask |
+| "I keep hitting my limit by lunchtime" | diagnose-usage | a drain that already happened; its description claims "hit their limit sooner than expected" |
+| "What does the $20 plan include?" | product-self-knowledge | plan limits and prices, not configuration |
+| "Make Claude Code cheaper to run" | setup-claude-advisor (if about model tiers) or choose-effort (if about effort levels) | ambiguous — ask once which (Ground rules, "Name the sibling") |
 
 ## Not verified
 
 - Whether `claude --version` output format matches the version parsing logic on all platforms.
 - Real model behaviour for triggering. These are description-level judgements only.
+- The handoff is one-way: neither sibling's SKILL.md names `setup-claude-advisor`, so a user
+  who asks either of them for model tiering is not sent here.

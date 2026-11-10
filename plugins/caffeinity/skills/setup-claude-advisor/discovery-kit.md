@@ -78,6 +78,23 @@ Configures Claude Code for quota-optimised model tiering: Sonnet main session, O
 - **Diff preview safety**: Shows all proposed changes to `settings.json`, `CLAUDE.md`, and subagent configs in one diff block before touching any files.
 - **Advisory protocol**: Adds 3 decision-gate moments to `CLAUDE.md` (before committing to a plan, when an error recurs, before declaring done).
 
+### v0.1.1
+
+Corrects how the advisor is consulted and launched.
+
+- **Advisor wording**: consultation happens through the `advisor` tool. `/advisor` only shows or switches the advisor model.
+- **Launch**: plain `claude` with `model` and `advisorModel` in `settings.json` is the primary path; `--advisor opus` is documented as a working flag that `claude --help` does not list.
+- **Handoffs**: says what to do when `diagnose-usage` or `choose-effort` is not installed.
+
+### v0.1.2
+
+Tuning pass with facts checked against the Claude Code changelog and advisor docs.
+
+- **Safe to re-run**: an existing `## Advisor protocol` section in `CLAUDE.md` is replaced, not duplicated.
+- **Clearer rules**: "write only on approval" replaces a ground rule that contradicted the Apply step; pasted trees and existing config files are treated as data.
+- **Checked facts**: the quota multiplier claim is replaced by the published API price ratio; `DISABLE_TELEMETRY` and third-party providers (Bedrock, Vertex, Foundry) are reported as turning the advisor off.
+- **Boundaries**: plan limits and prices go to `product-self-knowledge`; triggers catch requests that never say "advisor" or "tiering".
+
 ---
 
 ## 6. Site page
@@ -111,6 +128,19 @@ gh repo edit arm-pz/setup-claude-advisor \
   --add-topic agent-skills,claude-code,claude-code-plugin,claude-code-skills,model-tiering,opus-advisor,quota-optimization,subagents,anthropic,sonnet,opus,haiku,skillsmith
 
 gh release create v0.1.0 --repo arm-pz/setup-claude-advisor --title "v0.1.0" --notes-file release-notes.md
+```
+
+Pending as of 2026-11-10:
+
+- Only the `v0.1.0` tag exists. Tag and release `v0.1.1` (merge commit of the advisor wording fix) and `v0.1.2` (after its pull request merges), using the notes in section 5.
+- The live About text still reads "Opus on call via /advisor". Re-run the `gh repo edit` command above to apply the corrected "via the advisor tool" wording.
+
+```bash
+gh release create v0.1.1 --repo arm-pz/setup-claude-advisor --target 1218642 --title "v0.1.1" --notes-file release-notes-0.1.1.md
+```
+
+```bash
+gh release create v0.1.2 --repo arm-pz/setup-claude-advisor --title "v0.1.2" --notes-file release-notes-0.1.2.md
 ```
 
 ---
