@@ -67,6 +67,8 @@
     {"id": "agent-solo-launcher", "prompt": "I'm a designer with 10 hours a week and $500. Take me from nothing to a launched product I sell online, on my own.", "agent": "solo-launcher"},
     {"id": "agent-skill-maintainer", "prompt": "The Skill health issue is open again with regressions. Work through it, fix each skill and get the fixes published.", "agent": "skill-maintainer"},
     {"id": "agent-estate-lead", "prompt": "My skills site, marketplace and GitHub all disagree and I have 40 skill repos. Clean up and set up the whole estate.", "agent": "estate-lead"},
+    {"id": "agent-harness-lead", "prompt": "Set this repo up properly for Claude Code from scratch: agent rules and guardrails, the right model for each subagent role, and an effort level for the big migration I start next week.", "agent": "harness-lead"},
+    {"id": "agent-not-single-harness-step", "prompt": "Just tell me why my Claude Code usage drained so fast yesterday, nothing else.", "not_agents": ["harness-lead"]},
     {"id": "agent-not-single-lane", "prompt": "Just run the performance audit on my app's checkout page, nothing else.", "not_agents": ["release-gatekeeper"]},
     {"id": "agent-not-weekly-upkeep", "prompt": "Do this week's routine regression check on my skills.", "not_agents": ["estate-lead"]},
     {"id": "choose-effort-before-big-task", "prompt": "I'm about to kick off a long unattended Claude Code refactor across the whole monorepo. What effort level should I use, and should I fan out to subagents?", "expect": "choose-effort", "not": ["diagnose-usage"]},

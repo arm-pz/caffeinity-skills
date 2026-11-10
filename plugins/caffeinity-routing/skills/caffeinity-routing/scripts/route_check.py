@@ -32,7 +32,7 @@ def slug(name):
 
 def load(path=WORKFLOWS):
     """Return {"espresso": {"number", "name", "title", "steps": [{"step", "skills", "optional"}]}}
-    in file order. Brews used to be called W1 to W11; resolve() still accepts those ids."""
+    in file order. Brews used to be called W1 to W12; resolve() still accepts those ids."""
     flows, current = {}, None
     for line in path.read_text(encoding="utf-8").splitlines():
         head = HEADING.match(line)
@@ -65,8 +65,11 @@ def label(flow):
     return f"Brew {flow['number']} · {flow['name']}"
 
 
-# Skills that live in arm-pz/caffeinity-skills rather than a repo of their own.
-IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder", "skill-estate"}
+# Skills that live in arm-pz/caffeinity-skills rather than a repo of their own. Every skill under
+# plugins/ belongs here whether or not a brew names it as a step, so a later edit to workflows.md
+# cannot print an install command for a repo that does not exist; the self-check enforces it.
+IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder", "skill-estate",
+                  "tune-and-ship", "agent-audit"}
 
 
 def install(name):

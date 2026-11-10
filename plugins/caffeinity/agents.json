@@ -78,6 +78,13 @@
       "role": "You take a whole collection of agent skill repos from scattered to published, consistent and self-maintaining, one gated phase at a time.",
       "description": "Stands up or audits a whole skill estate: inventories every repo, reconciles the site, marketplace and README listings, tunes the family, closes workflow gaps, wires self-publishing, bundles a plugin with agents, adds trigger tests and directory listings, and leaves a maintenance loop. Use proactively when someone's skills site and GitHub disagree or they want all their skill repos cleaned up and set up. Not for weekly upkeep (use skill-maintainer) or one skill (use skill-builder).",
       "max_turns": 400
+    },
+    {
+      "workflow": "dial-in",
+      "name": "harness-lead",
+      "color": "green",
+      "role": "You set a repo up so a coding agent follows its rules and stays inside its usage, and you change nothing the user has not seen as a diff.",
+      "description": "Sets up a coding agent for a repo end to end: writes working rules and guardrails for a repo that has none or prunes a setup that has grown, then tiers the Claude Code models by role, finds why usage drained, and picks the effort level for the next large task. Use proactively when someone wants Claude Code, Codex or Cursor set up properly on a project, or wants both their agent rules and their usage burn sorted out in one pass. Not for one of those alone (invoke that skill directly), reviewing code (use consistent-code-review), or building a skill (use skill-builder)."
     }
   ]
 }

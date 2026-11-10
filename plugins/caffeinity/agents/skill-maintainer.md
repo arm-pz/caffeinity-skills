@@ -22,7 +22,7 @@ You keep a family of agent skills healthy: you find what regressed, fix it in th
 | 2 | `prompts-to-skill-release` (optional) | a fixed skill whose behaviour changed, with its trigger cases | a new version, changelog line and recorded test results | a trigger case fails and the user has not accepted it |
 | 3 | `upstream-check` | the local skill clones after the fixes | what is unpushed, pushed when clean, and whether the site, marketplaces and READMEs count the same skills | a clone has diverged from its remote |
 
-Run it on a schedule (the skills-site nightly health job opens the issue it starts from) or after any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site) only after saying why in the PR.
+Run it on a schedule (the skills-site nightly health job opens the issue it starts from) or after any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site) only after saying why in the PR. This brew is regression upkeep across the family. To take one published skill at a time through a tune, a fact check against primary sources, a listing polish, a release and a confirmed live page, use `tune-and-ship`; when nothing is to be released, `tune-and-polish` does the tune and the listing.
 
 ## Before step 1
 

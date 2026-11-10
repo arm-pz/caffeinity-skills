@@ -11,7 +11,7 @@ sys.path.insert(0, str(SCRIPT.parent))
 import route_check  # noqa: E402
 
 flows = route_check.load()
-assert [f["number"] for f in flows.values()] == list(range(1, 12)), list(flows)
+assert [f["number"] for f in flows.values()] == list(range(1, 13)), list(flows)
 assert list(flows)[:4] == ["pour-over", "bloom", "espresso", "cold-brew"], list(flows)
 # Old W ids, numbers and names all resolve; other skills used to cite "W3".
 for ref in ("W3", "w3", "3", "brew 3", "Brew-3", "espresso", "Espresso"):
@@ -23,6 +23,19 @@ assert flows["cold-brew"]["steps"][0]["skills"] == ["seo-crawl"], flows["cold-br
 assert all(f["steps"] for f in flows.values())
 assert flows["descale"]["steps"][0]["skills"] == ["tune-skill"], flows["descale"]
 assert route_check.install("paper-trail") == "npx skills add arm-pz/caffeinity-skills --skill paper-trail"
+assert route_check.install("tune-and-ship") == "npx skills add arm-pz/caffeinity-skills --skill tune-and-ship"
+assert route_check.install("topic-primer") == "npx skills add arm-pz/topic-primer"
+# Every skill that lives under plugins/ in this repo installs from the marketplace, in a brew or not.
+PLUGINS = SKILL.parents[2]
+in_repo = {p.parent.name for p in PLUGINS.glob("*/skills/*/SKILL.md") if p.parents[2].name != "caffeinity"}
+assert in_repo == route_check.IN_MARKETPLACE, in_repo ^ route_check.IN_MARKETPLACE
+# A new brew is appended, never inserted; get-indexed and the Dial-in steps are optional extras.
+assert list(flows)[-1] == "dial-in" and route_check.resolve(flows, "W12") == "dial-in", list(flows)
+assert flows["dial-in"]["steps"][0]["skills"] == ["portable-harness", "harness-audit"], flows["dial-in"]
+assert [s["optional"] for s in flows["dial-in"]["steps"]] == [False, True, True, True], flows["dial-in"]
+for brew in ("bloom", "cold-brew"):
+    last = flows[brew]["steps"][-1]
+    assert last["skills"] == ["get-indexed"] and last["optional"], flows[brew]
 
 
 def run(*args, home):

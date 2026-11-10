@@ -2,15 +2,16 @@
 
 The caffeinity workflows are called brews: each has a number, a brew name and a plain goal, as in
 "Brew 3 · Espresso: Decide whether a site is safe to launch". Other skills cite them by name; the
-old ids W1 to W11 still resolve in `route_check.py`.
+old ids W1 to W12 still resolve in `route_check.py`.
 
 One section per brew. Each table row is one step: the skill, what it receives, what it hands
 on, and when the workflow stops there. `scripts/route_check.py` reads the skill names in backticks
 from the second column, so keep one skill per row and mark optional steps with `(optional)`.
 A row may name alternatives as `` `a` or `b` ``; either one satisfies the step.
 
-Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail`, `course-builder` and
-`skill-estate`, which live in this repo: `npx skills add arm-pz/caffeinity-skills --skill <skill>`.
+Install any of them with `npx skills add arm-pz/<skill>`, except the ones that live in this repo
+(`paper-trail`, `course-builder`, `skill-estate`, `tune-and-ship`, `agent-audit` and this skill):
+`npx skills add arm-pz/caffeinity-skills --skill <skill>`.
 
 ## Brew 1 · Pour-over: Build a skill and make it installable
 
@@ -22,7 +23,8 @@ Install any of them with `npx skills add arm-pz/<skill>`, except `paper-trail`, 
 | 4 | `skill-to-mod` (optional) | a skill that must run at a fixed moment, such as before git push | a mod plugin, or a decision that a description is enough | — |
 
 `skill-launch` packages steps 1 and 2 with a discovery pass. Offer it when the user wants one
-command; keep the steps visible when they want to stop between them.
+command; keep the steps visible when they want to stop between them. The `tune-skill-mod` and
+`skill-release-mod` plugins hold `git push` and releases until steps 2 and 3 have run.
 
 ## Brew 2 · Bloom: Get a repo, skill or plugin found
 
@@ -31,6 +33,7 @@ command; keep the steps visible when they want to stop between them.
 | 1 | `findable` | the repo and what it does | `discovery-kit.md`: baseline, target queries, About, topics, README opening, site page, distribution list | the user has not approved public changes |
 | 2 | `publish-pipeline` | the approved site page and the skill repo | a manifest entry, a generated page, both discovery indexes and the sitemap, deployed and verified | the build or the post-deploy proof fails |
 | 3 | `upstream-check` | the folder of clones and the site URL | push-state verdicts and a listing drift table | a repo is behind or diverged |
+| 4 | `get-indexed` (optional) | the live site, when step 2 published new or changed pages | those pages sent to IndexNow, the sitemap resubmitted, and a short hand-submit list | a page is not live or cannot be indexed; send it back to `seo-crawl` |
 
 `findable-polish` and `upstream-polish` add a wordsmith rewrite to steps 1 and 3.
 
@@ -55,9 +58,12 @@ step 4 has run. Install those from the caffeinity-skills marketplace.
 | 3 | `wordsmith` | the approved findings and the ownership map | rewritten titles, meta descriptions and copy, with the author's facts kept | — |
 | 4 | `pre-ship-performance-audit` (optional) | the site, when speed or Core Web Vitals came up | measured fixes | — |
 | 5 | `platform-content` (optional) | the owner pages and the keyword map from step 2 | posts that point back to those pages on the platforms the audience uses | — |
+| 6 | `get-indexed` (optional) | the live site, once the fixes are deployed and the re-crawl is clean | new and changed pages sent to IndexNow, the sitemap resubmitted, and a short hand-submit list | a page still fails the step 1 re-crawl |
 
-`seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3. Re-run step 1
-once after changes and compare finding IDs; a code change alone does not prove a fix.
+`seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3; `seo-sweep` runs
+steps 1, 2, 3 and 6 with `findable`, fixes the findings in the site's code and proves each with a
+re-crawl. Re-run step 1 once after changes and compare finding IDs; a code change alone does not
+prove a fix.
 
 ## Brew 5 · French press: Land a job
 
@@ -116,6 +122,11 @@ Run it on a schedule (the skills-site nightly health job opens the issue it star
 any batch of skill edits. Accept an intended change with `regress.py --write` (or `health.py --accept-all` in skills-site)
 only after saying why in the PR.
 
+This brew is regression upkeep across the family. To take one published skill at a time through a
+tune, a fact check against primary sources, a listing polish, a release and a confirmed live
+page, use `tune-and-ship`; when nothing is to be released, `tune-and-polish` does the tune and the
+listing.
+
 ## Brew 11 · Estate roast: Stand up or audit a skill estate
 
 | Step | Skill | Receives | Hands on | Stops when |
@@ -124,3 +135,17 @@ only after saying why in the PR.
 
 `skill-estate` packages Brew 2 · Bloom, Brew 3 · Espresso, Brew 10 · Descale and the publishing setup into one run for a whole collection.
 Use Brew 10 · Descale for weekly upkeep once the estate is set up.
+
+## Brew 12 · Dial-in: Set up a coding agent for a repo
+
+| Step | Skill | Receives | Hands on | Stops when |
+| --- | --- | --- | --- | --- |
+| 1 | `portable-harness` or `harness-audit` | a repo with no agent rules yet and where the agent keeps going wrong (portable-harness), or an existing CLAUDE.md, AGENTS.md, hooks and tool config plus the project's past sessions (harness-audit) | working rules, map sections and guardrails written to the repo, or a ranked findings report with proposed diffs | the user has not approved the diffs |
+| 2 | `setup-claude-advisor` (optional) | the Claude Code settings, subagents and CLI version, when plan quota is the constraint | model tiers per role, written to settings, subagent files and CLAUDE.md after a diff preview | the user has not approved the diff preview |
+| 3 | `diagnose-usage` (optional) | the user's own `/usage` breakdown, when a session or day has already drained faster than expected | up to three ranked culprits with one fix each | — |
+| 4 | `choose-effort` (optional) | the next large, long or unattended task, with the tiers from step 2 and the culprits from step 3 if they ran | an effort level, whether to fan out to subagents, goal mode, a workflow or an agent team, and when to check `/usage` | — |
+
+Step 1 is one or the other: `portable-harness` writes a setup, `harness-audit` prunes one that has
+grown. Come back to `harness-audit` once the repo has a few weeks of sessions to measure the rules
+against. `consistent-code-review` reviews what the agent then writes, and `session-retrace` finds
+the past session a finding points at; each is a single-skill request, not a step.
