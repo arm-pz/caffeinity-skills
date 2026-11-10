@@ -1,6 +1,6 @@
 ---
 name: setup-claude-advisor
-version: 0.1.0
+version: 0.1.1
 description: >-
   Configure Claude Code for quota-optimised model tiering: Sonnet as the main session model,
   Opus as the on-call advisor, Haiku for read-only subagents, and Sonnet for code-editing
@@ -72,7 +72,7 @@ Propose appending this block to `~/.claude/CLAUDE.md` (create the file if it doe
 ```markdown
 ## Advisor protocol
 
-Ask the advisor (`/advisor`) at exactly three moments:
+Consult the advisor by calling the `advisor` tool (not the `/advisor` slash command, which only switches the advisor model) at exactly three moments:
 1. **Before committing to a plan.** After outlining a multi-step approach, ask: "Is this the right plan?"
 2. **When the same error recurs.** If the same error appears a second time after a fix attempt, ask: "Am I heading the wrong way?"
 3. **Before declaring done.** Before telling the user the task is complete, ask: "Did I miss anything?"
@@ -107,10 +107,12 @@ If the user said "show me the changes first" or "don't edit any files yet", **st
 After applying (or as part of the preview), show the launch command:
 
 ```bash
-claude --model sonnet --advisor opus
+claude
 ```
 
-Explain: "This starts a session with Sonnet as the working model and Opus available via `/advisor`. Sonnet writes the code; Opus reads the full session and gives strategic advice when called."
+Explain: "With `model` and `advisorModel` set in settings.json, a plain `claude` starts with Sonnet as the working model and Opus as the advisor. Sonnet writes the code; Opus reads the full session and gives strategic advice when Sonnet calls the `advisor` tool. `/advisor` only shows or switches the advisor model (`/advisor <fable|opus|sonnet|off>`)."
+
+The CLI also accepts `claude --model sonnet --advisor opus` as a one-off override. It works but is not listed in `claude --help`, so treat settings.json as the primary mechanism.
 
 ## Hand off
 
@@ -118,6 +120,7 @@ Explain: "This starts a session with Sonnet as the working model and Opus availa
 - README, version, install checklist → `prompts-to-skill-release` receives the validated folder.
 - Usage diagnosis after a session → `diagnose-usage` receives the user's `/usage` paste.
 - Effort level selection before a task → `choose-effort` receives the task description.
+- If a named sibling is not installed, say so in one line and answer briefly yourself; do not pretend it ran.
 
 ## Report
 

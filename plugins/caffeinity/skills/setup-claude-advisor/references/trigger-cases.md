@@ -2,7 +2,7 @@
 
 Written to the format in tune-skill's `references/test-cases.md`. The skill under test is
 `setup-claude-advisor`, judged from its `description` frontmatter. Competing descriptions
-checked: `choose-effort`, `diagnose-usage`, `choose-effort`.
+checked: `choose-effort`, `diagnose-usage`.
 
 **Run:** hand-run on 2026-11-08 against descriptions only. No automated triggering loop.
 

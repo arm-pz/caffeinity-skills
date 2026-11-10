@@ -10,13 +10,13 @@ available for high-value strategic decisions while Sonnet handles the bulk of co
 
 | Model | Role in this setup | Why |
 |---|---|---|
-| **Opus 5.5** | Advisor only (`/advisor`) | Reads the full session context. Called at three decision gates. Never writes code directly. |
+| **Opus 5.5** | Advisor only (`advisor` tool) | Reads the full session context. Called at three decision gates. Never writes code directly. |
 | **Sonnet 5.5** | Main session + code-editing subagent | Handles all file edits, test runs, and command execution. Good enough for 95% of coding tasks. |
 | **Haiku** (current version) | Read-only subagents | Cheap and fast for file reads, grep, doc lookups. No editing capability needed. |
 
 ## The three advisory moments
 
-These are the only times the main session should invoke `/advisor`:
+These are the only times the main session should call the `advisor` tool:
 
 1. **Before committing to a plan.** After Sonnet outlines a multi-step approach (refactor,
    migration, new feature), it asks Opus: "Here is my plan. Is this the right approach, or am I
@@ -60,7 +60,7 @@ These are the only times the main session should invoke `/advisor`:
 
 | Variable | Effect |
 |---|---|
-| `CLAUDE_CODE_DISABLE_ADVISOR_TOOL` | Completely disables the `/advisor` command. The advisory rule becomes inert. |
+| `CLAUDE_CODE_DISABLE_ADVISOR_TOOL` | Completely disables the advisor tool. The advisory rule becomes inert. |
 | `DISABLE_TELEMETRY` | Blocks flag fetching, which can disable advisor functionality indirectly. |
 | `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` | Overrides every subagent's `model:` field with one value. Per-role model assignments are ignored. |
 
@@ -80,5 +80,5 @@ variable is unset.
 ```
 
 - `model`: The default model for the main session. Set to `"sonnet"`.
-- `advisorModel`: The model used when `/advisor` is invoked. Set to `"opus"`.
+- `advisorModel`: The model that answers `advisor` tool calls. `/advisor <model>` switches it for the session. Set to `"opus"`.
 - Preserve all other keys when merging.

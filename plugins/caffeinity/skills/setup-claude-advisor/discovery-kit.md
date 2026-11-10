@@ -34,7 +34,7 @@ Queries strangers search when experiencing quota limits or setting up subagents 
 **About (description, 350 character limit):**
 
 ```
-Agent skill that configures Claude Code for quota-optimised model tiering: Sonnet for the main session, Opus on call via /advisor, Haiku for read-only subagents, and Sonnet for code editing. Audits version and env flags, shows a diff preview, and never writes without explicit confirmation.
+Agent skill that configures Claude Code for quota-optimised model tiering: Sonnet for the main session, Opus on call via the advisor tool, Haiku for read-only subagents, and Sonnet for code editing. Audits version and env flags, shows a diff preview, and never writes without explicit confirmation.
 ```
 
 **Topics:** `agent-skills`, `claude-code`, `claude-code-plugin`, `claude-code-skills`, `model-tiering`, `opus-advisor`, `quota-optimization`, `subagents`, `anthropic`, `sonnet`, `opus`, `haiku`, `skillsmith`
@@ -48,7 +48,7 @@ Agent skill that configures Claude Code for quota-optimised model tiering: Sonne
 ```markdown
 # setup-claude-advisor
 
-Configure Claude Code for quota-optimised model tiering: Sonnet as the working model, Opus as the on-call strategic advisor (`/advisor`), and Haiku/Sonnet subagents assigned by role. Shows every proposed change as a diff preview before touching any file.
+Configure Claude Code for quota-optimised model tiering: Sonnet as the working model, Opus as the on-call strategic advisor (advisor tool), and Haiku/Sonnet subagents assigned by role. Shows every proposed change as a diff preview before touching any file.
 
 ```bash
 npx skills add arm-pz/setup-claude-advisor --skill setup-claude-advisor
@@ -72,7 +72,7 @@ npx skills add arm-pz/setup-claude-advisor --skill setup-claude-advisor
 
 ### v0.1.0
 
-Configures Claude Code for quota-optimised model tiering: Sonnet main session, Opus on-call strategic advisor (`/advisor`), Haiku for read-only doc/search subagents, and Sonnet for code-editing subagents.
+Configures Claude Code for quota-optimised model tiering: Sonnet main session, Opus on-call strategic advisor (advisor tool), Haiku for read-only doc/search subagents, and Sonnet for code-editing subagents.
 
 - **Pre-flight diagnostics**: Checks version (>= 2.1.293), environment flags (`CLAUDE_CODE_DISABLE_ADVISOR_TOOL`, `DISABLE_TELEMETRY`, `CLAUDE_CODE_SUBAGENT_MODEL_FORCE`), and existing subagents.
 - **Diff preview safety**: Shows all proposed changes to `settings.json`, `CLAUDE.md`, and subagent configs in one diff block before touching any files.
@@ -106,7 +106,7 @@ Applied commands:
 
 ```bash
 gh repo edit arm-pz/setup-claude-advisor \
-  --description "Agent skill that configures Claude Code for quota-optimised model tiering: Sonnet for the main session, Opus on call via /advisor, Haiku for read-only subagents, and Sonnet for code editing. Audits version and env flags, shows a diff preview, and never writes without explicit confirmation." \
+  --description "Agent skill that configures Claude Code for quota-optimised model tiering: Sonnet for the main session, Opus on call via the advisor tool, Haiku for read-only subagents, and Sonnet for code editing. Audits version and env flags, shows a diff preview, and never writes without explicit confirmation." \
   --homepage "https://skillsmith.tech/setup-claude-advisor/" \
   --add-topic agent-skills,claude-code,claude-code-plugin,claude-code-skills,model-tiering,opus-advisor,quota-optimization,subagents,anthropic,sonnet,opus,haiku,skillsmith
 
