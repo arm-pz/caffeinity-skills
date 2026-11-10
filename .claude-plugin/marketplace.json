@@ -36,6 +36,11 @@
       "description": "Takes a whole collection of skill repos from scattered to published and self-maintaining, in gated phases handed to the skills that own them."
     },
     {
+      "name": "tune-and-ship",
+      "source": "./plugins/tune-and-ship",
+      "description": "Takes one published skill at a time from as-is to tuned, fact-checked, released and live: tune-skill, a fact check against primary sources, findable-polish, one PR, then a confirmed refresh of the site and marketplace copy."
+    },
+    {
       "name": "wordsmith",
       "source": {
         "source": "github",
