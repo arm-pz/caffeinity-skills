@@ -7,16 +7,17 @@ skills in order with what each one hands the next, and names the ones you have n
 | # | Goal | Steps |
 | --- | --- | --- |
 | Brew 1 · Pour-over | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
-| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
+| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check → get-indexed (optional) |
 | Brew 3 · Espresso | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| Brew 4 · Cold brew | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content (optional) |
-| Brew 5 · French press | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
-| Brew 6 · Cupping | Make a decision | research-brief → data-readout → crash-test → strategy-memo |
+| Brew 4 · Cold brew | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content / get-indexed (optional) |
+| Brew 5 · French press | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track (optional) |
+| Brew 6 · Cupping | Make a decision | research-brief → data-readout (optional) → crash-test or do-better → strategy-memo |
 | Brew 7 · Slow drip | Learn a skill | topic-primer → study-system → course-builder (for a class) |
 | Brew 8 · Nitro | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | Brew 9 · Moka pot | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → Brew 3 · Espresso → platform-content |
 | Brew 10 · Descale | Maintain the skill family | tune-skill → prompts-to-skill-release (optional) → upstream-check |
 | Brew 11 · Estate roast | Stand up or audit a skill estate | skill-estate |
+| Brew 12 · Dial-in | Set up a coding agent for a repo | portable-harness or harness-audit → setup-claude-advisor → diagnose-usage → choose-effort (last three optional) |
 
 ## Install
 

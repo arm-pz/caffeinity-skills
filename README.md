@@ -2,12 +2,12 @@
 
 Agent skills for Claude Code, Codex, Cursor and any agent that reads a `SKILL.md`, by Abdul Rahman P Z:
 44 skills for writing, SEO, release checks, skill authoring, careers, decisions, learning and
-outbound, plus eleven workflow agents that hand work from one skill to the next. Browse them at
+outbound, plus twelve workflow agents that hand work from one skill to the next. Browse them at
 [skills.caffeinity.com](https://skills.caffeinity.com/).
 
 ## Install everything at once
 
-**Claude Code** — the `caffeinity` plugin bundles every skill and the eleven agents:
+**Claude Code** — the `caffeinity` plugin bundles every skill and the twelve agents:
 
 ```
 /plugin marketplace add arm-pz/caffeinity-skills
@@ -38,9 +38,9 @@ Each agent runs one workflow and preloads the skills it needs. In Claude Code, a
 | Agent | Workflow | Skills, in order |
 | --- | --- | --- |
 | `skill-builder` | Brew 1 · Pour-over: Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod |
-| `discovery-lead` | Brew 2 · Bloom: Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
+| `discovery-lead` | Brew 2 · Bloom: Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check → get-indexed |
 | `release-gatekeeper` | Brew 3 · Espresso: Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| `seo-lead` | Brew 4 · Cold brew: Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content |
+| `seo-lead` | Brew 4 · Cold brew: Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content / get-indexed |
 | `job-search-coach` | Brew 5 · French press: Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
 | `decision-analyst` | Brew 6 · Cupping: Make a decision | research-brief → data-readout → crash-test or do-better → strategy-memo |
 | `learning-coach` | Brew 7 · Slow drip: Learn a skill | topic-primer → study-system → course-builder |
@@ -48,6 +48,7 @@ Each agent runs one workflow and preloads the skills it needs. In Claude Code, a
 | `solo-launcher` | Brew 9 · Moka pot: Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → release-gate-chair → platform-content |
 | `skill-maintainer` | Brew 10 · Descale: Maintain the skill family | tune-skill → prompts-to-skill-release → upstream-check |
 | `estate-lead` | Brew 11 · Estate roast: Stand up or audit a skill estate | skill-estate |
+| `harness-lead` | Brew 12 · Dial-in: Set up a coding agent for a repo | portable-harness or harness-audit → setup-claude-advisor → diagnose-usage → choose-effort |
 
 Codex has no subagents, so there the `caffeinity-routing` skill does this job: describe the outcome
 and it names the workflow and the next skill.

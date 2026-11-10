@@ -4,19 +4,19 @@ description: >-
   Picks which caffeinity skills to run, in what order, for a goal that spans more than one of
   them, and says what each step hands the next: build and publish a skill, get a project found,
   pass a release gate, grow organic search traffic, run a job search, make a decision, learn a
-  skill, run cold outbound, launch a one-person product, or set up and keep the skills themselves healthy. Checks which of those skills are
+  skill, run cold outbound, launch a one-person product, set up a coding agent for a repo, or set up and keep the skills themselves healthy. Checks which of those skills are
   installed and names the missing ones instead of improvising their work. Use whenever someone
   asks which skill to use, what to run first, how the skills fit together, or describes a
   multi-step outcome such as "take this idea to a published skill" or "get my site ready to
   ship and ranking", even if they never name a skill. Not for a request one skill already owns
   (load that skill directly), and not for doing a step's work itself: the named skill does it.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # caffeinity-routing
 
 A goal like "ship my site" or "get hired" crosses several skills, and each one only knows its own
-edges. This skill holds the map: eleven numbered brews (Brew 1 to Brew 11; older docs call them W1 to W11), each an ordered list of
+edges. This skill holds the map: twelve numbered brews (Brew 1 to Brew 12; older docs call them W1 to W12), each an ordered list of
 skills with what every step receives and what it hands on. Other skills cite these numbers
 (`release-gate-chair` implements Brew 3 · Espresso; `seo-crawl` is the first step of Brew 4 · Cold brew), so keep them stable.
 
@@ -54,7 +54,8 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 3. **Lay out the route.** Open `references/workflows.md` for the chosen workflow and write one
    line per step: skill, what it receives, what it hands on, and whether it is installed. Mark the
    chain skill if one already packages the steps (Brew 1 · Pour-over has `skill-launch`, Brew 3 · Espresso has the
-   `release-gate-*` forks, Brew 4 · Cold brew has `seo-polish` and `keyword-resolver`).
+   `release-gate-*` forks, Brew 4 · Cold brew has `seo-polish`, `keyword-resolver` and `seo-sweep`,
+   Brew 10 · Descale has `tune-and-ship` for one published skill at a time).
 4. **Hand off step 1.** Load the first skill with its input. When a step finishes, come back to
    the route, record the step's verdict or output location, and hand off the next one.
 5. **Close the loop.** When the last step finishes, list each step as done, skipped (with the
@@ -65,16 +66,17 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | # | Goal | Steps, in order |
 | --- | --- | --- |
 | Brew 1 · Pour-over | Build a skill and make it installable | draft-skill or prompts-to-skill → tune-skill → prompts-to-skill-release → skill-to-mod (only if it must run at a fixed moment) |
-| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check |
-| Brew 3 · Espresso | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair |
-| Brew 4 · Cold brew | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit or platform-content (if they apply) |
-| Brew 5 · French press | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
-| Brew 6 · Cupping | Make a decision | research-brief → data-readout (if there is data) → crash-test → strategy-memo |
+| Brew 2 · Bloom | Get a repo, skill or plugin found | findable → publish-pipeline → upstream-check → get-indexed (if new pages went live) |
+| Brew 3 · Espresso | Decide whether a site is safe to launch | web-preflight → pre-ship-security-red-team → pre-ship-performance-audit → release-gate-chair (or its -ledger and -validator forks) |
+| Brew 4 · Cold brew | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit, platform-content, get-indexed (each if it applies) |
+| Brew 5 · French press | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track (for an offer, promotion or pivot) |
+| Brew 6 · Cupping | Make a decision | research-brief → data-readout (if there is data) → crash-test or do-better → strategy-memo |
 | Brew 7 · Slow drip | Learn a skill | topic-primer → study-system → course-builder (only when teaching a group) |
 | Brew 8 · Nitro | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | Brew 9 · Moka pot | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → Brew 3 · Espresso → platform-content |
 | Brew 10 · Descale | Maintain the skill family | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check |
 | Brew 11 · Estate roast | Stand up or audit a skill estate | skill-estate (eight gated phases over the whole collection) |
+| Brew 12 · Dial-in | Set up a coding agent for a repo | portable-harness or harness-audit → setup-claude-advisor (if quota is the constraint) → diagnose-usage (if usage already drained) → choose-effort (before a large task) |
 
 Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 3,
 and whenever a user asks what one skill needs from the previous one.

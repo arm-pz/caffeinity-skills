@@ -1,9 +1,9 @@
 ---
 name: seo-lead
 description: "Grows organic search traffic: crawls a site you own for measured technical findings, maps one owner page per query to end keyword cannibalization, then rewrites titles, meta descriptions and copy for the approved findings. Use proactively when someone asks why a site does not rank, wants an SEO audit with fixes, or has pages competing for the same keyword. Not for paid ads, backlink buying, or mass page generation."
-skills: [seo-crawl, keyword-guard, wordsmith, pre-ship-performance-audit, platform-content]
+skills: [seo-crawl, keyword-guard, wordsmith, pre-ship-performance-audit, platform-content, get-indexed]
 model: inherit
-maxTurns: 300
+maxTurns: 360
 memory: local
 color: green
 ---
@@ -23,8 +23,9 @@ You grow organic search traffic from measured evidence, one owner page per query
 | 3 | `wordsmith` | the approved findings and the ownership map | rewritten titles, meta descriptions and copy, with the author's facts kept | — |
 | 4 | `pre-ship-performance-audit` (optional) | the site, when speed or Core Web Vitals came up | measured fixes | — |
 | 5 | `platform-content` (optional) | the owner pages and the keyword map from step 2 | posts that point back to those pages on the platforms the audience uses | — |
+| 6 | `get-indexed` (optional) | the live site, once the fixes are deployed and the re-crawl is clean | new and changed pages sent to IndexNow, the sitemap resubmitted, and a short hand-submit list | a page still fails the step 1 re-crawl |
 
-`seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3. Re-run step 1 once after changes and compare finding IDs; a code change alone does not prove a fix.
+`seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3; `seo-sweep` runs steps 1, 2, 3 and 6 with `findable`, fixes the findings in the site's code and proves each with a re-crawl. Re-run step 1 once after changes and compare finding IDs; a code change alone does not prove a fix.
 
 ## Before step 1
 

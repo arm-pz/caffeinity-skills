@@ -8,7 +8,7 @@
     {
       "name": "caffeinity",
       "source": "./plugins/caffeinity",
-      "description": "Everything in one install: every caffeinity skill plus eleven workflow agents (skill-builder, discovery-lead, release-gatekeeper, seo-lead, job-search-coach, decision-analyst, learning-coach, outbound-lead, solo-launcher, skill-maintainer, estate-lead)."
+      "description": "Everything in one install: every caffeinity skill plus twelve workflow agents (skill-builder, discovery-lead, release-gatekeeper, seo-lead, job-search-coach, decision-analyst, learning-coach, outbound-lead, solo-launcher, skill-maintainer, estate-lead, harness-lead)."
     },
     {
       "name": "caffeinity-routing",

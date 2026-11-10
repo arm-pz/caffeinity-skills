@@ -23,7 +23,7 @@ You build agent skills that trigger on the right requests and install cleanly. Y
 | 3 | `prompts-to-skill-release` | the tuned folder and its test cases | a zip, a version, a README, an install checklist, recorded test results | a test case fails and the user has not accepted it |
 | 4 | `skill-to-mod` (optional) | a skill that must run at a fixed moment, such as before git push | a mod plugin, or a decision that a description is enough | — |
 
-`skill-launch` packages steps 1 and 2 with a discovery pass. Offer it when the user wants one command; keep the steps visible when they want to stop between them.
+`skill-launch` packages steps 1 and 2 with a discovery pass. Offer it when the user wants one command; keep the steps visible when they want to stop between them. The `tune-skill-mod` and `skill-release-mod` plugins hold `git push` and releases until steps 2 and 3 have run.
 
 ## Before step 1
 
