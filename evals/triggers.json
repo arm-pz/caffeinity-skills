@@ -78,6 +78,9 @@
     {"id": "agent-audit-subagents", "prompt": "Review the subagents in my .claude/agents folder and tell me what's missing before we let them run unattended.", "expect": "agent-audit", "not": ["tune-skill"]},
     {"id": "agent-audit-acts-without-asking", "prompt": "Our support agent keeps emailing customers without asking anyone first and sometimes loops for an hour. Make it production-ready.", "expect": "agent-audit", "not": ["consistent-code-review"]},
     {"id": "agent-audit-not-skill", "prompt": "My SKILL.md never triggers when people ask to parse invoices. What's wrong with its description?", "expect": "tune-skill", "not": ["agent-audit"]},
-    {"id": "ai-team-blueprint-first-team", "prompt": "I run a two-person agency and want to set up my first team of AI agents to take content and lead research off my plate. Which agents do I need and how should they hand work to each other?", "expect": "ai-team-blueprint", "not": ["agent-audit"]}
+    {"id": "ai-team-blueprint-first-team", "prompt": "I run a two-person agency and want to set up my first team of AI agents to take content and lead research off my plate. Which agents do I need and how should they hand work to each other?", "expect": "ai-team-blueprint", "not": ["agent-audit"]},
+    {"id": "setup-claude-advisor-tiers", "prompt": "Set up my Claude Code so Sonnet does the work, Opus is the advisor and Haiku handles the read-only subagents. Show me the changes before you write anything.", "expect": "setup-claude-advisor", "not": ["diagnose-usage", "choose-effort"]},
+    {"id": "harness-audit-prune", "prompt": "My CLAUDE.md has grown to 600 lines and I have a dozen MCP servers. Work out which rules and tools are dead weight and what I can cut.", "expect": "harness-audit", "not": ["portable-harness"]},
+    {"id": "portable-harness-new-rules", "prompt": "Write agent rules for this repo so Claude Code, Codex and Cursor all behave the same, and add a type check that only fails on new errors.", "expect": "portable-harness", "not": ["harness-audit"]}
   ]
 }

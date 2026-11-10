@@ -43,6 +43,7 @@ jobs:
           python -I plugins/paper-trail/tests/test_check_pages.py
           python -I plugins/course-builder/tests/test_check_course.py
           python -I plugins/agent-audit/tests/test_check_agent.py
+          python -I plugins/tune-and-ship/tests/test_queue.py
       - name: trigger suite is current and covers every skill
         run: python scripts/build_evals.py --check
       - name: agents are current

@@ -1,0 +1,16 @@
+{
+  "name": "tune-and-ship",
+  "version": "0.1.0",
+  "description": "Takes one published skill at a time from as-is to tuned, fact-checked, released and live: tune-skill, a fact check against primary sources, real sibling files, findable-polish, version and release notes, one PR, then a confirmed refresh of the site page and marketplace copy.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "skill-tuning",
+    "fact-check",
+    "release",
+    "claude-code"
+  ]
+}
