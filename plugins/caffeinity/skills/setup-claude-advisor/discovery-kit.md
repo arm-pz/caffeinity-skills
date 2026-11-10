@@ -117,7 +117,7 @@ Tuning pass with facts checked against the Claude Code changelog and advisor doc
 
 ## 6. Site page
 
-Live on Skillsmith:
+Live on Skillsmith by Caffeinity:
 - Canonical URL: `https://skillsmith.tech/setup-claude-advisor/`
 - Hub listing: `https://skillsmith.tech/skills/`
 - Discovery index: `https://skillsmith.tech/.well-known/skills.json`
@@ -128,7 +128,7 @@ Live on Skillsmith:
 
 | Surface | Target / Channel | Entry format | Status |
 |---|---|---|---|
-| **Skillsmith Hub** | `skillsmith.tech` | Automated repo ingestion via CI | Active |
+| **Skillsmith by Caffeinity** | `skillsmith.tech` | Automated repo ingestion via CI | Active |
 | **Claude Marketplace** | `arm-pz/caffeinity-skills` | `.claude-plugin/marketplace.json` | Published |
 | **Agent Skills Index** | `skills.sh` / `npx skills` | Public GitHub repo discovery | Ready (`npx skills add arm-pz/setup-claude-advisor`) |
 | **Community Forums** | r/ClaudeAI / Discord | Educational tip + advisor tree walkthrough | Optional |

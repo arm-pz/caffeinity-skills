@@ -1,7 +1,7 @@
 ---
 name: seo-sweep
 description: >-
-  Runs the Skillsmith SEO skills on a site you own, in order, fixes what they
+  Runs the Skillsmith by Caffeinity SEO skills on a site you own, in order, fixes what they
   find in the site's code, proves each fix with a re-crawl, and turns every
   defect a skill shows along the way into a tested fix to that skill, chaining
   seo-crawl, findable, keyword-guard, wordsmith and get-indexed. Use when the user asks to "fix the SEO", "run the SEO skills on my
