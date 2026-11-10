@@ -4,6 +4,11 @@
 
 - **Name search**: Exact-name free and topic-free on GitHub prior to publication (no prior collisions or competing same-name repos).
 - **Task search**: Related repositories (`claude-code-advisor`, `claude-tiers`, `claude-model-guard`) focus on external API routing, adversarial testing, or single-classifier selection, but none automate persistent native Claude Code model tiering and subagent configuration.
+- **Re-audit, 2026-11-10 (findable-polish pass)**: GitHub repository search, 0 stars on this repo.
+  - `claude code opus advisor` returns 25 repos, led by `shalomeir/advisor-opus`, `vzwjustin/advisor`, `PUSHINGSQUARES/advisor-driven-dev` and `Divinci-AI/opus-advisor-mcp`. Most add a plugin, an MCP server or their own orchestration. None of the top results configures the built-in advisor tool through `settings.json`, so that is the differentiator the listing now leads with.
+  - `advisorModel` and `claude code sonnet opus advisor settings` return 0 repos. Both are open, and the README and About text now carry those words.
+  - `claude code haiku subagents` (110) and `claude code model tiering` (313) are crowded by orchestrators and router hooks with 100+ stars; this repo will not rank there on those words alone.
+  - The live About text still read "Opus on call via /advisor", wording that v0.1.1 corrected everywhere else.
 - **Initial metadata state**: Empty homepage, missing topics, unreleased v0.1.0 tag, missing license. Now resolved with MIT license, 13 curated topics, and v0.1.0 release.
 
 ---
@@ -19,6 +24,9 @@ Queries strangers search when experiencing quota limits or setting up subagents 
 5. `claude code haiku subagents`
 6. `claude code reduce token burn`
 7. `claude code advisor pattern settings`
+8. `advisorModel settings.json`
+9. `claude code built-in advisor tool setup`
+10. `claude pro plan opus default usage limit`
 
 ---
 
@@ -34,10 +42,18 @@ Queries strangers search when experiencing quota limits or setting up subagents 
 **About (description, 350 character limit):**
 
 ```
-Agent skill that configures Claude Code for quota-optimised model tiering: Sonnet for the main session, Opus on call via the advisor tool, Haiku for read-only subagents, and Sonnet for code editing. Audits version and env flags, shows a diff preview, and never writes without explicit confirmation.
+Agent skill that sets up Claude Code's built-in advisor tool: Sonnet as the main model, Opus as advisor (advisorModel in settings.json), Haiku for read-only subagents. No plugin, MCP server or proxy. Audits version and env flags, shows a diff preview, and writes nothing without approval.
 ```
 
-**Topics:** `agent-skills`, `claude-code`, `claude-code-plugin`, `claude-code-skills`, `model-tiering`, `opus-advisor`, `quota-optimization`, `subagents`, `anthropic`, `sonnet`, `opus`, `haiku`, `skillsmith`
+Alternatives considered (2026-11-10):
+
+- **A, chosen above**: leads with the built-in advisor tool and `advisorModel`, the two things no competing listing says.
+- **B**: "Make a Claude Pro plan last longer in Claude Code: an agent skill that puts Sonnet on the work, Opus on call through the built-in advisor tool, and Haiku on read-only subagents. Edits settings.json only after you approve a diff preview." Leads with the outcome; weaker on the exact-match terms.
+- **C**: the previous text with "via the advisor tool". Smallest change, but keeps "quota-optimised model tiering", a phrase nobody searches.
+
+**Topics:** `agent-skills`, `claude-code`, `claude-code-plugin`, `claude-code-skills`, `claude-code-subagents`, `advisor-tool`, `opus-advisor`, `model-tiering`, `quota-optimization`, `token-optimization`, `claude-pro`, `subagents`, `anthropic`, `skillsmith`
+
+Dropped `sonnet`, `opus` and `haiku`: bare model names are crowded and say nothing about what the repo does. Added `advisor-tool`, `claude-code-subagents`, `token-optimization` and `claude-pro`.
 
 **Homepage:** `https://skillsmith.tech/setup-claude-advisor/`
 
@@ -48,7 +64,9 @@ Agent skill that configures Claude Code for quota-optimised model tiering: Sonne
 ```markdown
 # setup-claude-advisor
 
-Configure Claude Code for quota-optimised model tiering: Sonnet as the working model, Opus as the on-call strategic advisor (advisor tool), and Haiku/Sonnet subagents assigned by role. Shows every proposed change as a diff preview before touching any file.
+An agent skill that sets up Claude Code's built-in advisor tool: Sonnet does the work, Opus advises at three decision points, and Haiku handles read-only subagents. It writes `model` and `advisorModel` to `settings.json`, with no plugin, MCP server or proxy, and shows every change as a diff preview before touching any file.
+
+Built for Claude Pro ($20) users whose Claude Code sessions now default to Opus and who want their usage limit to last longer.
 
 ```bash
 npx skills add arm-pz/setup-claude-advisor --skill setup-claude-advisor
@@ -123,9 +141,9 @@ Applied commands:
 
 ```bash
 gh repo edit arm-pz/setup-claude-advisor \
-  --description "Agent skill that configures Claude Code for quota-optimised model tiering: Sonnet for the main session, Opus on call via the advisor tool, Haiku for read-only subagents, and Sonnet for code editing. Audits version and env flags, shows a diff preview, and never writes without explicit confirmation." \
+  --description "Agent skill that sets up Claude Code's built-in advisor tool: Sonnet as the main model, Opus as advisor (advisorModel in settings.json), Haiku for read-only subagents. No plugin, MCP server or proxy. Audits version and env flags, shows a diff preview, and writes nothing without approval." \
   --homepage "https://skillsmith.tech/setup-claude-advisor/" \
-  --add-topic agent-skills,claude-code,claude-code-plugin,claude-code-skills,model-tiering,opus-advisor,quota-optimization,subagents,anthropic,sonnet,opus,haiku,skillsmith
+  --add-topic agent-skills,claude-code,claude-code-plugin,claude-code-skills,claude-code-subagents,advisor-tool,opus-advisor,model-tiering,quota-optimization,token-optimization,claude-pro,subagents,anthropic,skillsmith
 
 gh release create v0.1.0 --repo arm-pz/setup-claude-advisor --title "v0.1.0" --notes-file release-notes.md
 ```
@@ -133,7 +151,11 @@ gh release create v0.1.0 --repo arm-pz/setup-claude-advisor --title "v0.1.0" --n
 Pending as of 2026-11-10:
 
 - Only the `v0.1.0` tag exists. Tag and release `v0.1.1` (merge commit of the advisor wording fix) and `v0.1.2` (after its pull request merges), using the notes in section 5.
-- The live About text still reads "Opus on call via /advisor". Re-run the `gh repo edit` command above to apply the corrected "via the advisor tool" wording.
+- The live About text still reads "Opus on call via /advisor", and the live topics are the old set. Re-run the `gh repo edit` command above to apply the new About text and add the new topics, then remove the three dropped ones:
+
+```bash
+gh repo edit arm-pz/setup-claude-advisor --remove-topic sonnet,opus,haiku
+```
 
 ```bash
 gh release create v0.1.1 --repo arm-pz/setup-claude-advisor --target 1218642 --title "v0.1.1" --notes-file release-notes-0.1.1.md
