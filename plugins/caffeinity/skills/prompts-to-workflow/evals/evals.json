@@ -1,0 +1,53 @@
+{
+ "skill_name": "prompts-to-workflow",
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "Here's my prompt log from launching my last three skills. Make it a workflow."
+  },
+  {
+   "id": 2,
+   "prompt": "Which of these ten prompts are already skillsmith skills and what's missing?"
+  },
+  {
+   "id": 3,
+   "prompt": "Split this prompt chain into skills."
+  },
+  {
+   "id": 4,
+   "prompt": "I do these seven steps by hand every Monday, can it be one thing?"
+  },
+  {
+   "id": 5,
+   "prompt": "Turn these prompts into a brew."
+  },
+  {
+   "id": 6,
+   "prompt": "Crawl my site, fix keywords, rewrite copy (five pasted prompts) - make it a workflow"
+  },
+  {
+   "id": 7,
+   "prompt": "Make each of these five prompts its own skill."
+  },
+  {
+   "id": 8,
+   "prompt": "I have an idea for a skill that checks invoices."
+  },
+  {
+   "id": 9,
+   "prompt": "Take my skill from idea to published."
+  },
+  {
+   "id": 10,
+   "prompt": "My tune-and-polish skill triggers on the wrong things."
+  },
+  {
+   "id": 11,
+   "prompt": "Which skill should I run first to ship my site?"
+  },
+  {
+   "id": 12,
+   "prompt": "Two pasted prompts: make a workflow"
+  }
+ ]
+}
