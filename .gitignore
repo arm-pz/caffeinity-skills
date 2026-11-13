@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 plugins/caffeinity/evals/results/
+# local skill installs (npx skills add); the repo ships these under plugins/
+.agents/skills/
+.claude/skills/
+skills-lock.json
