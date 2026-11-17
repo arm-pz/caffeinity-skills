@@ -1,0 +1,37 @@
+{
+  "skill_name": "find-partners",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Swap links for me. My articles link out to other real businesses on the same connector, theirs link back to me."
+    },
+    {
+      "id": 2,
+      "prompt": "Find non-competing SaaS companies we could co-market with."
+    },
+    {
+      "id": 3,
+      "prompt": "Who could we guest post for in the freelancer niche?"
+    },
+    {
+      "id": 4,
+      "prompt": "We need more backlinks, but not from best-of lists. Who could we make content with?"
+    },
+    {
+      "id": 5,
+      "prompt": "Find podcasts and newsletters our buyers read that might feature us."
+    },
+    {
+      "id": 6,
+      "prompt": "Find the best-of lists that name my competitors and not me."
+    },
+    {
+      "id": 7,
+      "prompt": "Plan inbox and domain capacity for 20k cold emails a month."
+    },
+    {
+      "id": 8,
+      "prompt": "Research who our competitors partner with and summarise their strategy."
+    }
+  ]
+}

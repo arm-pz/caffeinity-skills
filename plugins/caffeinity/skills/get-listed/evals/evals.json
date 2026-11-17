@@ -1,0 +1,41 @@
+{
+  "skill_name": "get-listed",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Find the best-of lists that name my competitors and not me. Find the author and draft the pitch."
+    },
+    {
+      "id": 2,
+      "prompt": "Which 'top CRM tools' articles mention HubSpot and Pipedrive but not us?"
+    },
+    {
+      "id": 3,
+      "prompt": "Get us onto the alternatives-to-Notion roundups our rivals are on."
+    },
+    {
+      "id": 4,
+      "prompt": "Why do we never show up when people google 'best invoicing software'? I want those placements."
+    },
+    {
+      "id": 5,
+      "prompt": "Draft pitches to the editors of the comparison posts that skip our product."
+    },
+    {
+      "id": 6,
+      "prompt": "Get us onto the awesome-claude-skills lists our competitors are on."
+    },
+    {
+      "id": 7,
+      "prompt": "Which tools on these best-of lists have shut down?"
+    },
+    {
+      "id": 8,
+      "prompt": "Find guest post partners in the HR space."
+    },
+    {
+      "id": 9,
+      "prompt": "Do a competitor analysis of Pipedrive's pricing and positioning."
+    }
+  ]
+}
