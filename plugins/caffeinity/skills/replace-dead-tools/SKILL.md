@@ -9,7 +9,7 @@ description: >-
   broken-entry angle for list outreach, even if they never say dead link building. Step 2 of a
   three-step handover: reads get-listed's files, or a list of article URLs, and hands over to
   find-partners. Not for finding the lists or their authors (use get-listed), broken links on
-  your own site (use broken-links), or partner and link-swap outreach (use find-partners).
+  your own site (use seo-crawl), or partner and link-swap outreach (use find-partners).
 version: 1.0.0
 ---
 

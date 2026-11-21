@@ -1,6 +1,6 @@
 # Trigger cases: diagnose-usage
 
-Status: all 13 cases hand-read against the descriptions of `diagnose-usage`, `choose-effort` and `product-self-knowledge` on 2026-10-29. No live session and no automated triggering loop was run, so "pass" means the description's wording supports the expected result, not that an agent was observed loading or skipping the skill.
+Status: 19 cases reviewed manually. D1-D13 were reviewed on 2026-10-29 and checked against the current descriptions alongside D14-D19. No live session and no automated triggering loop was run, so "pass" means the description's wording supports the expected result, not that an agent was observed loading or skipping the skill.
 
 | # | Prompt | Expect | Kind | Hand-read | Why |
 |---|---|---|---|---|---|
@@ -17,5 +17,11 @@ Status: all 13 cases hand-read against the descriptions of `diagnose-usage`, `ch
 | D11 | Speed up my Node build | no load | unrelated | pass | Not usage |
 | D12 | How can I use less in Claude Code from now on? | no load, use choose-effort | boundary | pass | Going forward, no past session |
 | D13 | Claude.ai says I've hit my message limit, why? | no load | near-miss | pass | Claude.ai chat, not Claude Code |
+| D14 | Why did yesterday's Codex automation burn through my limit? | load | clear | pass | A finished run with an affected usage window |
+| D15 | My quota dropped after an Ultra run. What did each agent cost? | load | clear | pass | Account data alone cannot attribute subagent cost |
+| D16 | Should I use Ultra or High for tomorrow's Codex migration? | no load, use choose-effort | boundary | pass | Upcoming task |
+| D17 | Set up a cheaper reader model for all my Codex projects | no load, use setup-claude-advisor | boundary | pass | Persistent model configuration |
+| D18 | How much does my Codex plan include? | no load, use official docs | near-miss | pass | Plan allowance |
+| D19 | Why did yesterday's run eat my limit? (active host: Claude Code) | load | runtime | pass | Requests the Claude Code usage breakdown without asking the user to pick a host |
 
 Boundary pairs: D1 against D9 (after versus before the work); D4 against D12 (a session that ran versus use less from now on), whose other side is C11 in `choose-effort`.

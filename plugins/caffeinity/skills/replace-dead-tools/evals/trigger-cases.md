@@ -1,7 +1,8 @@
 # Trigger cases: replace-dead-tools
 
 Run **by hand on 2026-11-17** against the descriptions only, competing with:
-get-listed, find-partners, searchfit-seo broken-links, research-brief. Not run
+get-listed, find-partners, seo-crawl, research-brief (re-checked 2026-11-21 after the
+own-site handoff moved from broken-links, which isn't published, to seo-crawl). Not run
 through an automated triggering loop. The script's offline self-check (`test_check_tools.py`, 14
 checks) and one live run (an alive URL, a non-existent domain, and the user's own site) were run.
 
@@ -13,7 +14,7 @@ checks) and one live run (an alive URL, a non-existent domain, and the user's ow
 | 4 | "Some of the apps on those roundups redirect to other companies now. Turn that into a pitch." | replace-dead-tools | ACQUIRED verdicts come with an evidence URL | PASS (implicit) |
 | 5 | "Give me a broken-entry angle for my list outreach." | replace-dead-tools | — | PASS ("broken-entry angle for list outreach") |
 | 6 | "Find the listicles that name my competitors but not me." | get-listed | replace-dead-tools doesn't load | PASS |
-| 7 | "Find broken links on my own website." | broken-links | replace-dead-tools doesn't load | PASS ("broken links on your own site (use broken-links)") |
+| 7 | "Find broken links on my own website." | seo-crawl | replace-dead-tools doesn't load | PASS ("broken links on your own site (use seo-crawl)"; seo-crawl lists "find broken internal links") |
 | 8 | "Is Pipedrive a dead company? Research its financials." | research-brief | replace-dead-tools doesn't load | PASS: no list context; the description is about entries on lists |
 
 8 of 8 pass by hand.
@@ -30,5 +31,5 @@ domain moves read as acquisitions, a bare "is retired" match, GitHub links check
 
 | Message | Should trigger | Why |
 | --- | --- | --- |
-| "Dead links on my site" | broken-links | the user's own pages |
+| "Dead links on my site" | seo-crawl | the user's own pages |
 | "Dead products on other people's lists" | replace-dead-tools | third-party list entries |

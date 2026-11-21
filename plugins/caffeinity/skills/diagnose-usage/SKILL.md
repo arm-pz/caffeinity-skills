@@ -1,21 +1,29 @@
 ---
 name: diagnose-usage
-description: Diagnoses why a Claude Code session or day burned through usage limits faster than expected, and says what to change. Reads the user's own /usage breakdown, checks the known heavy-session causes (high effort levels, subagents inheriting effort, goal mode, workflows, agent teams, long SDK jobs), and returns up to three ranked culprits with one fix each, plus when to send /feedback. Use when the user says Claude Code usage is draining fast, they hit or are nearing their limit sooner than expected, one session cost far more than expected, or asks what /usage shows or how to cut burn in a session that already ran. Not for choosing an effort level before work starts or using less going forward (use choose-effort), or for plan limits, prices and API billing (use product-self-knowledge).
-version: 1.0.0
+description: Diagnoses why a completed Codex or Claude Code run used more quota or credits than expected. Use when a session, automation, or day drained usage fast, the user hit a limit sooner than expected, or they want help interpreting usage evidence for work that already ran. Compares run evidence with account usage and gives up to three supported causes, each with a change to verify. Not for choosing effort for upcoming work (use choose-effort), configuring persistent advisor or subagent model tiers (use setup-claude-advisor), or plan limits, prices, and API billing.
+version: 1.1.0
 ---
 
 # Diagnose usage
 
+## Select the host
+
+Use the client that produced the affected run, if the user identified it. Otherwise, use the active client as the default and say so if that assumption matters. Usage from a different client may require a different report.
+
+If the client is still unclear, diagnose from the supplied evidence and ask only if you need a client-specific report or control. For Codex, follow `references/codex-usage.md`. For Claude Code, continue below.
+
+## Claude Code
+
 Anthropic's Claude Code team reviewed the session IDs people shared in late October 2026 and found no single root cause and no regression. Most fast drains traced to one or two heavy sessions, plus a few smaller token-burn issues Anthropic said it was rolling out fixes for. This skill follows that finding: locate the heavy session first, and treat a product bug as the last explanation, not the first.
 
-## Ground rules
+### Ground rules
 
 - **Find the session before the setting.** Fast drains usually come from one or two sessions. Changing global settings for all work fixes the wrong thing and makes everything else worse.
 - **Never promise a bug or a fix.** Say "update Claude Code, then re-check `/usage`", not "this is a known bug". Anthropic did not find a single cause.
 - **Don't run slash commands for the user.** `/usage`, `/effort` and `/feedback` are built-ins the user types. Ask for the pasted output; do not guess at numbers.
 - **Check names before you say them.** Effort levels, flags and features in Claude Code change month to month. If a level, flag or command is not in the user's paste or the current docs, say you could not confirm it. The docs map is in the `product-self-knowledge` skill when it is installed.
 
-## Workflow
+### Workflow
 
 1. Ask once, in one message: which session or day, when the drain started, and which of these they used: goal mode, workflows, agent teams, subagents, an SDK or headless job, a raised effort level. Skip anything they already said.
 2. Ask the user to run `/usage` and paste the result. It shows where a session's tokens went; without it any ranking is a guess.
@@ -25,11 +33,12 @@ Anthropic's Claude Code team reviewed the session IDs people shared in late Octo
 
 `references/trigger-cases.md` holds the test cases. Open it only when tuning the description above.
 
-## Report
+### Report
 
 Up to three culprits, ranked. Each one: what the paste shows, why that costs a lot, and one change. Then one next step. Mark which findings came from the user's paste and which are general causes you could not confirm from it.
 
 ## Hand off
 
 - Setting an effort level or fan-out for the next heavy task goes to `choose-effort`, as does "how do I use less from now on" when there is no past session to look at.
-- What a plan allows, what it costs, API billing go to `product-self-knowledge`.
+- Persistent advisor or subagent model tiers go to `setup-claude-advisor`.
+- Plan allowances, prices, and API billing go to current provider docs or `product-self-knowledge` for Claude Code.
