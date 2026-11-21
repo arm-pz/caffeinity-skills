@@ -19,7 +19,11 @@ for ref in ("W3", "w3", "3", "brew 3", "Brew-3", "espresso", "Espresso"):
 assert route_check.resolve(flows, "W99") is None
 # Other skills cite these numbers; renumbering breaks them.
 assert flows["espresso"]["steps"][0]["skills"] == ["web-preflight"], flows["espresso"]
-assert flows["cold-brew"]["steps"][0]["skills"] == ["seo-crawl"], flows["cold-brew"]
+assert [s["skills"] for s in flows["cold-brew"]["steps"]] == [
+    ["diagnose-search-visibility"], ["seo-crawl"], ["keyword-guard"], ["wordsmith"],
+    ["pre-ship-performance-audit"], ["platform-content"], ["get-indexed"],
+    ["verify-search-visibility"],
+], flows["cold-brew"]
 assert all(f["steps"] for f in flows.values())
 assert flows["descale"]["steps"][0]["skills"] == ["tune-skill"], flows["descale"]
 assert route_check.install("paper-trail") == "npx skills add arm-pz/caffeinity-skills --skill paper-trail"
@@ -33,14 +37,16 @@ assert in_repo == route_check.IN_MARKETPLACE, in_repo ^ route_check.IN_MARKETPLA
 assert list(flows)[-1] == "dial-in" and route_check.resolve(flows, "W12") == "dial-in", list(flows)
 assert flows["dial-in"]["steps"][0]["skills"] == ["portable-harness", "harness-audit"], flows["dial-in"]
 assert [s["optional"] for s in flows["dial-in"]["steps"]] == [False, True, True, True], flows["dial-in"]
-for brew in ("bloom", "cold-brew"):
-    last = flows[brew]["steps"][-1]
-    assert last["skills"] == ["get-indexed"] and last["optional"], flows[brew]
+assert flows["bloom"]["steps"][-1]["skills"] == ["get-indexed"]
+assert flows["bloom"]["steps"][-1]["optional"]
+assert [s["optional"] for s in flows["cold-brew"]["steps"]] == [
+    False, False, False, False, True, True, True, False,
+]
 
 
 def run(*args, home):
     return subprocess.run([sys.executable, "-I", str(SCRIPT), *args], capture_output=True,
-                          text=True, env={"HOME": str(home), "PATH": ""}, cwd=home)
+                          text=True, env={"HOME": str(home), "USERPROFILE": str(home), "PATH": ""}, cwd=home)
 
 
 with tempfile.TemporaryDirectory() as tmp:

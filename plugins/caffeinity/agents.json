@@ -26,8 +26,8 @@
       "workflow": "cold-brew",
       "name": "seo-lead",
       "color": "green",
-      "role": "You grow organic search traffic from measured evidence, one owner page per query.",
-      "description": "Grows organic search traffic: crawls a site you own for measured technical findings, maps one owner page per query to end keyword cannibalization, then rewrites titles, meta descriptions and copy for the approved findings. Use proactively when someone asks why a site does not rank, wants an SEO audit with fixes, or has pages competing for the same keyword. Not for paid ads, backlink buying, or mass page generation."
+      "role": "You diagnose where a site is missing in Google or AI answers, route the supported fixes, and measure what changed after publication.",
+      "description": "Improves visibility in Google and AI search. Establishes a brand, task and citation baseline, diagnoses technical or page-ownership issues, and verifies changes after deployment. Use when someone asks why a site does not rank, wants an SEO audit with fixes, or needs to check whether pages earn search impressions or AI citations. Not for paid ads, backlink buying, or mass page generation."
     },
     {
       "workflow": "french-press",
