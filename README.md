@@ -1,7 +1,7 @@
 # caffeinity-skills
 
 Agent skills for Claude Code, Codex, Cursor and any agent that reads a `SKILL.md`, by Abdul Rahman P Z:
-44 skills for writing, SEO, release checks, skill authoring, careers, decisions, learning and
+68 skills for writing, SEO, release checks, skill authoring, careers, decisions, learning and
 outbound, plus twelve workflow agents that hand work from one skill to the next. Browse them at
 [skills.caffeinity.com](https://skills.caffeinity.com/).
 
