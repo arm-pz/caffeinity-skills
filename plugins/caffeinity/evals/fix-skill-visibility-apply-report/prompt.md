@@ -5,4 +5,4 @@ allowed_tools: [Skill, Read, Glob, Grep]
 tags: [trigger, positive, negative]
 ---
 
-Here's last week's skill visibility report: three skill pages have the wrong canonical URL and their task copy doesn't match what people search. Apply the fixes and verify each one.
+Here is the visibility report from last week: three skill pages have wrong canonicals and two have task copy that does not match what people search. Apply those fixes and record how you verified each one.

@@ -5,4 +5,4 @@ allowed_tools: [Skill, Read, Glob, Grep]
 tags: [trigger, positive, negative]
 ---
 
-Google shows my skills catalog homepage, but none of the individual skill pages come up, even when I search a skill's exact name. A GitHub repo shows up instead. Work out why.
+Google shows my skills site homepage, but when I search what my tune-skill page does, a GitHub repo shows up instead and my page never does. Work out why each skill page is missing.

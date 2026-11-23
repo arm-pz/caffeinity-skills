@@ -1,7 +1,7 @@
 ---
 type: tool_used
 tool: Skill
-input_match: '[":]get\-indexed"'
+input_match: '[":]fix\-skill\-visibility"'
 min: 0
 max: 0
 ---
