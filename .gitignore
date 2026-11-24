@@ -5,4 +5,5 @@ plugins/caffeinity/evals/results/
 .agents/skills/
 .claude/skills/*
 !.claude/skills/trigger-coverage/
+!.claude/skills/nightly-pipeline/
 skills-lock.json
