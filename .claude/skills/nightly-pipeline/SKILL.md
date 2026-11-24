@@ -79,28 +79,40 @@ Every "Done when" line must be a command. If you can't write one, go back to Ste
 Each round:
 
 1. **Build.** In the worktree, make the change, staying inside the spec's Files list. Run every "Done when" command, plus the CI `check` job's steps from `.github/workflows/build-plugin.yml`. Commit to `pipeline/<yyyymmdd>`.
-2. **Review.** Start a fresh subagent and give it only two things: the spec text and the output of `git diff origin/main...HEAD`. Not this conversation, not the run log, not earlier review reports. Its instructions:
-   - Apply consistent-code-review to the diff, reading `plugins/caffeinity/skills/consistent-code-review/SKILL.md` for the method.
-   - Then report spec conformance: every file outside the Files list, any part of the Change list the diff doesn't make, and anything it does that's Out of scope.
-   - Return the report; edit nothing.
+2. **Review.** Start a fresh subagent and paste two things into its prompt: the spec text and the output of `git diff origin/main...HEAD`. Not this conversation, not the run log, not earlier review reports.
+
+   The subagent still has file and shell tools: no subagent type here lacks them. So the isolation is a rule, not something enforced, and its prompt must say:
+   - Apply consistent-code-review to the pasted diff. The method is in `plugins/caffeinity/skills/consistent-code-review/SKILL.md`, the only file it may read.
+   - Do not read any other file. Do not run commands. Do not edit anything.
+   - Report spec conformance: every file outside the Files list, any part of the Change list the diff doesn't make, and anything it does that's Out of scope.
+   - Return the report.
 
    Save the report as `<scratchpad>/reviews/<yyyymmdd>-round<n>.md`.
+
+   If the report relies on anything beyond the spec, the diff and that one SKILL.md (another checkout, a branch, a command's output), log it as `reviewer-note: <one line>` and keep it out of the verdict. Log `reviewer-isolation: broken (<what it read or ran>)` too, so a pattern shows up across runs.
 3. **Verdict.** The round passes only when all three hold:
-   - The reviewer found no CRITICAL or HIGH finding.
-   - Every "Done when" command passed.
+   - The reviewer found no CRITICAL or HIGH finding in the pasted diff.
+   - Every "Done when" command passed in this round's Build step. Only the builder's own run counts. A reviewer marking a command "not run" or "unverified" is not a failure, and a reviewer re-running one doesn't count either.
    - The spec check passed: `git diff --name-only origin/main...HEAD` lists no path outside the spec's Files list, with folder entries matching by prefix. This is a mechanical check; the reviewer's opinion doesn't override it.
 
-   If any fails, give the next round's Build the failed checks and findings.
+   When the round passes, save that file list as `<scratchpad>/reviewed-files-<yyyymmdd>.txt`. If any check fails, give the next round's Build the failed checks and findings.
 
 Log each round as `round n: tests pass|fail, review C/H/M/L counts, files in-spec|<paths outside>`.
 
 ## Step 4: Gate
 
 **Passed:**
-1. Re-run the spec check from Step 3. If it fails now, the run is stuck.
-2. Merge `origin/claude/harness-audit-proof-x3lxsl` into the worktree branch. Push it to `claude/harness-audit-proof-x3lxsl`; never force-push.
-3. Open one draft PR. The body holds the spec, the round log and the review summary, plus `Fixes #<n>` when the task came from an issue.
-4. If the change touches any `SKILL.md` or `evals/triggers.json`, the PR body must include this line: **"Structural only, trigger untested: `scripts/run_evals.sh` needs a Claude login and was not run."**
+1. Merge `origin/claude/harness-audit-proof-x3lxsl` into the worktree branch.
+   - If `git merge` exits with an error (a conflict or anything else), run `git merge --abort`. The run is then stuck at `step4: merge conflict with push branch`, with the conflicting paths listed.
+   - Never resolve a conflict in the gate. Never run a check on a half-merged tree.
+2. After a clean merge, run both checks:
+   - The spec check from Step 3 passes.
+   - `git diff --name-only origin/main...HEAD` matches `reviewed-files-<yyyymmdd>.txt` exactly, so the push carries only the files that were reviewed.
+
+   If either fails, the run is stuck with `step4: post-merge diff differs from reviewed diff`, with the extra or missing paths listed.
+3. Push `pipeline/<yyyymmdd>` to the remote branch: `git push origin pipeline/<yyyymmdd>:claude/harness-audit-proof-x3lxsl`. Never force-push. Never push the main checkout's local branch, which may hold commits outside this run.
+4. Open one draft PR. The body holds the spec, the round log and the review summary, plus `Fixes #<n>` when the task came from an issue.
+5. If the change touches any `SKILL.md` or `evals/triggers.json`, the PR body must include this line: **"Structural only, trigger untested: `scripts/run_evals.sh` needs a Claude login and was not run."**
 
 **Stuck after 3 rounds, over budget, or blocked:**
 1. Push nothing.
