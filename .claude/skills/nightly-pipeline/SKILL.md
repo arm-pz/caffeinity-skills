@@ -19,16 +19,21 @@ One task per night, small enough to finish and verify unattended. A clear note s
 
 ## Budget
 
-Stop a run when it hits any of these limits:
+Stop a run when it hits either of these limits:
 - 3 build-review rounds;
-- 45 minutes since Step 0;
-- $5.00 spent, measured as the change in this session's `cost_usd`.
+- 45 minutes since Step 0.
 
-Take a usage snapshot at Step 0 and another before Step 5, both with `get_session` (`external_metadata.usage`). Tokens = the change in input + output + cache-write + cache-read tokens. Hitting a limit makes the run stuck, with the reason `budget: <limit>`.
+Hitting a limit makes the run stuck, with the reason `budget: <limit>`.
+
+**Spend is scored a day late.** The session's usage figures (`get_session` → `external_metadata.usage`) only update when a turn ends, and a run is a single turn, so a run can't measure its own spend. Instead:
+- At Step 0, take a usage snapshot and record it in the log as `usage-start: in <input+cache-write+cache-read> out <output> cost <cost_usd>`.
+- Find the previous run's `usage-start` line in its log comment on the `nightly-log` issue. The previous run's spend is this snapshot minus that one. Report it in the scorecard's `Tokens (prev run)` column as `<total> (in <n> / out <n>), $<cost>`.
+- That figure also includes anything else this session did between the two runs, so label it as an upper bound.
+- If the previous run's spend was over $5.00, add `spend-alert: previous run $<cost>` to the log. Don't stop the run for it.
 
 ## Step 0: Set up the run
 
-1. Record the start time and the usage snapshot.
+1. Record the start time, and the `usage-start` line described under Budget.
 2. Remove leftover `run-*` worktrees: run `git worktree list`, then `git worktree remove --force` each `<scratchpad>/run-*` worktree, then `git worktree prune`. Delete local `pipeline/*` branches that no worktree uses.
 3. Run `git fetch origin`. Create the worktree `<scratchpad>/run-<yyyymmdd>` on a new local branch `pipeline/<yyyymmdd>` from `origin/main`. Create the folder `<scratchpad>/reviews/`.
 4. Find the open issue labelled `nightly-log`, or create one titled "Nightly pipeline log". All logging goes to that issue.
@@ -109,8 +114,8 @@ Post one comment on the `nightly-log` issue containing, in order:
 3. The Stale PRs list.
 4. This scorecard:
 
-       | Run | Picked | PR opened | Merged clean (last PR) | Retries | Stuck | Dropped | Duration | Tokens |
-       |-----|--------|-----------|------------------------|---------|-------|---------|----------|--------|
-       | <yyyy-mm-dd> | <task or "none"> | #n / no | yes / no / pending / n/a | <rounds − 1, or 0> | no / <step + reason> | <count> | <mm:ss> | <total> (in <n> / out <n>) |
+       | Run | Picked | PR opened | Merged clean (last PR) | Retries | Stuck | Dropped | Duration | Tokens (prev run) |
+       |-----|--------|-----------|------------------------|---------|-------|---------|----------|-------------------|
+       | <yyyy-mm-dd> | <task or "none"> | #n / no | yes / no / pending / n/a | <rounds − 1, or 0> | no / <step + reason> | <count> | <mm:ss> | ≤ <total> (in <n> / out <n>), $<cost>, or n/a on the first run |
 
 If the task came from an issue, also leave a one-line link to that comment on the issue. Then remove the run worktree. Keep `<scratchpad>/reviews/`.
