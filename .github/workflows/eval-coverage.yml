@@ -1,0 +1,70 @@
+name: eval coverage
+
+# Nightly safety net for the hourly rebuild in build-plugin.yml. That job
+# bundles new skills and agents but never runs the eval check, so a skill with
+# no trigger case turns `check` red on main and on every PR without anyone
+# hearing about it. This job runs the check on main and keeps one open issue
+# (label: eval-coverage) while it fails, then closes the issue once it passes.
+# Fix by running the repo skill .claude/skills/trigger-coverage.
+
+on:
+  schedule:
+    - cron: "13 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: eval-coverage
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: check trigger coverage
+        id: check
+        run: |
+          set +e
+          python scripts/build_evals.py --check > check.txt 2>&1
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          cat check.txt
+      - name: open, update or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STATUS: ${{ steps.check.outputs.status }}
+        run: |
+          set -euo pipefail
+          gh label create eval-coverage --color D93F0B \
+            --description "Trigger eval suite is missing cases" 2>/dev/null || true
+          issue=$(gh issue list --label eval-coverage --state open --json number --jq '.[0].number // empty')
+          if [ "$STATUS" = "0" ]; then
+            if [ -n "$issue" ]; then
+              gh issue close "$issue" --comment "\`build_evals.py --check\` passes on main ($(git rev-parse --short HEAD))."
+            fi
+            exit 0
+          fi
+          {
+            echo "\`python scripts/build_evals.py --check\` fails on main at $(git rev-parse --short HEAD):"
+            echo
+            echo '```'
+            cat check.txt
+            echo '```'
+            echo
+            echo "Fix: run the repo skill \`.claude/skills/trigger-coverage\`, which writes the missing cases and opens a draft PR."
+          } > body.md
+          if [ -n "$issue" ]; then
+            gh issue edit "$issue" --body-file body.md
+          else
+            gh issue create --title "Trigger eval suite is missing cases" --label eval-coverage --body-file body.md
+          fi
+          exit 1

@@ -25,6 +25,13 @@ description and SKILL.md body only. No automated triggering loop.
 | 10 | "Can Claude Code use the cheap model for the grunt work and keep Opus for the hard calls?" | setup-claude-advisor | implicit trigger with no "advisor" or "tiering"; runs pre-flight and shows a diff preview | PASS |
 | 11 | "Run the advisor setup again" (CLAUDE.md already has `## Advisor protocol`) | setup-claude-advisor | preview proposes replacing the section; the block is not appended a second time | PASS |
 | 12 | "Why did my quota drain yesterday?" (`diagnose-usage` not installed) | setup-claude-advisor names the sibling | says in one line that `diagnose-usage` is not installed, answers briefly, proposes no config changes | PASS |
+| 13 | "Set up a persistent advisor for Codex in this repository" | setup-claude-advisor | previews project TOML and AGENTS.md and waits for approval | PASS |
+| 14 | "Use cheaper readers and a stronger Codex model for second opinions across sessions" | setup-claude-advisor | checks available models and previews persistent config | PASS |
+| 15 | "Should I use Ultra for this one Codex migration?" | choose-effort | proposes no persistent configuration | PASS |
+| 16 | "Why did yesterday's Codex run exhaust my usage?" | diagnose-usage | asks for evidence of the completed run | PASS |
+| 17 | Set up a project advisor (active host: Codex) | setup-claude-advisor | selects Codex and keeps the current main model without asking which host to use | PASS |
+
+Cases 13-17 were reviewed manually against the updated descriptions.
 
 ## Boundary pairs
 
@@ -43,5 +50,4 @@ description and SKILL.md body only. No automated triggering loop.
 
 - Whether `claude --version` output format matches the version parsing logic on all platforms.
 - Real model behaviour for triggering. These are description-level judgements only.
-- The handoff is one-way: neither sibling's SKILL.md names `setup-claude-advisor`, so a user
-  who asks either of them for model tiering is not sent here.
+- The reciprocal handoffs land with the Choose Effort and Diagnose Usage updates. Merge those PRs before this one to make the full workflow available at release.

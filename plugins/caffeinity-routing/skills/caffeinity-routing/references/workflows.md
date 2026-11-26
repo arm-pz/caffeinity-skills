@@ -53,17 +53,18 @@ step 4 has run. Install those from the caffeinity-skills marketplace.
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
-| 1 | `seo-crawl` | the URL of a site the user owns | findings JSON with stable IDs and complete or inconclusive checks | a check is inconclusive and the user needs that area judged |
-| 2 | `keyword-guard` | titles, H1s, canonicals and the sitemap inventory from step 1 | a keyword ownership map: one owner page per query | the user has not signed off the map |
-| 3 | `wordsmith` | the approved findings and the ownership map | rewritten titles, meta descriptions and copy, with the author's facts kept | — |
-| 4 | `pre-ship-performance-audit` (optional) | the site, when speed or Core Web Vitals came up | measured fixes | — |
-| 5 | `platform-content` (optional) | the owner pages and the keyword map from step 2 | posts that point back to those pages on the platforms the audience uses | — |
-| 6 | `get-indexed` (optional) | the live site, once the fixes are deployed and the re-crawl is clean | new and changed pages sent to IndexNow, the sitemap resubmitted, and a short hand-submit list | a page still fails the step 1 re-crawl |
+| 1 | `diagnose-search-visibility` | site, priority URLs, brand and customer queries, and available Search Console or AI evidence | baseline and evidence-backed findings with a repair owner and verification check | no fix is supported; preserve the baseline and name the missing evidence |
+| 2 | `seo-crawl` | the owned site and the technical findings from step 1 | status, canonical and discovery evidence with stable finding IDs | a required check stays inconclusive |
+| 3 | `keyword-guard` | the query baseline, titles, H1s, canonicals and sitemap inventory | a keyword ownership map with one owner per query | the user has not approved a map needed for copy changes |
+| 4 | `wordsmith` | confirmed copy findings and the ownership map | titles, descriptions and text that address the task on the intended page | — |
+| 5 | `pre-ship-performance-audit` (optional) | the site when speed or Core Web Vitals came up | measured fixes | — |
+| 6 | `platform-content` (optional) | the owner pages and keyword map from step 3 | posts pointing back to the relevant pages | — |
+| 7 | `get-indexed` (optional) | live changes that passed verification | submission results or the manual inspection list | the page is ineligible or the submission is unauthorized |
+| 8 | `verify-search-visibility` | the diagnosis baseline and the changes that shipped | live verification and separate measurements for index state, search performance and AI citations | the follow-up window or comparable evidence is unavailable; record what remains pending |
 
-`seo-polish` packages steps 1 and 3; `keyword-resolver` packages steps 2 and 3; `seo-sweep` runs
-steps 1, 2, 3 and 6 with `findable`, fixes the findings in the site's code and proves each with a
-re-crawl. Re-run step 1 once after changes and compare finding IDs; a code change alone does not
-prove a fix.
+Use `seo-sweep` for site repairs, `keyword-resolver` for competing pages, and `findable-polish` for
+listing copy. For individual skill pages, use `check-skill-visibility` and then `fix-skill-visibility`.
+A verified repair and a change in search visibility are separate outcomes.
 
 ## Brew 5 · French press: Land a job
 

@@ -16,7 +16,7 @@ Chain two existing skills into a single workflow: **Upstream-Check** audits repo
 
 ```text
 /upstream-polish --root ~/Downloads/Qoder
-/upstream-polish --owner arm-pz --site https://skills.caffeinity.com
+/upstream-polish --owner arm-pz --site https://skillsmith.tech
 Check what hasn't been pushed and fix the listings.
 ```
 
@@ -74,7 +74,7 @@ Format the alternatives so the user can copy-paste directly into their files or 
 ## Example
 
 ```
-User: /upstream-polish --owner arm-pz --site https://skills.caffeinity.com
+User: /upstream-polish --owner arm-pz --site https://skillsmith.tech
 
 Assistant:
 
@@ -104,7 +104,7 @@ Assistant:
 
 ## Recommended Actions
 
-1. Run `node scripts/drift_check.mjs --owner arm-pz --site https://skills.caffeinity.com --fix` to add the two missing entries.
+1. Run `node scripts/drift_check.mjs --owner arm-pz --site https://skillsmith.tech --fix` to add the two missing entries.
 2. Update findable's README count from 12 to 17 using Option A wording.
 3. Push findable-polish: `cd ~/arm-pz/findable-polish && git push origin main`.
 4. Pull seo-audit before pushing anything there.

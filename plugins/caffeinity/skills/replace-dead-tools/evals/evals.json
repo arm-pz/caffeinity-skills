@@ -1,0 +1,37 @@
+{
+  "skill_name": "replace-dead-tools",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Find the dead tools still sitting on those lists, so I can be the replacement."
+    },
+    {
+      "id": 2,
+      "prompt": "Which of the tools in these 'best project management apps' articles were discontinued or acquired?"
+    },
+    {
+      "id": 3,
+      "prompt": "Check these 12 listicle URLs for products that no longer exist."
+    },
+    {
+      "id": 4,
+      "prompt": "Some of the apps on those roundups redirect to other companies now. Turn that into a pitch."
+    },
+    {
+      "id": 5,
+      "prompt": "Give me a broken-entry angle for my list outreach."
+    },
+    {
+      "id": 6,
+      "prompt": "Find the listicles that name my competitors but not me."
+    },
+    {
+      "id": 7,
+      "prompt": "Find broken links on my own website."
+    },
+    {
+      "id": 8,
+      "prompt": "Is Pipedrive a dead company? Research its financials."
+    }
+  ]
+}
