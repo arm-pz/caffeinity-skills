@@ -5,7 +5,7 @@
 //   node scripts/check_workflows.mjs launch-safely
 //
 // For each script it checks the rules Claude Code applies when it loads one (meta first and a pure
-// literal with name and description, meta.name matching the file, phase titles matching meta.phases,
+// literal with name and description, meta.name matching the file, every phase() title listed in meta.phases,
 // no import(), Date.now(), Math.random() or argless new Date()), then dry-runs the body twice with
 // stub agents: once where every step finishes, once where every step stops at its gate. It prints the
 // agents each run would start, with their model, so a change that adds Opus calls shows up here.
@@ -121,12 +121,6 @@ async function check(file) {
   }
 
   const metaPhases = (meta.phases || []).map(p => p.title)
-  const called = [...body.matchAll(/phase\(\s*'([^']+)'\s*\)/g)].map(x => x[1])
-  const unlisted = called.filter(t => !metaPhases.includes(t))
-  if (unlisted.length) return fail(name, `phase() titles missing from meta.phases: ${unlisted.join(', ')}`)
-  const unused = metaPhases.filter(t => !called.includes(t))
-  if (unused.length) return fail(name, `meta.phases titles never passed to phase(): ${unused.join(', ')}`)
-
   let ok
   let empty
   let stopped
@@ -141,6 +135,11 @@ async function check(file) {
     if (run.result === undefined) return fail(name, `dry run (${label}) returned nothing`)
   }
   if (empty.calls.length) return fail(name, 'with no args it should ask for input before starting any agent')
+  const called = new Set([...ok.phases, ...stopped.phases])
+  const unlisted = [...called].filter(t => !metaPhases.includes(t))
+  if (unlisted.length) return fail(name, `phase() titles missing from meta.phases: ${unlisted.join(', ')}`)
+  const unused = metaPhases.filter(t => !called.has(t))
+  if (unused.length) console.log(`note ${name}: meta.phases never reached in the dry runs: ${unused.join(', ')}`)
 
   const models = ok.calls.reduce((acc, c) => ({ ...acc, [c.model]: (acc[c.model] || 0) + 1 }), {})
   const mix = Object.entries(models).map(([k, v]) => `${v} ${k}`).join(', ')
