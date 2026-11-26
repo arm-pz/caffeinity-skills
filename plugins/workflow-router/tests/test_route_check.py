@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Self-check for route_check.py: python -I tests/test_route_check.py"""
+import runpy
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+from unittest.mock import patch
 
 SKILL = Path(__file__).resolve().parent.parent / "skills" / "workflow-router"
 SCRIPT = SKILL / "scripts" / "route_check.py"
@@ -53,5 +55,17 @@ with tempfile.TemporaryDirectory() as tmp:
 
     assert run(home=home).returncode == 2
     assert run("W99", home=home).returncode == 2
+
+# The published skills-site manifest can still use the router's previous name.
+build_skills = runpy.run_path(str(SKILL.parents[3] / "scripts" / "build_plugin.py"))["build_skills"]
+for name in ("caffeinity-routing", "workflow-router"):
+    entry = {"name": name, "repo": "arm-pz/caffeinity-skills", "path": f"plugins/{name}/skills/{name}"}
+    with tempfile.TemporaryDirectory() as tmp:
+        plugin = Path(tmp)
+        with patch.dict(build_skills.__globals__, PLUGIN=plugin):
+            assert build_skills({"skills": [entry]}, None) == 1
+        assert (plugin / "skills" / "workflow-router" / "SKILL.md").read_bytes() == (SKILL / "SKILL.md").read_bytes()
+        assert not (plugin / "skills" / "caffeinity-routing").exists()
+        assert "| workflow-router |" in (plugin / "SOURCES.md").read_text(encoding="utf-8")
 
 print("ok")

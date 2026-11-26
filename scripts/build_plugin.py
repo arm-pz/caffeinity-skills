@@ -160,12 +160,21 @@ def fetch_local(base):
     return fetch
 
 
+def canonical_skill(skill):
+    """Accept the earlier router entry while skills-site rolls out the rename."""
+    if (skill.get("repo") == "arm-pz/caffeinity-skills"
+            and skill["name"] == "caffeinity-routing"
+            and skill.get("path") == "plugins/caffeinity-routing/skills/caffeinity-routing"):
+        return {**skill, "name": "workflow-router", "path": ROUTING.relative_to(ROOT).as_posix()}
+    return skill
+
+
 def build_skills(manifest, fetch):
     dest = PLUGIN / "skills"
     if dest.exists():
         shutil.rmtree(dest)
     rows, cache = [], {}
-    for s in sorted(manifest["skills"], key=lambda s: s["name"]):
+    for s in sorted(map(canonical_skill, manifest["skills"]), key=lambda s: s["name"]):
         if s.get("repo") is None or s.get("kind") == "mod":
             continue
         if s["repo"] == "arm-pz/caffeinity-skills":   # lives in this repo
