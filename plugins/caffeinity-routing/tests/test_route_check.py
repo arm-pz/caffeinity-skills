@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Self-check for route_check.py: python -I tests/test_route_check.py"""
+import json
 import subprocess
 import sys
 import tempfile
@@ -69,6 +70,8 @@ with tempfile.TemporaryDirectory() as tmp:
     # An optional step that is not installed is a skip, not a failure.
     p = run("W6", "--json", home=home)
     assert p.returncode == 1 and '"skip (optional)"' in p.stdout, p.stdout
+    out = json.loads(p.stdout)["decision-memo"]
+    assert out["workflow"] == out["brew"] == "Workflow 6 · decision-memo", out
 
     assert run(home=home).returncode == 2
     assert run("W99", home=home).returncode == 2

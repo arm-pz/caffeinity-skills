@@ -43,11 +43,11 @@ Each agent runs one workflow and preloads the skills it needs. In Claude Code, a
 | `seo-lead` | Workflow 4 · grow-search-traffic: Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content / get-indexed |
 | `job-search-coach` | Workflow 5 · land-a-job: Land a job | recruiter-lens → applicant-kit → application-pilot → career-track |
 | `decision-analyst` | Workflow 6 · decision-memo: Make a decision | research-brief → data-readout → crash-test or do-better → strategy-memo |
-| `learning-coach` | Workflow 7 · learn-any-topic: Learn a skill | topic-primer → study-system → course-builder |
+| `learning-coach` | Workflow 7 · learn-any-topic: Learn any topic | topic-primer → study-system → course-builder |
 | `outbound-lead` | Workflow 8 · run-cold-outbound: Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | `solo-launcher` | Workflow 9 · launch-a-product: Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → release-gate-chair → platform-content |
 | `skill-maintainer` | Workflow 10 · maintain-skills: Maintain the skill family | tune-skill → prompts-to-skill-release → upstream-check |
-| `estate-lead` | Workflow 11 · audit-agent-skills: Stand up or audit a skill estate | skill-estate |
+| `estate-lead` | Workflow 11 · audit-agent-skills: Stand up or audit a set of agent skills | skill-estate |
 | `harness-lead` | Workflow 12 · set-up-a-coding-agent: Set up a coding agent for a repo | portable-harness or harness-audit → setup-claude-advisor → diagnose-usage → choose-effort |
 
 Codex has no subagents, so there the `caffeinity-routing` skill does this job: describe the outcome

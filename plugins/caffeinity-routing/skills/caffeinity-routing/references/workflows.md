@@ -84,7 +84,7 @@ A verified repair and a change in search visibility are separate outcomes.
 | 3 | `crash-test` or `do-better` | the brief and the decision to make (crash-test), or one artifact to make as good as possible (do-better) | a merged answer with a dissent log, or one winning draft | — |
 | 4 | `strategy-memo` | the brief and the crash-tested option | a decision document: recommendation, risks and roadmap | — |
 
-## Workflow 7 · learn-any-topic: Learn a skill
+## Workflow 7 · learn-any-topic: Learn any topic
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |
@@ -128,7 +128,7 @@ tune, a fact check against primary sources, a listing polish, a release and a co
 page, use `tune-and-ship`; when nothing is to be released, `tune-and-polish` does the tune and the
 listing.
 
-## Workflow 11 · audit-agent-skills: Stand up or audit a skill estate
+## Workflow 11 · audit-agent-skills: Stand up or audit a set of agent skills
 
 | Step | Skill | Receives | Hands on | Stops when |
 | --- | --- | --- | --- | --- |

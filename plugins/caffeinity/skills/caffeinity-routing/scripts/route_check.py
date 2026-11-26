@@ -131,7 +131,9 @@ def main(argv=None):
     report, all_missing = {}, []
     for w in wanted:
         rows, missing = check(flows[w], have)
-        report[w] = {"workflow": label(flows[w]), "title": flows[w]["title"], "steps": rows, "missing": missing}
+        # "brew" repeats "workflow" for readers of the old --json output; drop it in the next release.
+        report[w] = {"workflow": label(flows[w]), "brew": label(flows[w]), "title": flows[w]["title"],
+                     "steps": rows, "missing": missing}
         all_missing += missing
 
     if a.json:

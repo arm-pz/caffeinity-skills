@@ -12,11 +12,11 @@ skills in order with what each one hands the next, and names the ones you have n
 | Workflow 4 · grow-search-traffic | Grow organic search traffic | seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit / platform-content / get-indexed (optional) |
 | Workflow 5 · land-a-job | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track (optional) |
 | Workflow 6 · decision-memo | Make a decision | research-brief → data-readout (optional) → crash-test or do-better → strategy-memo |
-| Workflow 7 · learn-any-topic | Learn a skill | topic-primer → study-system → course-builder (for a class) |
+| Workflow 7 · learn-any-topic | Learn any topic | topic-primer → study-system → course-builder (for a class) |
 | Workflow 8 · run-cold-outbound | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | Workflow 9 · launch-a-product | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → Workflow 3 · launch-safely → platform-content |
 | Workflow 10 · maintain-skills | Maintain the skill family | tune-skill → prompts-to-skill-release (optional) → upstream-check |
-| Workflow 11 · audit-agent-skills | Stand up or audit a skill estate | skill-estate |
+| Workflow 11 · audit-agent-skills | Stand up or audit a set of agent skills | skill-estate |
 | Workflow 12 · set-up-a-coding-agent | Set up a coding agent for a repo | portable-harness or harness-audit → setup-claude-advisor → diagnose-usage → choose-effort (last three optional) |
 
 ## Install

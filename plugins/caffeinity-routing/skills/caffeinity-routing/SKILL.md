@@ -71,11 +71,11 @@ off. Doing a step's job here produces a worse version of a skill that already ex
 | Workflow 4 · grow-search-traffic | Grow organic search traffic | diagnose-search-visibility → seo-crawl → keyword-guard → wordsmith → pre-ship-performance-audit, platform-content, get-indexed (each if it applies) → verify-search-visibility |
 | Workflow 5 · land-a-job | Land a job | recruiter-lens → applicant-kit → application-pilot → career-track (for an offer, promotion or pivot) |
 | Workflow 6 · decision-memo | Make a decision | research-brief → data-readout (if there is data) → crash-test or do-better → strategy-memo |
-| Workflow 7 · learn-any-topic | Learn a skill | topic-primer → study-system → course-builder (only when teaching a group) |
+| Workflow 7 · learn-any-topic | Learn any topic | topic-primer → study-system → course-builder (only when teaching a group) |
 | Workflow 8 · run-cold-outbound | Run cold outbound | cold-email-list-gate → cold-email-ops → sales-copy |
 | Workflow 9 · launch-a-product | Launch a one-person product | solo-income-blueprint → site-prompt → production-code → paper-trail → Workflow 3 · launch-safely → platform-content |
 | Workflow 10 · maintain-skills | Maintain the skill family | tune-skill (regress.py) → prompts-to-skill-release (if behaviour changed) → upstream-check |
-| Workflow 11 · audit-agent-skills | Stand up or audit a skill estate | skill-estate (eight gated phases over the whole collection) |
+| Workflow 11 · audit-agent-skills | Stand up or audit a set of agent skills | skill-estate (eight gated phases over the whole collection) |
 | Workflow 12 · set-up-a-coding-agent | Set up a coding agent for a repo | portable-harness or harness-audit → setup-claude-advisor (if quota is the constraint) → diagnose-usage (if usage already drained) → choose-effort (before a large task) |
 
 Per-step inputs, outputs and stop conditions are in `references/workflows.md`. Open it at step 3,
