@@ -68,8 +68,9 @@ with tempfile.TemporaryDirectory() as tmp:
 
     p = run("cold-brew", home=home)
     assert p.stdout.count("install:") == 1, p.stdout
-    assert ("install: npx skills add arm-pz/seo-crawl && npx skills add arm-pz/keyword-guard"
-            " && npx skills add arm-pz/wordsmith") in p.stdout, p.stdout
+    required = [s["skills"][0] for s in flows["cold-brew"]["steps"] if not s["optional"]]
+    assert f"install: {route_check.install_all(required)}" in p.stdout, p.stdout
+    assert all(route_check.install(n) in p.stdout for n in required), p.stdout
 
     p = run("moka-pot", home=home)
     assert "npx skills add arm-pz/caffeinity-skills --skill paper-trail" in p.stdout, p.stdout
