@@ -25,8 +25,8 @@ Distilled from the run that took `setup-claude-advisor` from 0.1.1 to 0.1.2;
 
 - **Handles**: one published skill per run, through to a merged PR and a confirmed live page.
 - **Does not handle**: a tune with no release (`tune-skill`), drafts with nothing pushed
-  (`tune-and-polish`), a new skill (`skill-launch`), regression upkeep (the Descale brew in
-  `caffeinity-routing`), or a whole collection (`skill-estate`).
+  (`tune-and-polish`), a new skill (`skill-launch`), regression upkeep (the maintain-skills workflow in
+  `workflow-router`), or a whole collection (`skill-estate`).
 
 ## Requires
 
