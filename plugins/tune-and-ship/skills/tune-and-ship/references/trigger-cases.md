@@ -3,7 +3,7 @@
 Written to tune-skill's case format (`references/test-cases.md` in arm-pz/tune-skill). Judged from
 the `description` frontmatter only. Competing descriptions read from their SKILL.md files on
 2026-11-10: `tune-skill`, `tune-and-polish`, `findable-polish`, `skill-launch`, `skill-estate`,
-`upstream-check`, `prompts-to-skill-release`. `caffeinity-routing` was read for the Descale brew
+`upstream-check`, `prompts-to-skill-release`. `caffeinity-routing` was read for the maintain-skills workflow
 table only.
 
 **Run:** written 2026-11-10 and hand-checked against the descriptions. No automated triggering run.
@@ -17,7 +17,7 @@ table only.
 | 5 | "The numbers in that skill look made up. Sort it out and publish it." | tune-and-ship | implicit: fact check plus release | hand-checked |
 | 6 | "My tune-skill isn't triggering." | tune-skill | tune-and-ship does not load | hand-checked |
 | 7 | "Draft better trigger wording and a better About line, don't push anything." | tune-and-polish | tune-and-ship does not load | hand-checked |
-| 8 | "Run this week's maintenance on the skills." | caffeinity-routing (Brew 10 · Descale) | tune-and-ship does not load | hand-checked |
+| 8 | "Run this week's maintenance on the skills." | caffeinity-routing (Workflow 10 · maintain-skills) | tune-and-ship does not load | hand-checked |
 | 9 | "I have an idea for a new skill, take it to published." | skill-launch | tune-and-ship does not load | hand-checked |
 | 10 | "Audit all 40 of my skill repos and wire up publishing." | skill-estate | tune-and-ship does not load | hand-checked |
 
