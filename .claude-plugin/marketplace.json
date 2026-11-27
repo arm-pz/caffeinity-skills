@@ -41,6 +41,11 @@
       "description": "Takes one published skill at a time from as-is to tuned, fact-checked, released and live: tune-skill, a fact check against primary sources, findable-polish, one PR, then a confirmed refresh of the site and marketplace copy."
     },
     {
+      "name": "skills-to-dynamic-workflow",
+      "source": "./plugins/skills-to-dynamic-workflow",
+      "description": "Turns a workflow or an ordered set of skills into a Claude Code dynamic workflow script: maps each step, turns approvals and pushes into resume points, picks Sonnet or Opus per step, and checks the script with a dry run that spends no tokens."
+    },
+    {
       "name": "wordsmith",
       "source": {
         "source": "github",

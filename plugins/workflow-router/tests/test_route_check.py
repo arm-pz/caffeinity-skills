@@ -31,6 +31,10 @@ assert flows["maintain-skills"]["steps"][0]["skills"] == ["tune-skill"], flows["
 assert route_check.install("paper-trail") == "npx skills add arm-pz/caffeinity-skills --skill paper-trail"
 assert route_check.install("tune-and-ship") == "npx skills add arm-pz/caffeinity-skills --skill tune-and-ship"
 assert route_check.install("topic-primer") == "npx skills add arm-pz/topic-primer"
+# Missing skills come as one command, each once, so a user copies a single line.
+assert route_check.install_all(["seo-crawl", "paper-trail", "seo-crawl"]) == (
+    "npx skills add arm-pz/seo-crawl && npx skills add arm-pz/caffeinity-skills --skill paper-trail")
+assert route_check.install_all([]) == ""
 # Every skill that lives under plugins/ in this repo installs from the marketplace, in a workflow or not.
 PLUGINS = SKILL.parents[2]
 in_repo = {p.parent.name for p in PLUGINS.glob("*/skills/*/SKILL.md") if p.parents[2].name != "caffeinity"}
@@ -63,6 +67,12 @@ with tempfile.TemporaryDirectory() as tmp:
     p = run("learn-any-topic", home=home)
     assert p.returncode == 0 and "MISSING" not in p.stdout, p.stdout
     assert "skip (optional)" in p.stdout, p.stdout   # course-builder is optional in learn-any-topic
+
+    p = run("grow-search-traffic", home=home)
+    assert p.stdout.count("install:") == 1, p.stdout
+    required = [s["skills"][0] for s in flows["grow-search-traffic"]["steps"] if not s["optional"]]
+    assert f"install: {route_check.install_all(required)}" in p.stdout, p.stdout
+    assert all(route_check.install(n) in p.stdout for n in required), p.stdout
 
     p = run("launch-a-product", home=home)
     assert "npx skills add arm-pz/caffeinity-skills --skill paper-trail" in p.stdout, p.stdout
