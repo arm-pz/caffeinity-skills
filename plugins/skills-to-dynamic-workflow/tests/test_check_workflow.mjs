@@ -29,7 +29,7 @@ test('the worked example passes, and --stub walks its second step', () => {
   const plain = run(ex, '--args', '{"pr": 12}')
   assert.equal(plain.code, 0, plain.out)
   assert.match(plain.out, /never reached in the dry runs: Fix/)
-  const walked = run(ex, '--args', '{"pr": 12}', '--stub', '{"verdict":"blocking"}')
+  const walked = run(ex, '--args', '{"pr": 12}', '--stub', '{"verdict":"fail"}')
   assert.equal(walked.code, 0, walked.out)
   assert.match(walked.out, /2 agents when every step finishes \(1 opus, 1 sonnet\)/)
   assert.doesNotMatch(walked.out, /warn/)

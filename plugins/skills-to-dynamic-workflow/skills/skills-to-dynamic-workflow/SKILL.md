@@ -96,7 +96,7 @@ Where it goes:
     node scripts/check_workflow.mjs <file.js> --args '<real-looking args JSON>'
 
 Fix every FAIL. Read every warn: a phase never reached means a branch the dry run did not walk, so
-walk it with `--stub '{"verdict": "blocking"}'` (any field the branch reads). For a plugin, also run
+walk it with `--stub '{"verdict": "fail"}'` (any field the branch reads). For a plugin, also run
 
     claude plugin validate --strict <plugin-dir>
 

@@ -1,7 +1,7 @@
 export const meta = {
   name: 'review-a-pull-request',
   description: 'Review one pull request with consistent-code-review, then fix its CRITICAL and HIGH findings locally with address-findings. Stops before any push or PR comment.',
-  whenToUse: 'When a PR needs a review and its blocking findings fixed. Pass {pr} (number), and optionally {repo: "owner/name", round, baseline}. Rerun with round 2 after you push the fixes.',
+  whenToUse: 'When a PR needs a review and its blocking findings fixed. Pass {pr} (number), and optionally {repo: "owner/name", round, previous: path to the last review-report.json}. Rerun with round 2 after you push the fixes.',
   phases: [
     { title: 'Review', detail: 'consistent-code-review on the PR diff', model: 'opus' },
     { title: 'Fix', detail: 'address-findings on CRITICAL and HIGH, inside the PR files; pushes and comments are proposed, not taken', model: 'sonnet' },
@@ -9,10 +9,10 @@ export const meta = {
 }
 
 // Built with skills-to-dynamic-workflow from: consistent-code-review -> address-findings.
-// Handoff gap, left visible on purpose: consistent-code-review writes a markdown report, and
-// address-findings wants a review-report.json valid against tools/pr-graph/schemas in the target
-// repo. Step 1 writes that JSON only where the schema exists; otherwise address-findings stops
-// and says the schema is missing, as its own SKILL.md tells it to.
+// The handover between them is review-report.json (the pr-graph schema in arm-pz/skills-site),
+// which consistent-code-review writes beside its markdown report from version 1.1.0
+// (arm-pz/consistent-code-review PR #1). An older copy writes markdown only; address-findings then
+// stops and says the report is missing, as its own SKILL.md tells it to.
 
 // ---- shared preamble: copy it whole into every workflow (a workflow script cannot import) ----
 // Sonnet does the steps; Opus only where a step judges or designs. Change a tier here, not per call.
@@ -121,23 +121,24 @@ if (!input.pr && !input.carried) {
 }
 const repo = input.repo ? `Repository: ${input.repo}` : 'Repository: the current one (gh repo view)'
 const round = Math.min(3, Math.max(1, Number(input.round) || 1))
+const dir = `.reviews/pr-${input.pr}/round-${round}`
 log(`Reviewing PR #${input.pr}, round ${round}`)
 
 return chain(NAME, [
   // Finding bugs is judgement, so the review is the one Opus step.
   { n: 1, skill: 'consistent-code-review', phase: 'Review', opts: OPUS,
-    receives: 'the diff of one pull request, and an earlier report as the baseline if there is one',
-    input: () => `${repo}\nPull request: #${input.pr}\nScope: the PR diff against its base, nothing else.\n` +
-      (input.baseline ? `Baseline report: ${input.baseline}\n` : '') +
-      'If the repo has tools/pr-graph/schemas/review-report.schema.json, also write review-report.json valid against it and say where. ' +
-      'Set verdict to "blocking" if there is any CRITICAL or HIGH finding, otherwise "clean".',
+    receives: 'one pull request, its round number, and the previous round\'s review-report.json on a re-review',
+    input: () => `${repo}\nPull request: #${input.pr}\nRound: ${round}\nScope: the PR diff against its base, nothing else.\n` +
+      (input.previous ? `Previous round's review-report.json: ${input.previous}\n` : '') +
+      `Write both handovers (Phase 6): review.md and review-report.json in ${dir}. ` +
+      'Put the path of review-report.json first in handsOn, then the markdown report. Set verdict to the JSON\'s verdict: "fail" or "pass".',
     stopsWhen: 'the scope is ambiguous (the skill asks one question and stops)' },
   // Applying a reviewed fix with tests is procedure, so Sonnet at high effort.
   { n: 2, skill: 'address-findings', phase: 'Fix', opts: SONNET_HIGH,
     receives: 'review-report.json for this PR and the round number (1 to 3)',
-    when: (_, last) => Boolean(last && last.verdict === 'blocking'),
+    when: (_, last) => Boolean(last && last.verdict === 'fail'),
     whenNot: 'no CRITICAL or HIGH findings, so there is nothing to fix',
-    input: c => `${repo}\nPull request: #${input.pr}\nRound: ${round}\n\nReview output from step 1:\n${c}\n\n` +
+    input: c => `${repo}\nPull request: #${input.pr}\nRound: ${round}\nreview-report.json: ${dir}/review-report.json (write fix-report.json beside it)\n\nStep 1's output:\n${c}\n\n` +
       'Commit fixes locally in your worktree. Do not push and do not comment on the PR: list the push (with its branch and commits) and the PR comment table in proposedActions.',
-    stopsWhen: 'the review is stale, the baseline is red, or the review-report schema is missing' },
+    stopsWhen: 'the review is stale, the baseline is red, or review-report.json is missing' },
 ], '')
