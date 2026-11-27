@@ -2,7 +2,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { copyFileSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
+import { copyFileSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -99,6 +99,23 @@ test('the checker runs from a folder whose path has a space', () => {
   assert.match(r.out, /ok   review-a-pull-request/)
 })
 
+test('the checker runs when reached through a symlinked folder', () => {
+  const real = mkdtempSync(join(tmpdir(), 'check-real-'))
+  copyFileSync(CHECK, join(real, 'check_workflow.mjs'))
+  const link = `${real}-link`
+  symlinkSync(real, link, 'dir')
+  const r = runAt(join(link, 'check_workflow.mjs'), EXAMPLE, '--args', '{"pr": 12}')
+  assert.equal(r.code, 0, r.out)
+  assert.match(r.out, /ok   review-a-pull-request/)
+})
+
+test('a fractional round is read as a whole round', async () => {
+  const r = await dryRun(body(EXAMPLE), { pr: 12, round: 2.5 }, 'done', {})
+  assert.equal(r.calls.length, 1)
+  assert.match(r.calls[0].prompt, /\.reviews\/pr-12\/round-2\. /)
+  assert.match(r.calls[0].prompt, /Round: 2\n/)
+})
+
 test('a malformed --args-file gives the usage line, not a stack trace', () => {
   const file = join(mkdtempSync(join(tmpdir(), 'args-')), 'args.json')
   writeFileSync(file, 'not json')
@@ -119,6 +136,7 @@ test('round 4 reviews in its own folder and fixes nothing', async () => {
   assert.equal(r.calls.length, 1)
   assert.equal(r.result.status, 'done')
   assert.match(r.result.steps[1].why, /round 4 is the last review/)
+  assert.match(r.calls[0].prompt, /\.reviews\/pr-12\/round-4\. /)
 })
 
 test('a PR number that is not a whole number asks for one before any agent starts', async () => {

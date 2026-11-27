@@ -138,7 +138,7 @@ if (!Number.isInteger(Number(input.pr)) || Number(input.pr) < 1) {
 const repo = input.repo ? `Repository: ${input.repo}` : 'Repository: the current one (gh repo view)'
 // A review round is 1 to 4 (review-report.json); address-findings fixes rounds 1 to 3 only, so
 // round 4 is the last review and nothing is fixed after it.
-const round = Math.min(4, Math.max(1, Number(input.round) || 1))
+const round = Math.min(4, Math.max(1, Math.trunc(Number(input.round)) || 1))
 const dir = `.reviews/pr-${input.pr}/round-${round}`
 log(`Reviewing PR #${input.pr}, round ${round}`)
 

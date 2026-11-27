@@ -25,7 +25,7 @@
 // A dry run proves the control flow, not the skills. The first real run is still the test of those.
 // Exit code: 0 when every script passes (warnings allowed), 1 otherwise.
 
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, realpathSync, statSync } from 'node:fs'
 import { join, basename, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
@@ -179,7 +179,7 @@ export async function dryRun(body, args, mode, stub = STUB) {
       if (p) problems.push(`${opts.label || prompt.slice(0, 40)}: ${p}`)
       if (opts.isolation !== undefined && opts.isolation !== 'worktree') problems.push(`isolation must be 'worktree', got ${JSON.stringify(opts.isolation)}`)
       if (opts.phase) phases.push(opts.phase)
-      calls.push({ label: opts.label || prompt.slice(0, 40), model: opts.model || 'session model', effort: opts.effort || 'default' })
+      calls.push({ label: opts.label || prompt.slice(0, 40), model: opts.model || 'session model', effort: opts.effort || 'default', prompt })
       return fake(opts.schema, mode, true, stub)
     },
     phase(title) { phases.push(title) },
@@ -342,4 +342,9 @@ async function main() {
   process.exit(failed ? 1 : 0)
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main()
+// Node loads the main module by its real path, so compare real paths: a folder reached through a
+// symlink (macOS /tmp, a linked plugin) or with a space in its name must still run main().
+function isMain() {
+  try { return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url)) } catch { return false }
+}
+if (process.argv[1] && isMain()) main()
