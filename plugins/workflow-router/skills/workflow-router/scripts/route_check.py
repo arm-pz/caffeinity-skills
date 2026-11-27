@@ -84,6 +84,11 @@ def install(name):
     return f"npx skills add arm-pz/{name}"
 
 
+def install_all(names):
+    """One copy-paste command for every missing skill, each once, in the order the workflow needs them."""
+    return " && ".join(install(n) for n in dict.fromkeys(names))
+
+
 def installed(extra=()):
     """Names of every SKILL.md found under the search roots, by frontmatter name or folder."""
     found = {}
@@ -133,7 +138,8 @@ def main(argv=None):
         rows, missing = check(flows[w], have)
         # "brew" repeats "workflow" for readers of the old --json output; drop it in the next release.
         report[w] = {"workflow": label(flows[w]), "brew": label(flows[w]), "title": flows[w]["title"],
-                     "steps": rows, "missing": missing}
+                     "steps": rows, "missing": missing,
+                     "install": install_all(missing) or None}
         all_missing += missing
 
     if a.json:
@@ -143,8 +149,8 @@ def main(argv=None):
             print(f"{r['workflow']}: {r['title']}")
             for row in r["steps"]:
                 print(f"  {row['step']}. {' or '.join(row['skills']):<56} {row['status']}")
-            for name in r["missing"]:
-                print(f"  install: {install(name)}")
+            if r["missing"]:
+                print(f"  install: {install_all(r['missing'])}")
     return 1 if all_missing else 0
 
 
