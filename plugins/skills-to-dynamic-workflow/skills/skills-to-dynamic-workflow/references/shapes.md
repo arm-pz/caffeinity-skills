@@ -45,6 +45,9 @@ A workflow can't ask anything mid-run, so:
   an ordinary turn after the run) takes the action.
 - **Missing input**: with no `args`, the script returns `needs_input` and an example before
   starting any agent. That is the only "question" a workflow can ask.
+- **A missing skill**: the step returns `status: "skipped"` with the install command. The run ends
+  with `needs_input` and a `resume` from that step, so it never reports `done` on work that did
+  not happen.
 - **Optional steps** (skill-to-mod only when there is a fixed moment): a `when` test on the row,
   driven by an arg, with `whenNot` saying which arg turns it on.
 

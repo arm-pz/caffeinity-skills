@@ -63,8 +63,9 @@ function needInput(name, missing, example) {
 
 // Runs steps in order, starting at args.from (default 1). Each step receives the previous step's
 // output verbatim; a row's `when(carried, last)` can also read the previous step's whole result.
-// The run ends at the first step that stops at its gate or prepares an outward action, and the
-// result says how to resume: pass `resume` back as args, with `decisions` added.
+// The run ends at the first step whose skill is missing, that stops at its gate or that prepares
+// an outward action, and the result says how to resume: pass `resume` back as args, with
+// `decisions` added.
 async function chain(name, steps, firstInput) {
   const from = Math.max(1, Number(input.from) || 1)
   let carried = input.carried || firstInput
@@ -82,6 +83,20 @@ async function chain(name, steps, firstInput) {
     const r = await step(s.n, s.skill, s.receives, body, s.stopsWhen, { phase: s.phase, ...s.opts })
     ran.push({ step: s.n, skill: s.skill, status: r.status, verdict: r.verdict || null, stopReason: r.stopReason || null })
     const before = last
+    // A skill that is not installed ends the run: carrying on would hand the next step nothing
+    // and report done. Install it, then pass `resume` back as args.
+    if (r.status === 'skipped') {
+      return {
+        workflow: name,
+        status: 'needs_input',
+        stoppedAt: s.n,
+        skill: s.skill,
+        missing: [s.skill],
+        reason: r.stopReason || `${s.skill} is not installed: ${INSTALL(s.skill)}`,
+        steps: ran,
+        resume: { ...input, from: s.n, carried, lastVerdict: before ? before.verdict || null : null },
+      }
+    }
     last = r
     const actions = r.proposedActions || []
     if (r.status === 'stopped' || actions.length) {

@@ -18,13 +18,22 @@
 // and it prints how many agents each run would start and on which model, so a change that adds
 // Opus calls or crosses the 25-agent "Large workflow" warning shows up here.
 //
+// The dry run executes the script's top-level code, in a separate node:vm context that holds only
+// stub hooks (no process, require, fs or network) and stops after 10 seconds or 1,000 agent()
+// calls. node:vm is not a security boundary, so check scripts you would be willing to run.
+//
 // A dry run proves the control flow, not the skills. The first real run is still the test of those.
 // Exit code: 0 when every script passes (warnings allowed), 1 otherwise.
 
 import { readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, basename, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import vm from 'node:vm'
 
 const LARGE = 25
+// The runtime stops a run at 1,000 agents; a dry run that gets there is a loop the stubs never end.
+const MAX_AGENTS = 1000
+const TIMEOUT_MS = Number(process.env.CHECK_WORKFLOW_TIMEOUT_MS) || 10000
 
 function usage(msg) {
   if (msg) console.error(msg)
@@ -99,7 +108,7 @@ export function schemaProblem(schema, path = 'schema') {
 // A fake value shaped like the JSON schema an agent() call asked for.
 let STUB = {}
 
-function fake(schema, mode, top = true) {
+function fake(schema, mode, top = true, stub = STUB) {
   if (!schema) return 'stub output'
   if (schema.enum) {
     for (const stop of ['stopped', 'HOLD', 'blocked', 'fail']) {
@@ -112,36 +121,35 @@ function fake(schema, mode, top = true) {
       const o = {}
       // Outward actions would stop every chain at its first step, so the stubs never propose any.
       for (const [k, v] of Object.entries(schema.properties || {})) {
-        o[k] = k === 'proposedActions' ? [] : top && k in STUB ? STUB[k] : fake(v, mode, false)
+        o[k] = k === 'proposedActions' ? [] : top && k in stub ? stub[k] : fake(v, mode, false, stub)
       }
       return o
     }
-    case 'array': return mode === 'done' ? [fake(schema.items, mode, false)] : []
+    case 'array': return mode === 'done' ? [fake(schema.items, mode, false, stub)] : []
     case 'number': case 'integer': return 0
     case 'boolean': return mode === 'stop'
     default: return 'stub'
   }
 }
 
-async function dryRun(body, args, mode) {
-  const calls = []
-  const phases = []
-  const problems = []
-  const agent = async (prompt, opts = {}) => {
-    if (typeof prompt !== 'string' || !prompt.trim()) throw new Error('agent() called with an empty prompt')
-    const p = schemaProblem(opts.schema)
-    if (p) problems.push(`${opts.label || prompt.slice(0, 40)}: ${p}`)
-    if (opts.isolation !== undefined && opts.isolation !== 'worktree') problems.push(`isolation must be 'worktree', got ${JSON.stringify(opts.isolation)}`)
-    if (opts.phase) phases.push(opts.phase)
-    calls.push({ label: opts.label || prompt.slice(0, 40), model: opts.model || 'session model', effort: opts.effort || 'default' })
-    return fake(opts.schema, mode)
+// The hooks a script sees. They are built inside the script's own vm context, and the only way
+// out is `call`, which passes JSON strings, so the script never holds a host object or function.
+const HOOKS = `(call, argsJson) => {
+  const ask = (name, payload) => {
+    const r = JSON.parse(call(name, JSON.stringify(payload === undefined ? null : payload)))
+    if (r.error) throw new Error(r.error)
+    return r.value
   }
-  const parallel = async thunks => {
+  globalThis.args = argsJson === undefined ? undefined : JSON.parse(argsJson)
+  globalThis.agent = async (prompt, opts = {}) => ask('agent', { prompt, opts })
+  globalThis.phase = title => { ask('phase', String(title)) }
+  globalThis.log = () => {}
+  globalThis.parallel = async thunks => {
     if (!Array.isArray(thunks)) throw new Error('parallel() takes an array of () => Promise thunks')
     if (thunks.some(t => typeof t !== 'function')) throw new Error('parallel() items must be functions, not promises')
     return Promise.all(thunks.map(t => Promise.resolve().then(t).catch(() => null)))
   }
-  const pipeline = async (items, ...stages) => {
+  globalThis.pipeline = async (items, ...stages) => {
     if (!Array.isArray(items)) throw new Error('pipeline() takes an array of items first')
     if (stages.some(s => typeof s !== 'function')) throw new Error('pipeline() stages must be functions')
     return Promise.all(items.map(async (item, i) => {
@@ -150,12 +158,57 @@ async function dryRun(body, args, mode) {
       return v
     }))
   }
-  const workflow = async name => ({ workflow: typeof name === 'string' ? name : 'script', status: mode === 'stop' ? 'stopped_at_gate' : 'done' })
-  const budget = { total: null, spent: () => 0, remaining: () => Infinity }
-  const AsyncFunction = (async () => {}).constructor
-  const fn = new AsyncFunction('agent', 'parallel', 'pipeline', 'phase', 'log', 'args', 'budget', 'workflow', body)
-  const result = await fn(agent, parallel, pipeline, t => phases.push(t), () => {}, args, budget, workflow)
-  return { calls, phases, problems, result }
+  globalThis.workflow = async name => ({ workflow: typeof name === 'string' ? name : 'script', status: ask('mode') === 'stop' ? 'stopped_at_gate' : 'done' })
+  globalThis.budget = { total: null, spent: () => 0, remaining: () => Infinity }
+}`
+
+// Runs the body once against stub hooks. `result` is what the body returned (undefined when it
+// returned nothing); a body that throws, loops or never settles makes it throw.
+export async function dryRun(body, args, mode, stub = STUB) {
+  const calls = []
+  const phases = []
+  const problems = []
+  const handlers = {
+    agent({ prompt, opts }) {
+      opts = opts || {}
+      if (typeof prompt !== 'string' || !prompt.trim()) throw new Error('agent() called with an empty prompt')
+      if (calls.length >= MAX_AGENTS) {
+        throw new Error(`more than ${MAX_AGENTS} agent() calls: the runtime stops a run there. A loop that waits for an agent's verdict never ends against stub results`)
+      }
+      const p = schemaProblem(opts.schema)
+      if (p) problems.push(`${opts.label || prompt.slice(0, 40)}: ${p}`)
+      if (opts.isolation !== undefined && opts.isolation !== 'worktree') problems.push(`isolation must be 'worktree', got ${JSON.stringify(opts.isolation)}`)
+      if (opts.phase) phases.push(opts.phase)
+      calls.push({ label: opts.label || prompt.slice(0, 40), model: opts.model || 'session model', effort: opts.effort || 'default' })
+      return fake(opts.schema, mode, true, stub)
+    },
+    phase(title) { phases.push(title) },
+    mode() { return mode },
+  }
+  const call = (name, json) => {
+    try {
+      const h = handlers[String(name)]
+      if (!h) throw new Error(`no hook ${name}`)
+      return JSON.stringify({ value: h(JSON.parse(String(json))) })
+    } catch (e) {
+      return JSON.stringify({ error: String(e && e.message) })
+    }
+  }
+  const ctx = vm.createContext({}, { microtaskMode: 'afterEvaluate' })
+  vm.runInContext(HOOKS, ctx)(call, args === undefined ? undefined : JSON.stringify(args))
+  const script = `globalThis.__out = undefined;
+(async () => {
+${body}
+})().then(v => { globalThis.__out = { ok: true, v } }, e => { globalThis.__out = { ok: false, e: String(e && e.message || e) } })`
+  try {
+    vm.runInContext(script, ctx, { timeout: TIMEOUT_MS })
+  } catch (e) {
+    throw new Error(/timed out/.test(String(e && e.message)) ? `still running after ${TIMEOUT_MS / 1000} seconds: a loop that never ends against stub results` : String(e && e.message))
+  }
+  const out = ctx.__out
+  if (!out) throw new Error('the body never finished: it waits on a promise nothing resolves')
+  if (!out.ok) throw new Error(out.e)
+  return { calls, phases, problems, result: out.v }
 }
 
 function mix(calls) {
@@ -181,7 +234,7 @@ export async function check(file, dryArgs) {
     return out
   }
   let meta
-  try { meta = Function(`"use strict"; return (${metaText})`)() } catch (e) { errors.push(`meta does not parse: ${e.message}`); return out }
+  try { meta = vm.runInNewContext(`(${metaText})`, {}, { timeout: 1000 }) } catch (e) { errors.push(`meta does not parse: ${e.message}`); return out }
   if (!meta.name || !meta.description) errors.push('meta needs a name and a description')
   if (meta.name && !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(meta.name)) errors.push(`meta.name "${meta.name}" should be lowercase words joined by hyphens`)
   if (meta.name && meta.name !== name) errors.push(`meta.name is "${meta.name}" but the file is ${name}.js`)
@@ -264,7 +317,9 @@ async function main() {
   if (!files.length) usage('no .js workflow files found')
 
   let byName = {}
-  if (argsFile) byName = JSON.parse(readFileSync(argsFile, 'utf8'))
+  if (argsFile) {
+    try { byName = JSON.parse(readFileSync(argsFile, 'utf8')) } catch (e) { usage(`--args-file ${argsFile}: ${e.message}`) }
+  }
   let shared
   if (argsJson !== undefined) {
     try { shared = JSON.parse(argsJson) } catch (e) { usage(`--args is not JSON: ${e.message}`) }
@@ -287,4 +342,4 @@ async function main() {
   process.exit(failed ? 1 : 0)
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) main()
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main()

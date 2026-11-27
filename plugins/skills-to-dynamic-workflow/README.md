@@ -16,7 +16,10 @@ produced: consistent-code-review, then address-findings.
 /plugin install skills-to-dynamic-workflow@caffeinity-skills
 ```
 
-Check any workflow script, with no Claude login and no tokens:
+Check a workflow script, with no Claude login and no tokens. The checker runs the script's
+top-level code against stub hooks in a separate `node:vm` context (no process, require or network,
+stopped after 10 seconds or 1,000 agent calls). That is not a security boundary, so check scripts
+you would be willing to run:
 
 ```
 node skills/skills-to-dynamic-workflow/scripts/check_workflow.mjs path/to/workflow.js --args '{"pr": 12}'

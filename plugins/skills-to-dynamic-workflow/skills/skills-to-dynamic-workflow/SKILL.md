@@ -1,6 +1,6 @@
 ---
 name: skills-to-dynamic-workflow
-description: Turns a workflow, an ordered set of agent skills, or an existing orchestrator (a chain skill, a workflow agent, a folder of subagent prompts) into a Claude Code dynamic workflow script that runs those skills as subagents. Maps each step's input, output and gate, turns approvals, pushes and deploys into resume points because a workflow cannot ask mid-run, picks Sonnet or Opus per step, writes the script from a tested preamble, and proves it with a no-token dry run. Use whenever someone wants a workflow, brew or set of skills to run as a /command, a Claude Code workflow, an ultracode script or a .claude/workflows file, or asks to automate a chain of skills, even if they never say "dynamic workflow". Not for picking which skills a goal needs (use caffeinity-routing), turning pasted prompts into skills (use prompts-to-workflow), running a skill on an event like git push (use skill-to-mod), or a one-off workflow with no skills behind it (use ultracode).
+description: Turns a workflow, an ordered set of agent skills, or an existing orchestrator (a chain skill, a workflow agent, a folder of subagent prompts) into a Claude Code dynamic workflow script that runs those skills as subagents. Maps each step's input, output and gate, turns approvals, pushes and deploys into resume points because a workflow cannot ask mid-run, picks Sonnet or Opus per step, writes the script from a tested preamble, and proves it with a no-token dry run. Use whenever someone wants a workflow, brew or set of skills to run as a /command, a Claude Code workflow, an ultracode script or a .claude/workflows file, or asks to automate a chain of skills, even if they never say "dynamic workflow". Not for picking which skills a goal needs (use workflow-router), turning pasted prompts into skills (use prompts-to-workflow), running a skill on an event like git push (use skill-to-mod), or a one-off workflow with no skills behind it (use ultracode).
 version: 0.1.0
 ---
 
@@ -37,7 +37,7 @@ report that says how to call it and what a run costs.
 
 1. **Get the chain.** Accept any of:
    - a named workflow with a step table (for example a caffeinity workflow in
-     `caffeinity-routing/references/workflows.md`),
+     `workflow-router/references/workflows.md`),
    - skill names in order ("consistent-code-review then address-findings"),
    - an orchestrator to port: a chain skill, a workflow agent's `.md`, or a folder of prompts.
    With one skill and no order, there is no chain: say a skill alone runs fine as itself.
@@ -64,7 +64,8 @@ Chain, lanes then a gate, fan-out, or a mix: `references/shapes.md` says which f
 
 Every step's own gate returns `stopped` with the one thing the user must decide; every outward
 action ends the run as `needs_approval`; missing input returns `needs_input` with an example
-before any agent starts. The preamble's `chain()` does this and builds the `resume` args, so a
+before any agent starts, and a step whose skill is not installed ends the run as `needs_input`
+with its install command. The preamble's `chain()` does this and builds the `resume` args, so a
 rerun skips the steps that already finished.
 
 ### 4. Write the script
@@ -100,7 +101,9 @@ walk it with `--stub '{"verdict": "fail"}'` (any field the branch reads). For a 
 
     claude plugin validate --strict <plugin-dir>
 
-and confirm it lists `workflows: <plugin>:<name>`. Both checks spend no tokens.
+and confirm it lists `workflows: <plugin>:<name>`. Both checks spend no tokens. The checker runs
+the script's top-level code against stub hooks in a separate `node:vm` context, so only check
+scripts you would run anyway.
 
 ### 6. Hand it over
 
@@ -111,7 +114,7 @@ the allow rule it needs: `Workflow(<name>)`, because `ultracode` does not start 
 
 ## Hand off
 
-- Which skills a goal needs, or in what order: `caffeinity-routing`.
+- Which skills a goal needs, or in what order: `workflow-router`.
 - Prompts that still need to become skills: `prompts-to-workflow`, then come back.
 - A step whose skill is missing or weak: `draft-skill` or `tune-skill`.
 - The same chain triggered by an event such as `git push`: `skill-to-mod`.

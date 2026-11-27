@@ -1,7 +1,7 @@
 export const meta = {
   name: 'review-a-pull-request',
   description: 'Review one pull request with consistent-code-review, then fix its CRITICAL and HIGH findings locally with address-findings. Stops before any push or PR comment.',
-  whenToUse: 'When a PR needs a review and its blocking findings fixed. Pass {pr} (number), and optionally {repo: "owner/name", round, previous: path to the last review-report.json}. Rerun with round 2 after you push the fixes.',
+  whenToUse: 'When a PR needs a review and its blocking findings fixed. Pass {pr} (number), and optionally {repo: "owner/name", round (1 to 4; round 4 reviews only), previous: path to the last review-report.json}. Rerun with the next round after you push the fixes.',
   phases: [
     { title: 'Review', detail: 'consistent-code-review on the PR diff', model: 'opus' },
     { title: 'Fix', detail: 'address-findings on CRITICAL and HIGH, inside the PR files; pushes and comments are proposed, not taken', model: 'sonnet' },
@@ -69,8 +69,9 @@ function needInput(name, missing, example) {
 
 // Runs steps in order, starting at args.from (default 1). Each step receives the previous step's
 // output verbatim; a row's `when(carried, last)` can also read the previous step's whole result.
-// The run ends at the first step that stops at its gate or prepares an outward action, and the
-// result says how to resume: pass `resume` back as args, with `decisions` added.
+// The run ends at the first step whose skill is missing, that stops at its gate or that prepares
+// an outward action, and the result says how to resume: pass `resume` back as args, with
+// `decisions` added.
 async function chain(name, steps, firstInput) {
   const from = Math.max(1, Number(input.from) || 1)
   let carried = input.carried || firstInput
@@ -88,6 +89,20 @@ async function chain(name, steps, firstInput) {
     const r = await step(s.n, s.skill, s.receives, body, s.stopsWhen, { phase: s.phase, ...s.opts })
     ran.push({ step: s.n, skill: s.skill, status: r.status, verdict: r.verdict || null, stopReason: r.stopReason || null })
     const before = last
+    // A skill that is not installed ends the run: carrying on would hand the next step nothing
+    // and report done. Install it, then pass `resume` back as args.
+    if (r.status === 'skipped') {
+      return {
+        workflow: name,
+        status: 'needs_input',
+        stoppedAt: s.n,
+        skill: s.skill,
+        missing: [s.skill],
+        reason: r.stopReason || `${s.skill} is not installed: ${INSTALL(s.skill)}`,
+        steps: ran,
+        resume: { ...input, from: s.n, carried, lastVerdict: before ? before.verdict || null : null },
+      }
+    }
     last = r
     const actions = r.proposedActions || []
     if (r.status === 'stopped' || actions.length) {
@@ -116,11 +131,14 @@ async function chain(name, steps, firstInput) {
 
 // ---- the workflow: one row per step from the step table ----
 const NAME = 'review-a-pull-request'
-if (!input.pr && !input.carried) {
+// review-report.json needs a whole PR number, and the folder below is built from it.
+if (!Number.isInteger(Number(input.pr)) || Number(input.pr) < 1) {
   return needInput(NAME, ['pr'], { pr: 123, repo: 'owner/name', round: 1 })
 }
 const repo = input.repo ? `Repository: ${input.repo}` : 'Repository: the current one (gh repo view)'
-const round = Math.min(3, Math.max(1, Number(input.round) || 1))
+// A review round is 1 to 4 (review-report.json); address-findings fixes rounds 1 to 3 only, so
+// round 4 is the last review and nothing is fixed after it.
+const round = Math.min(4, Math.max(1, Number(input.round) || 1))
 const dir = `.reviews/pr-${input.pr}/round-${round}`
 log(`Reviewing PR #${input.pr}, round ${round}`)
 
@@ -136,8 +154,10 @@ return chain(NAME, [
   // Applying a reviewed fix with tests is procedure, so Sonnet at high effort.
   { n: 2, skill: 'address-findings', phase: 'Fix', opts: SONNET_HIGH,
     receives: 'review-report.json for this PR and the round number (1 to 3)',
-    when: (_, last) => Boolean(last && last.verdict === 'fail'),
-    whenNot: 'no CRITICAL or HIGH findings, so there is nothing to fix',
+    when: (_, last) => round <= 3 && Boolean(last && last.verdict === 'fail'),
+    whenNot: round > 3
+      ? 'round 4 is the last review: address-findings fixes rounds 1 to 3 only'
+      : 'no CRITICAL or HIGH findings, so there is nothing to fix',
     input: c => `${repo}\nPull request: #${input.pr}\nRound: ${round}\nreview-report.json: ${dir}/review-report.json (write fix-report.json beside it)\n\nStep 1's output:\n${c}\n\n` +
       'Commit fixes locally in your worktree. Do not push and do not comment on the PR: list the push (with its branch and commits) and the PR comment table in proposedActions.',
     stopsWhen: 'the review is stale, the baseline is red, or review-report.json is missing' },
