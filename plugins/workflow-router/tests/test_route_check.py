@@ -30,6 +30,8 @@ assert all(f["steps"] for f in flows.values())
 assert flows["maintain-skills"]["steps"][0]["skills"] == ["tune-skill"], flows["maintain-skills"]
 assert route_check.install("paper-trail") == "npx skills add arm-pz/caffeinity-skills --skill paper-trail"
 assert route_check.install("tune-and-ship") == "npx skills add arm-pz/caffeinity-skills --skill tune-and-ship"
+# Moved to its own repo, so it installs from there.
+assert route_check.install("skills-to-dynamic-workflow") == "npx skills add arm-pz/skills-to-dynamic-workflow"
 assert route_check.install("topic-primer") == "npx skills add arm-pz/topic-primer"
 # Missing skills come as one command, each once, so a user copies a single line.
 assert route_check.install_all(["seo-crawl", "paper-trail", "seo-crawl"]) == (
