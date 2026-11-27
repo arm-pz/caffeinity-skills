@@ -4,9 +4,9 @@ Takes a whole collection of agent skill repos from scattered to published, consi
 self-maintaining, in eight gated phases: inventory, reconcile listings, test and tune, close
 workflow gaps, publish and bundle, trigger tests, discovery, maintenance loop. Each phase hands its
 work to the skill that owns it (upstream-check, publish-pipeline, tune-skill, draft-skill,
-caffeinity-routing, findable) and ends in PRs.
+workflow-router, findable) and ends in PRs.
 
-Workflow Workflow 11 · audit-agent-skills in `caffeinity-routing`. Distilled from the run that set up the arm-pz skills;
+Workflow Workflow 11 · audit-agent-skills in `workflow-router`. Distilled from the run that set up the arm-pz skills;
 `references/brief.md` keeps the eight requests behind it.
 
 ```

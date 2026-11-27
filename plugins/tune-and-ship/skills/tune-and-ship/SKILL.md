@@ -10,7 +10,7 @@ description: >-
   catalog, give a published skill the full treatment, fact-check a skill's claims, or ship a tune
   instead of drafting it, even if they never say "ship". Not for a tune with no release (use
   tune-skill), drafts with nothing pushed (use tune-and-polish), a new skill (use skill-launch),
-  regressions from the nightly health check (use caffeinity-routing's maintain-skills workflow), or a whole
+  regressions from the nightly health check (use workflow-router's maintain-skills workflow), or a whole
   collection (use skill-estate).
 version: 0.1.0
 argument-hint: "[skill name | next]"
@@ -120,7 +120,7 @@ ledger as queued with the reason; do not edit it inside this PR. Then offer the 
 - The audit, edits, validator and trigger cases → `tune-skill` receives the skill folder.
 - Listing audit and rewrites → `findable-polish` receives the tuned folder and the tune report.
 - A skill that needs splitting or a new sibling → `draft-skill` receives the gap in one line.
-- A failed health check or a family regression → `caffeinity-routing`'s maintain-skills workflow.
+- A failed health check or a family regression → `workflow-router`'s maintain-skills workflow.
 - If a named skill is not installed, say so in one line and stop that step. Do not improvise it.
 
 ## Report
