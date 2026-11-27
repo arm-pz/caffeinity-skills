@@ -74,7 +74,7 @@ def label(flow):
 # Skills that live in arm-pz/caffeinity-skills rather than a repo of their own. Every skill under
 # plugins/ belongs here whether or not a workflow names it as a step, so a later edit to workflows.md
 # cannot print an install command for a repo that does not exist; the self-check enforces it.
-IN_MARKETPLACE = {"caffeinity-routing", "paper-trail", "course-builder", "skill-estate",
+IN_MARKETPLACE = {"workflow-router", "paper-trail", "course-builder", "skill-estate",
                   "tune-and-ship", "agent-audit"}
 
 
@@ -82,6 +82,11 @@ def install(name):
     if name in IN_MARKETPLACE:
         return f"npx skills add arm-pz/caffeinity-skills --skill {name}"
     return f"npx skills add arm-pz/{name}"
+
+
+def install_all(names):
+    """One copy-paste command for every missing skill, each once, in the order the brew needs them."""
+    return " && ".join(install(n) for n in dict.fromkeys(names))
 
 
 def installed(extra=()):
@@ -133,7 +138,8 @@ def main(argv=None):
         rows, missing = check(flows[w], have)
         # "brew" repeats "workflow" for readers of the old --json output; drop it in the next release.
         report[w] = {"workflow": label(flows[w]), "brew": label(flows[w]), "title": flows[w]["title"],
-                     "steps": rows, "missing": missing}
+                     "steps": rows, "missing": missing,
+                     "install": install_all(missing) or None}
         all_missing += missing
 
     if a.json:
@@ -143,8 +149,8 @@ def main(argv=None):
             print(f"{r['workflow']}: {r['title']}")
             for row in r["steps"]:
                 print(f"  {row['step']}. {' or '.join(row['skills']):<56} {row['status']}")
-            for name in r["missing"]:
-                print(f"  install: {install(name)}")
+            if r["missing"]:
+                print(f"  install: {install_all(r['missing'])}")
     return 1 if all_missing else 0
 
 
