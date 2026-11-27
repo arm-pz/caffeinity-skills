@@ -1,5 +1,5 @@
 ---
-name: caffeinity-routing
+name: workflow-router
 description: >-
   Picks which caffeinity skills to run, in what order, for a goal that spans more than one of
   them, and says what each step hands the next: build and publish a skill, get a project found,
@@ -13,7 +13,7 @@ description: >-
 version: 1.1.0
 ---
 
-# caffeinity-routing
+# workflow-router
 
 A goal like "ship my site" or "get hired" crosses several skills, and each one only knows its own
 edges. This skill holds the map: twelve numbered workflows (Workflow 1 to Workflow 12; older docs call them W1 to W12), each an ordered list of

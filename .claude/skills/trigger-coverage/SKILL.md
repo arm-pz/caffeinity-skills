@@ -35,7 +35,7 @@ description: Keeps caffeinity-skills' trigger eval suite green when the hourly r
 
        python scripts/build_evals.py
        python scripts/build_evals.py --check
-       python -I plugins/caffeinity-routing/tests/test_route_check.py
+       python -I plugins/workflow-router/tests/test_route_check.py
        python scripts/build_plugin.py --agents-only --check
 
 4. **Ship.** Commit `evals/triggers.json` and `plugins/caffeinity/evals/` on a new branch named `claude/trigger-coverage-<yyyymmdd>`. Push it and open a draft PR titled "Add trigger cases for <names>". In the body, list each new case with the description phrase it came from. Add `Fixes #<n>` if an open issue labelled `eval-coverage` exists. Note that the cases are checked for structure only: `scripts/run_evals.sh` needs a Claude login and was not run.
