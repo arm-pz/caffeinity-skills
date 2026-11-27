@@ -1,0 +1,17 @@
+{
+  "name": "skills-to-dynamic-workflow",
+  "version": "0.1.0",
+  "description": "Turns a workflow, an ordered list of agent skills, or an existing orchestrator into a Claude Code dynamic workflow script: maps the steps, turns approvals and pushes into resume points, picks Sonnet or Opus per step, writes the script from a tested preamble, and checks it with a dry run that spends no tokens.",
+  "author": {
+    "name": "Abdul Rahman P Z"
+  },
+  "repository": "https://github.com/arm-pz/caffeinity-skills",
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "dynamic-workflows",
+    "workflow",
+    "orchestration",
+    "subagents"
+  ]
+}
