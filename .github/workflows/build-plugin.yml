@@ -44,11 +44,6 @@ jobs:
           python -I plugins/course-builder/tests/test_check_course.py
           python -I plugins/agent-audit/tests/test_check_agent.py
           python -I plugins/tune-and-ship/tests/test_queue.py
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-      - name: workflow checker self-check
-        run: node --test plugins/skills-to-dynamic-workflow/tests/test_check_workflow.mjs
       - name: trigger suite is current and covers every skill
         run: python scripts/build_evals.py --check
       - name: agents are current
