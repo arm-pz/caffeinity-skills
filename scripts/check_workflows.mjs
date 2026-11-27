@@ -21,17 +21,17 @@ const DIR = join(ROOT, 'plugins', 'caffeinity', 'workflows')
 // Arguments for the "every step finishes" dry run. A workflow with no entry runs with {}.
 const DRY_ARGS = {
   'launch-safely': { url: 'https://staging.example.com', source: '.', isolatedEnv: 'http://localhost:3000' },
-  'build-a-skill': { idea: 'a skill that drafts release notes', confirmed: { purpose: 'x', triggers: ['y'] } },
+  'build-a-skill': { idea: 'a skill that drafts release notes', confirmed: { purpose: 'x', triggers: ['y'] }, fixedMoment: 'before git push' },
   'get-found': { repo: 'arm-pz/example', what: 'an example skill', site: 'https://skillsmith.tech' },
-  'grow-search-traffic': { site: 'https://example.com', queries: ['example query'] },
-  'land-a-job': { resume: 'resume.pdf', jobDescription: 'jd.md' },
-  'decision-memo': { question: 'Should we build or buy?' },
-  'learn-any-topic': { topic: 'Rust ownership', level: 'beginner' },
+  'grow-search-traffic': { site: 'https://example.com', queries: ['example query'], speed: true, posts: 'LinkedIn' },
+  'land-a-job': { resume: 'resume.pdf', jobDescription: 'jd.md', offer: 'offer.pdf' },
+  'decision-memo': { question: 'Should we build or buy?', data: 'data.csv' },
+  'learn-any-topic': { topic: 'Rust ownership', level: 'beginner', cohort: 'a class of 20' },
   'run-cold-outbound': { leadList: 'leads.csv', icp: 'small agencies', monthlySends: 3000, offer: 'audit', audience: 'agency owners' },
-  'launch-a-product': { skills: 'backend dev', time: '10h a week', budget: '$200' },
+  'launch-a-product': { skills: 'backend dev', time: '10h a week', budget: '$200', url: 'https://staging.example.com' },
   'maintain-skills': { clones: '~/skills' },
   'audit-agent-skills': { owner: 'arm-pz', clones: '~/skills' },
-  'set-up-a-coding-agent': { repo: '.' },
+  'set-up-a-coding-agent': { repo: '.', mode: 'audit', quota: true, usage: 'stub', nextTask: 'stub' },
 }
 
 function fail(name, msg) {
@@ -68,10 +68,11 @@ function fake(schema, mode) {
   switch (schema.type) {
     case 'object': {
       const o = {}
-      for (const [k, v] of Object.entries(schema.properties || {})) o[k] = fake(v, mode)
+      // Outward actions would stop every chain, so the stubs never propose any.
+      for (const [k, v] of Object.entries(schema.properties || {})) o[k] = k === 'proposedActions' ? [] : fake(v, mode)
       return o
     }
-    case 'array': return []
+    case 'array': return mode === 'done' ? [fake(schema.items, mode)] : []
     case 'number': case 'integer': return 0
     case 'boolean': return mode === 'stop'
     default: return 'stub'
@@ -86,13 +87,13 @@ async function dryRun(body, args, mode) {
     calls.push({ label: opts.label || prompt.slice(0, 40), model: opts.model || 'inherit', effort: opts.effort || 'inherit' })
     return fake(opts.schema, mode)
   }
-  const parallel = async thunks => Promise.all(thunks.map(t => t().catch(() => null)))
+  const parallel = async thunks => Promise.all(thunks.map(t => Promise.resolve().then(t).catch(() => null)))
   const pipeline = async (items, ...stages) => Promise.all(items.map(async (item, i) => {
     let v = item
     try { for (const s of stages) v = await s(v, item, i) } catch { return null }
     return v
   }))
-  const workflow = async name => ({ workflow: name, status: 'stub child run' })
+  const workflow = async name => ({ workflow: name, posture: mode === 'stop' ? 'HOLD' : 'ready' })
   const budget = { total: null, spent: () => 0, remaining: () => Infinity }
   const AsyncFunction = (async () => {}).constructor
   const fn = new AsyncFunction('agent', 'parallel', 'pipeline', 'phase', 'log', 'args', 'budget', 'workflow', body)
