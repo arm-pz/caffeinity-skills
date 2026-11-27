@@ -75,7 +75,7 @@ def label(flow):
 # plugins/ belongs here whether or not a workflow names it as a step, so a later edit to workflows.md
 # cannot print an install command for a repo that does not exist; the self-check enforces it.
 IN_MARKETPLACE = {"workflow-router", "paper-trail", "course-builder", "skill-estate",
-                  "tune-and-ship", "agent-audit"}
+                  "tune-and-ship", "agent-audit", "skills-to-dynamic-workflow"}
 
 
 def install(name):
